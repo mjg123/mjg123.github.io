@@ -1,19 +1,12 @@
 ---
 layout: page
-title: About Pixyll
+title: About me
 permalink: /about/
 ---
 
-This Jekyll theme was crafted with <3 by [John Otander](http://johnotander.com)
-([@4lpine](https://twitter.com/4lpine)).
+This site is maintained by Matthew Gilliard. He works for [HP](http://www.hp.com)
+on [OpenStack](http://www.openstack.org), mainly on [Nova](http://docs.openstack.org/developer/nova/),
+with occasional dabblings in [Ironic](http://docs.openstack.org/developer/ironic/),
+[Infra](http://ci.openstack.org) and other places.
 
-Checkout the [Github repository](https://github.com/johnotander/pixyll) to download it,
-request a feature, report a bug, or contribute. It's free, and open source
-([MIT](http://opensource.org/licenses/MIT)).
-
-Thanks to the following:
-
-* [BASSCSS](http://basscss.com)
-* [Jekyll](http://jekyllrb.com)
-* [Refills](http://refills.bourbon.io/)
-* [Solarized](http://ethanschoonover.com/solarized)
+All content and opinions are Matthew's...
