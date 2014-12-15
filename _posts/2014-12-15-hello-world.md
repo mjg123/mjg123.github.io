@@ -3,7 +3,6 @@ layout:     post
 title:      Hello World!
 date:       2014-12-15 12:31:19
 summary:    The first post
-categories: meta boring
 ---
 
 There is a significant amount of subtle, yet precisely calibrated, styling to ensure
