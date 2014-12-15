@@ -1,0 +1,32 @@
+# Site settings
+title:       mjg123
+email:       matthew.gilliard@gmail.com
+author:      Matthew Gilliard
+description: "A short blog about OpenStack"
+baseurl:     "http://mjg123.github.io"
+url:         "http://mjg123.github.io"
+
+# Google analytics
+google_analytics:
+
+# Optional features
+animated:           false
+show_related_posts: false
+show_post_footers:  false
+
+# Social icons
+show_social_icons: false
+github_username:
+twitter_username:
+google_plus_id:
+linkedin_username:
+bitcoin_url:
+paypal_url:
+flattr_button:
+
+# Build settings
+markdown:     kramdown
+permalink:    pretty
+paginate:     3
+sass:
+  compressed: true
