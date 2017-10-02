@@ -1,18 +1,18 @@
 ---
 layout:     post
-title:      Fast JVM startup with Java 9
-date:       2017-10-01 12:31:19
+title:      Fast JVM startup with JDK 9
+date:       2017-10-02 12:31:19
 summary:    Tuning for short-lived JVM processes
 ---
 
 Recently I've been working on a project where the execution time of short-lived JVM workloads is a critical factor in overall system performance. This isn't a particularly common type of workload for the JVM, which is usually long-lived apps that allow HotSpot profiling and optimising to do a really amazing job of speeding your code up.
 
-In our processes only a small handful of methods were run often enough to be compiled; 99% of everything was run in the JVM's bytecode-interpreted mode. Instead of focussing on runtime optimisations I decided to attack the startup time. I was lucky to get a lot of help from the JVM team here at Oracle, who recommended two techniques:
+In our processes only a small handful of methods were run often enough to be compiled; 99% of everything was run in the JVM's bytecode-interpreted mode. Instead of focusing on runtime optimisations I decided to attack the startup time. I was lucky to get a lot of help from the JVM team here at Oracle, who recommended two techniques:
 
   * Class Data Sharing (CDS), available since Java 5
   * Ahead-Of-Time compilation (AOT), new in Java 9
 
-Both made a noteable difference, but the docs are a bit terse and there's a *lot* of flags which you can use.  Let's get to it:
+Both made a noteable difference, but the docs are a bit terse and there's a *lot* of flags which you can use. Read on for some actual examples of how to use these features to speed your JVM startup. Let's get to it:
 
 
 ## A Simple App
@@ -60,7 +60,8 @@ java HelloJava  0.11s user 0.02s system 117% cpu 0.113 total
 but it's better to use `perf` ([linux only](https://perf.wiki.kernel.org/index.php/Main_Page)) which can run the command several times and gather a lot of different statistics. I've only selected cpu-clock but perf is a real [Swiss-Army knife of process measurement](http://www.brendangregg.com/perf.html). By default `perf` needs to be run as root, and I've chosen to run 50 times to get a decent average without taking too long:
 
 ```shell
-⇒ sudo perf stat -e cpu-clock -r50 java HelloJava
+⇒ sudo perf stat -e cpu-clock -r50 \
+    java HelloJava
 Hello Java! # printed 50x
 
  Performance counter stats for 'java HelloJava' (50 runs):
@@ -107,7 +108,8 @@ This creates the file `$JAVA_HOME/lib/server/classes.jsa`.
 Lets re-run the perf check with CDS on:
 
 ```shell
-⇒ sudo perf stat -e cpu-clock -r50 java -Xshare:on HelloJava
+⇒ sudo perf stat -e cpu-clock -r50 \
+    java -Xshare:on HelloJava
 ... 50 lines of output elided ...
 
  Performance counter stats for 'java -Xshare:on HelloJava' (50 runs):
@@ -143,7 +145,7 @@ and without CDS:
 ...etc...
 ```
 
-**NB 1** apparently the default behaviour is `-Xshare:off` when the JVM is in server mode, though [this may change in a future update](https://bugs.openjdk.java.net/browse/JDK-8188105), so I explicitly set it to `:on` in the above tests.  According to (this issue)[https://bugs.openjdk.java.net/browse/JDK-8188109] it is safest to select `:auto` if you're using CDS in real life.
+**NB 1** apparently the default behaviour is `-Xshare:off` when the JVM is in server mode, though [this may change in a future update](https://bugs.openjdk.java.net/browse/JDK-8188105), so I explicitly set it to `:on` in the above tests.  According to [this issue](https://bugs.openjdk.java.net/browse/JDK-8188109) it is safest to select `:auto` if you're using CDS in real life.
 
 
 **NB 2** Up until jdk8 CDS used to only work with Serial GC but this restricition is lifted in jdk9. I confirmed that the effect is similar with Serial, Parallel or G1 GC.
@@ -153,7 +155,7 @@ So this is a pretty big improvement in runtime, 30ms right off the bat. If we ha
 
 ## AOT
 
-[AOT is an experimental new feature in jdk9](http://openjdk.java.net/jeps/295) for linux-x86 JVMs. Where CDS does some parts of classloading of core classes in advance, AOT actually compiles bytecode to native code (an ELF-format shared-object fil) in advance, and can be applied to any bytecode.
+[AOT is an experimental new feature in jdk9](http://openjdk.java.net/jeps/295) for linux-x86 JVMs. Where CDS does some parts of classloading of core classes in advance, AOT actually compiles bytecode to native code (an ELF-format shared-object file) in advance, and can be applied to any bytecode.
 
 To use aot we need to use a new tool from `$JAVA_HOME/bin` called `jaotc`, and we need to decide *what* to AOT compile. The simplest decision to make is to compile the whole `java.base` module:
 
@@ -198,7 +200,8 @@ Hello Java!
 So, drum-roll, what's the effect on performance?
 
 ```shell
-⇒ sudo perf stat -e cpu-clock -r50 java -XX:AOTLibrary=./java_base.so  HelloJava
+⇒ sudo perf stat -e cpu-clock -r50 \
+    java -XX:AOTLibrary=./java_base.so  HelloJava
 ...50 lines elided...
 
  Performance counter stats for 'java -XX:AOTLibrary=./java_base.so HelloJava' (50 runs):
@@ -214,7 +217,7 @@ Ah crap! We've gone and made it worse. Not only did we compile too much, we're n
 
 #### Aside 1: Where can I use it?
 
-AOT is an "experimental" feature, only currently supported on 64-bit JVMs on linux-x86 (all JVMs are 64-bit from 9 onwards). This is what most people's prod environments look like, in my experience, but the JVM is widely used in plenty of other places too. There is [an RFE for AOT support in Windows and MacOS](https://bugs.openjdk.java.net/browse/JDK-8172670) which seems to indicate that it might be available in the next major release, which will be 18.3 next March.
+AOT is an "experimental" feature, only currently supported on 64-bit JVMs on linux-x86 (all JVMs are 64-bit from 9 onwards). This is what most people's prod environments look like, in my experience, but the JVM is widely used in plenty of other places too. There is [an RFE for AOT support in Windows and MacOS](https://bugs.openjdk.java.net/browse/JDK-8172670) which seems to be progressing well, so we might get to see in a near-future release.
 
 #### Aside 2: Tiered compilation
 
@@ -227,7 +230,11 @@ Whether or not the profiling information is collected is controlled by the argum
 `jaotc` takes arguments of the form `-J<arg>` which are passed down to the JVM doing the compilation with Graal. You might have noticed I used `-J-Xmx4g` above. Some arguments *need* to be the same between this and the runtime JVM, notably the choice of GC. You can check whether your runtime is able to use the AOT cache by using `-XX:+UseAOTStrictLoading`, which needs `-XX:+UnlockDiagnosticVMOptions`. For example, remembering that `jaotc` used G1GC (jdk9 default), if I manually specify `-XX:+UseParallelGC`, we see:
 
 ```shell
-⇒ java -XX:AOTLibrary=./java_base.so -XX:+UnlockDiagnosticVMOptions -XX:+UseAOTStrictLoading -XX:+UseParallelGC HelloJava
+⇒ java -XX:AOTLibrary=./java_base.so \
+       -XX:+UnlockDiagnosticVMOptions \
+	   -XX:+UseAOTStrictLoading \
+	   -XX:+UseParallelGC \
+	   HelloJava
 ⇒ echo $?
 1
 ```
@@ -242,7 +249,10 @@ The results for AOT so far are a bit disappointing, to put it mildly. What can w
 We'd like to use `--compile-commands`, so we need to actually know which methods we need to compile. Time for some more JVM flags!
 
 ```shell
-java -XX:+UnlockDiagnosticVMOptions -XX:+LogTouchedMethods -XX:+PrintTouchedMethodsAtExit HelloJava > touched_methods
+java -XX:+UnlockDiagnosticVMOptions \
+     -XX:+LogTouchedMethods \
+	 -XX:+PrintTouchedMethodsAtExit \
+	 HelloJava > touched_methods
 ```
 
 The file `touched_methods` now has a long list of the almost 2000 methods we used in that short time. It also has the stdout from our process (ie `Hello Java!`) and a header line. It's also not quite in the format that `--compile-commands` expects, as the classes are written like `java/lang/Sytem` but `jaotc` wants `java.lang.System`. Oh, and we need to prefix each line with `compileOnly`.
@@ -268,7 +278,11 @@ compileOnly jdk.internal.module.Builder.packages(Ljava/util/Set;)Ljdk/internal/m
 Lets try recreating the AOT cache with only the touched methods in the cache. We specify the `java.base` module and our class file as sources:
 
 ```shell
-⇒ jaotc --output touched_methods.so --compile-commands touched.aotcfg --module java.base --class-name HelloJava.class --info
+⇒ jaotc --output touched_methods.so \
+        --compile-commands touched.aotcfg \
+		--module java.base \
+		--class-name HelloJava.class \
+		--info
 Compiling touched_methods...
 5748 classes found (594 ms)
 54548 methods total, 1874 methods to compile (840 ms)
@@ -294,7 +308,8 @@ So that was much quicker, and the .so file is correspondingly smaller. It is pos
 That was nearly 20x faster, and the output is about 30x smaller. What we're actually interested in, though, is the time it takes to run our app:
 
 ```shell
-⇒ sudo perf stat -e cpu-clock -r50 java -XX:AOTLibrary=./touched_methods.so  HelloJava
+⇒ sudo perf stat -e cpu-clock -r50 \
+    java -XX:AOTLibrary=./touched_methods.so  HelloJava
 
  Performance counter stats for 'java -XX:AOTLibrary=./touched_methods.so HelloJava' (50 runs):
 
@@ -310,7 +325,8 @@ That was nearly 20x faster, and the output is about 30x smaller. What we're actu
 I wasn't sure if CDS and AOT would interfere with each other, so I tried both and it seems to have a good result.
 
 ```shell
-⇒ sudo perf stat -e cpu-clock -r50 java -XX:AOTLibrary=./touched_methods.so -Xshare:on HelloJava
+⇒ sudo perf stat -e cpu-clock -r50 \
+    java -XX:AOTLibrary=./touched_methods.so -Xshare:on HelloJava
 
  Performance counter stats for 'java -XX:AOTLibrary=./touched_methods.so -Xshare:on HelloJava' (50 runs):
 
