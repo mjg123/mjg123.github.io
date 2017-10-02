@@ -5,8 +5,6 @@ date:       2017-10-01 12:31:19
 summary:    Tuning for short-lived JVM processes
 ---
 
-# Fast JVM startup with Java 9
-
 Recently I've been working on a project where the execution time of short-lived JVM workloads is a critical factor in overall system performance. This isn't a particularly common type of workload for the JVM, which is usually long-lived apps that allow HotSpot profiling and optimising to do a really amazing job of speeding your code up.
 
 In our processes only a small handful of methods were run often enough to be compiled; 99% of everything was run in the JVM's bytecode-interpreted mode. Instead of focussing on runtime optimisations I decided to attack the startup time. I was lucky to get a lot of help from the JVM team here at Oracle, who recommended two techniques:
