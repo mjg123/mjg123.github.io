@@ -30,7 +30,6 @@ And I wrote a *really* simple Java app:
 
 ```java
 public class HelloJava {
-
     public static void main(String... args){
         System.out.println("Hello Java!");
     }
@@ -232,9 +231,9 @@ Whether or not the profiling information is collected is controlled by the argum
 ```shell
 ⇒ java -XX:AOTLibrary=./java_base.so \
        -XX:+UnlockDiagnosticVMOptions \
-	   -XX:+UseAOTStrictLoading \
-	   -XX:+UseParallelGC \
-	   HelloJava
+       -XX:+UseAOTStrictLoading \
+       -XX:+UseParallelGC \
+       HelloJava
 ⇒ echo $?
 1
 ```
@@ -251,8 +250,8 @@ We'd like to use `--compile-commands`, so we need to actually know which methods
 ```shell
 java -XX:+UnlockDiagnosticVMOptions \
      -XX:+LogTouchedMethods \
-	 -XX:+PrintTouchedMethodsAtExit \
-	 HelloJava > touched_methods
+     -XX:+PrintTouchedMethodsAtExit \
+     HelloJava > touched_methods
 ```
 
 The file `touched_methods` now has a long list of the almost 2000 methods we used in that short time. It also has the stdout from our process (ie `Hello Java!`) and a header line. It's also not quite in the format that `--compile-commands` expects, as the classes are written like `java/lang/Sytem` but `jaotc` wants `java.lang.System`. Oh, and we need to prefix each line with `compileOnly`.
@@ -280,9 +279,9 @@ Lets try recreating the AOT cache with only the touched methods in the cache. We
 ```shell
 ⇒ jaotc --output touched_methods.so \
         --compile-commands touched.aotcfg \
-		--module java.base \
-		--class-name HelloJava.class \
-		--info
+        --module java.base \
+        --class-name HelloJava.class \
+        --info
 Compiling touched_methods...
 5748 classes found (594 ms)
 54548 methods total, 1874 methods to compile (840 ms)
