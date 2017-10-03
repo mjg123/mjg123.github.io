@@ -118,6 +118,8 @@ Lets re-run the perf check with CDS on:
        0.096572606 seconds time elapsed                                          ( +-  1.49% )
 ```
 
+So this is a pretty big improvement in runtime, 30ms right off the bat. If we had a larger app, it would be possible to use AppCDS to preload more than just java core classes (but that's a topic for another post).  The other big advantage of CDS is that the cache file is `mmap`-ed read-only, so can be shared between multiple JVMs. This has a nice consequence if you're running JVMs in containers, that the shared-page usage only counts towards one of the cgroup limits (although *which one* seems to be [difficult to predict](https://github.com/torvalds/linux/blob/master/Documentation/cgroup-v1/memory.txt#L195-L199)).
+
 We know that the CDS cache has been used, because `Xshare:on` will fail if the cache isn't found. We can also check where the classes are loaded from with the argument `-Xlog:class+load=info` which was previously known as `-XX:+TraceClassLoading`.
 
 With CDS we see output like this:
@@ -148,8 +150,6 @@ and without CDS:
 
 
 **NB 2** Up until jdk8 CDS used to only work with Serial GC but this restricition is lifted in jdk9. I confirmed that the effect is similar with Serial, Parallel or G1 GC.
-
-So this is a pretty big improvement in runtime, 30ms right off the bat. If we had a larger app, it would be possible to use AppCDS to preload more than just java core classes (but that's a topic for another post).  The other big advantage of CDS is that the cache file is `mmap`-ed read-only, so can be shared between multiple JVMs. This has a nice consequence if you're running JVMs in containers, that the shared-page usage only counts towards one of the cgroup limits (although *which one* seems to be [difficult to predict](https://github.com/torvalds/linux/blob/master/Documentation/cgroup-v1/memory.txt#L195-L199)).
 
 
 ## AOT
