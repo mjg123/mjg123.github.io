@@ -38,13 +38,15 @@ func.yaml created.
 
 We've used `runtime=go` because `runtime=befunge` isn't supported yet (PRs accepted [look here](https://github.com/fnproject/cli/tree/master/langs)), so we have 3 files created by the `go` template.
 
-  * `func.go` is a super-simple go program which reads STDIN, does JSON parsing and writes to STDOUT
+  * `func.go` is a super-simple go program which:
+    * (optionally) reads JSON from STDIN
+	* Prints some JSON to STDOUT
   * `func.yaml` is the metadata for this function. For now we'll accept the defaults
   * `test.json` specifies some expected input/output values.
 
 From this point on, you will need a newish version of Docker, which is FnProject's only dependency.
 
-What can we do here?
+So what can we do?
 
 ### Run the function
 
@@ -147,4 +149,6 @@ $ curl -d '{"name": "Matthew over HTTP"}' http://localhost:8080/r/my-app/my-firs
 
 ### Fin
 
-That was a super-quick look at how to get started with FnProject - I hope it was helpful. There's a lot more to fn though, next up I'll look at the Java support. If you have any questions - there's an [official Fn Slack channel](https://join.slack.com/t/fnproject/shared_invite/enQtMjIwNzc5MTE4ODg3LTdlYjE2YzU1MjAxODNhNGUzOGNhMmU2OTNhZmEwOTcxZDQxNGJiZmFiMzNiMTk0NjU2NTIxZGEyNjI0YmY4NTA), problems - there's [GitHub issues](https://github.com/fnproject/fn/issues) or just ask on Slack.
+That was a super-quick look at how to get started with FnProject - I hope it was helpful. There's a lot [more documentation](https://github.com/fnproject/fn/tree/master/docs) if you need it, and there's a lot more to fn, too.
+
+Next post I'll look at the Java support. If you have any questions - there's an [official Fn Slack channel](https://join.slack.com/t/fnproject/shared_invite/enQtMjIwNzc5MTE4ODg3LTdlYjE2YzU1MjAxODNhNGUzOGNhMmU2OTNhZmEwOTcxZDQxNGJiZmFiMzNiMTk0NjU2NTIxZGEyNjI0YmY4NTA), problems - there's [GitHub issues](https://github.com/fnproject/fn/issues) or just ask on Slack.
