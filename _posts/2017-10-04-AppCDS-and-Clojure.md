@@ -42,7 +42,7 @@ Time to learn about *Application CDS!*
 
 Application CDS, [described here](https://bugs.openjdk.java.net/browse/JDK-8185996), (I'll call it AppCDS from now on) is like regular CDS - it performs classloading and bytecode verification and caches the result. But this time it does it to any classes you specify, not just core Java classes.
 
-**NB:** AppCDS is currently a "commercial" feature of Java, which means that you should not use it *in production* unless you have paid for a license. Experimenting, and use while developing is clearly not "production". Furthermore, at Java One this week Mark Cavage announced that Oracle has committed to opening up all the commercial features of the JVM, so I would expect this to change in the future.
+**NB:** AppCDS is currently a "commercial" feature of Java, which means that you should not use it *in production* unless you have paid for a license. Experimenting, and use while developing is clearly not "production". Furthermore, at Java One this week [Mark Cavage](https://www.youtube.com/watch?v=UNg9lmk60sg) confirmed that Oracle has committed to opening up all the commercial features of the Oracle JVM, as [proposed by Mark Reinhold](http://mail.openjdk.java.net/pipermail/discuss/2017-September/004281.html) last month. So I think it's something worth looking at right away.
 
 With that said, lets do it. Create a list of loaded classes:
 
@@ -147,10 +147,10 @@ That's not too bad by itself either. I wondered if I could get it better by bein
 
 **Both** `java.base` *and* `clojure-1.8.0.jar` : Cache size: 86mb, Runtime: ~0.8s (as above)
 
-When you're running java with AOT you can specify multiple files, which doesn't seem to have any performance impact, ie:
+So, it seems that we might as well go with AOT for both. When you're running java with AOT you can specify multiple files, which doesn't seem to have any performance impact, ie:
 
 ```
-java -XX:AOTLibrary=./clojure-jar.so:./java-base.so
+java -XX:AOTLibrary=./clojure-jar.so:./java-base.so ...
 ```
 
 Up to you.
@@ -167,9 +167,9 @@ Performance counter stats for 'java -XX:AOTLibrary=./both.so -XX:+UnlockCommerci
 
 Again, this is a really sizeable improvement over the plain `java` invocation:
   * **62%** reduction in wall clock time
-  * **74%** reduction in total CPU time spent with AppCDS + AOT
+  * **74%** reduction in total CPU time spent
 
-Perhaps some of these techniques can be build into Clojure tooling in the future.
+Perhaps some of these techniques can be build into Clojure tooling in the future??
 
 ### Acknowlegements
 

@@ -348,6 +348,8 @@ The saving in CPU-time is significant too, which will yield benefits when there 
 
 As I said above, I had help from the JVM team in figuring all this out. In particular I'd like to thank Ioi Lam, Claes Redestad, Karen Kinnear, Mary Urillo, Alan Bateman, Eric Caspole, Bob Vandette, Jiangli Zhou and Vladimir Kozlov for their help, technical advice and for proof-reading.
 
+If you want to discuss more, grab me on Twitter or head to [the Reddit post](https://www.reddit.com/r/java/comments/748w96/fast_jvm_startup_with_jdk_9_and_jdk5/) for this article. Thanks.
+
 ## Next up
 
 Several topics have come out of this. I'm going to look into:
