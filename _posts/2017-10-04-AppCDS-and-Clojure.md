@@ -16,7 +16,7 @@ Head over to the [Clojure Downloads page](https://clojure.org/community/download
 
 OK I admit it's still "Hello world", but there's a lot going on behind the scenes there.
 
-Please see the previous post for more details about using `perf` to record execution times. I'm only concerning myself with absolute time-taken and cpu clock time. Every command is run 50x and results aggregated.
+Please see the [previous post](http://mjg123.github.io/2017/10/02/JVM-startup.html) for more details about using `perf` to record execution times. I'm only concerning myself with absolute time-taken and cpu clock time. Every command is run 50x and results aggregated.
 
 ### Raw invocation
 
@@ -28,21 +28,29 @@ Performance counter stats for 'java -cp clojure-1.8.0.jar clojure.main -e (print
 
 ### Using CDS
 
+Generate the [Class Data Sharing](https://docs.oracle.com/javase/9/vm/class-data-sharing.htm#JSJVM-GUID-7EAA3411-8CF0-4D19-BD05-DF5E1780AA91) cache:
+
+```
+$ java -Xshare:dump
+```
+
+then
+
 ```
 Performance counter stats for 'java -Xshare:on -cp clojure-1.8.0.jar clojure.main -e (println :hello-clojure)' (50 runs):
        1504.706806      cpu-clock (msec)          #    1.488 CPUs utilized            ( +-  1.12% )
        1.011034802 seconds time elapsed                                          ( +-  1.53% )
 ```
 
-This is a nearly 7% improvement, but if you read the post before you should know we're hoping for more than that! The benefit of regular CDS is going to be greater when your app loads fewer classes - ie when the core Java classes make a large proportion of your app. So that might be it.
+This is a nearly 7% improvement, but if you read the post before you should know we're hoping for more than that! The benefit of regular CDS is going to be greater when your app loads fewer classes - ie when the core Java classes make a large proportion of your app. So for a larger app we need to look beyond regular CDS.
 
 Time to learn about *Application CDS!*
 
 ### Application CDS
 
-Application CDS, [described here](https://bugs.openjdk.java.net/browse/JDK-8185996), (I'll call it AppCDS from now on) is like regular CDS - it performs classloading and bytecode verification and caches the result. But this time it does it to any classes you specify, not just core Java classes.
+Application CDS, [described here](https://bugs.openjdk.java.net/browse/JDK-8185996), (I'll call it AppCDS from now on) is like regular CDS - it performs bytecode parsing and verification then caches the result. But this time it does it to any classes you specify, not just core Java classes.
 
-**NB:** AppCDS is currently a "commercial" feature of Java, which means that you should not use it *in production* unless you have paid for a license. Experimenting, and use while developing is clearly not "production". Furthermore, at Java One this week [Mark Cavage](https://www.youtube.com/watch?v=UNg9lmk60sg) confirmed that Oracle has committed to opening up all the commercial features of the Oracle JVM, as [proposed by Mark Reinhold](http://mail.openjdk.java.net/pipermail/discuss/2017-September/004281.html) last month. So I think it's something worth looking at right away.
+**NB:** AppCDS is currently a "commercial" feature of Java, which means that you should not use it *in production* unless you have paid for a license. Experimenting, and using it in development is clearly not "production". Furthermore, at Java One this week [Mark Cavage](https://www.youtube.com/watch?v=UNg9lmk60sg) confirmed that Oracle has committed to opening up all the commercial features of the Oracle JVM, as [proposed by Mark Reinhold](http://mail.openjdk.java.net/pipermail/discuss/2017-September/004281.html) last month. So given that it *will* be opened up, I think it's something worth looking at right away.
 
 With that said, lets do it. Create a list of loaded classes:
 
@@ -115,7 +123,7 @@ Impressive! We've cut execution time in half! And it was pretty straightforward 
 
 ### AOT
 
-I described how to generate an AOT cache before. There's a couple of gotchas here though:
+I described how to generate an AOT cache [before](http://mjg123.github.io/2017/10/02/JVM-startup.html). There's a couple of gotchas here though:
 
   * You need to remove the classes that Clojure generates at runtime from the loaded classes list. They're called `fn__<some-number>`
   * You need to specify `--jar clojure-1.8.0.jar` *and* `-J-cp -Jclojure-1.8.0.jar` to `jaotc`, so that it considers it a source for classes *and* Graal has it on the classpath.
@@ -153,6 +161,12 @@ So, it seems that we might as well go with AOT for both. When you're running jav
 java -XX:AOTLibrary=./clojure-jar.so:./java-base.so ...
 ```
 
+or one big one:
+
+```
+java -XX:AOTLibrary=./both.so ...
+```
+
 Up to you.
 
 ### AppCDS and AOT
@@ -169,7 +183,7 @@ Again, this is a really sizeable improvement over the plain `java` invocation:
   * **62%** reduction in wall clock time
   * **74%** reduction in total CPU time spent
 
-Perhaps some of these techniques can be build into Clojure tooling in the future??
+There's bound to be some variance depending on hardware/machine-load/phase-of-moon, but the improvements are not small, really. Perhaps some of these techniques can be built into Clojure tooling in the future?
 
 ### Acknowlegements
 
