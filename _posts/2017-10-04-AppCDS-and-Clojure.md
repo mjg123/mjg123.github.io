@@ -144,7 +144,7 @@ For creating the `touched.aotcfg` file using the process described in [my previo
 # Filter & reformat the list
 ⇒ grep -v '^#' touched_methods | \
   grep -v 'hello-clojure' | \
-  grep -b 'fn__' | \
+  grep -v 'fn__' | \
   grep -v jdk/internal/module/SystemModules.hashes | \
   grep -v jdk/internal/module/SystemModules.descriptors | \
   sed -e 's/^/compileOnly /' | \
@@ -211,4 +211,4 @@ There's bound to be some variance depending on hardware/machine-load/phase-of-mo
 
 ### Acknowlegements
 
-Thanks again to the JVM team here at Oracle, espcially Claes Redestad for proofreading and teaching me the technical details. I learned a lot about AppCDS from Kim Kinnear's [zprint](https://github.com/kkinnear/zprint).
+Thanks again to the JVM team here at Oracle, especially Claes Redestad for proofreading and teaching me the technical details. I learned a lot about AppCDS from Kim Kinnear's [zprint](https://github.com/kkinnear/zprint).
