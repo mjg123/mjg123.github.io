@@ -9,6 +9,11 @@ I found [previously](http://mjg123.github.io/2017/10/02/JVM-startup.html) that C
 
 Anyway the techniques here apply to any JVM workload. Let's go.
 
+* TOC
+{:toc}
+
+### Starting out
+
 Head over to the [Clojure Downloads page](https://clojure.org/community/downloads) and get the latest stable release. Now we can run:
 
 ```shell
