@@ -1,16 +1,16 @@
 ---
 layout:     post
-title:      FnProject Flow 101
+title:      Flow 101
 date:       2017-10-10 09:00:00
 summary:    First intro to FnProject Flow
 ---
 
-The makeup of the newly-released [FnProject](http://fnproject.io) is explained in [a good amount of detail](https://twitter.com/chadarimura/status/917706536759234560) by Chad Arimura, with one of the major components being **Fn Flow**. Flow allows developers to build high-level workflows of functions with some notable features:
+[FnProject](http://fnproject.io) is out **now**. [Chad Arimura](https://twitter.com/chadarimura/) explained the motivation and structure of the project in a good amount of detail [in his recent post](https://twitter.com/chadarimura/status/917706536759234560), with one of the major components being **Fn Flow**. Flow allows developers to build high-level workflows of functions with some notable features:
 
-  - Very flexible model of function composition. Sequencing, fan out/in, retries, error-handling and more
-  - Code-driven. Flow does not rely on massive yaml descriptors or visual graph-designers. Workflows are defined *in code*, expressed as a function, naturally.
+  - Flexible model of function composition. Sequencing, fan out/in, retries, error-handling and more.
+  - Code-driven. Flow does not rely on massive yaml or json descriptors or visual graph-designers. Workflows are defined *in code*, expressed as a function, naturally.
   - Inspectable. Flow shows you the current state of your workflow, allows you to drill into each stage to see logs, stack traces and more.
-  - Language agnostic. The initial Flow implementation which this post will use is in Java but support for other langauges has already started. TODO: LINKS!!
+  - Language agnostic. The initial Flow implementation which this post will use is in Java but support for other langauges has already started including Python, [Go](https://github.com/fnproject/flow-lib-go) and JS.
 
 --
 
@@ -27,7 +27,7 @@ A Flow is a way of linking together functions, and incidentally provides a way t
 Where all the *this* and *that* are FaaS functions.
 
 
-Lets see what a super-simple Flow function looks like:
+A simple Flow function looks like this:
 
 ```java
 
@@ -35,15 +35,15 @@ Lets see what a super-simple Flow function looks like:
 
         Flow flow = Flows.currentFlow();
 
-        return fl.completedValue(x)
-                 .thenApply(i -> i+1)
-                 .thenCompose( s -> Flows.invokeFunction("./isPrime", s) )
-                 .get();
+        return flow.completedValue(x)
+                   .thenApply(i -> i+1)
+                   .thenCompose( s -> Flow.invokeFunction("./isPrime", s) )
+                   .get();
     }
 
 ```
 
-If you've used a promises-style API before then this will be very familiar. The closest analogue in core Java is the [CompletionStage API](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html) which was [apparently](http://cs.oswego.edu/pipermail/concurrency-interest/2012-December/010423.html) called `Promise` in a pre-release draft.
+If you've used a promises-style API before then this will be familiar. The closest analogue in core Java is the [CompletionStage API](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html) which was even called [`Promise`](http://cs.oswego.edu/pipermail/concurrency-interest/2012-December/010423.html) in a pre-release draft.
 
 Anyway it's easy to tell the stages of what's going to happen:
 
@@ -127,7 +127,15 @@ Flow has a comprehensive test framework, but lets concentrate on playing with th
 ⇒ rm -rf src/test   ## yolo
 ```
 
-Make peace with yourself after that, then let's get the code in shape. Change `HelloFunction.java` to look like this:
+Make peace with yourself after that, then let's get the code in shape.
+
+Firstly, note that execution will happen much faster if your function is "hot":
+
+```
+⇒ echo 'format: http' >> func.yaml
+```
+
+Change `HelloFunction.java` to look like this:
 
 ```java
 package com.example.fn;
@@ -149,24 +157,24 @@ public class HelloFunction {
 }
 ```
 
-Then deploy this to an app which we call `simple` on the local Fn server, and configure the function to talk to the Completer
+Then deploy this to an app which we call `flow101` on the local Fn server, and configure the function to talk to the Completer
 
 ```shell
-⇒ fn deploy --app simple --local
-⇒ fn apps config set simple COMPLETER_BASE_URL "http://$DOCKER_LOCALHOST:8081"
+⇒ fn deploy --app flow101 --local
+⇒ fn apps config set flow101 COMPLETER_BASE_URL "http://$DOCKER_LOCALHOST:8081"
 ```
 
 You can now invoke the function using `fn call`:
 
 ```shell
-⇒ echo 2 | fn call simple /simple-flow
+⇒ echo 2 | fn call flow101 /simple-flow
 Your number is 4
 ```
 
 or equivalently with `curl`:
 
 ```shell
-⇒ curl -d "2" http://localhost:8080/r/simple/simple-flow
+⇒ curl -d "2" http://localhost:8080/r/flow101/simple-flow
 Your number is 4
 ```
 
@@ -174,7 +182,7 @@ Your number is 4
 
 Browsing to [http://localhost:3002](http://localhost:3002) you should see something like this:
 
-![flow-ui]({{ "assets/simple-flow-ui.png" | absolute_url }})
+![flow-ui]({{ "assets/simple-flow-ui.png" | relative_url }})
 
 Which is showing us 3 function invocations:
 
@@ -184,12 +192,21 @@ Which is showing us 3 function invocations:
   
 Click on any of these and see the detail for each one expanded at the bottom of the screen.
 
-The blue function is shown as running for the whole time that the `thenApply` stages are. Why? Because we are calling `.get()` at the end, so this is synchronously waiting for the final result of the chain. Exercise: Try removing the `.get()` from the code (you'll need to return another String, and don't forget to re-deploy). Now it will look like:
+The blue function is shown as running for the whole time that the `thenApply` stages are. Why? Because we are calling `.get()` at the end, so this is synchronously waiting for the final result of the chain. Exercise: Try removing the `.get()` from the code (you'll need to return a different String, and don't forget to re-deploy). Now it will look like:
 
-![flow-ui]({{ "assets/simple-flow-ui-async.png" | absolute_url }})
+![flow-ui]({{ "assets/simple-flow-ui-async.png" | relative_url }})
 
-This shows that Flow is well-suited for asynchronous functions which result in a side-effect (posting to slack, for example)
+This shows that Flow is well-suited for asynchronous functions which result in a side-effect (posting to slack, for example).
+
+## Why we made Flow
+
+Consider how else you could have achieved what we did in 4 lines of Java above. First of all there are actually 3 different functions at play, each of which would need its own codebase and entrypoint. Then, consider that Flow chains values through them while *preserving type information*. We could have written an overarching "Call function A using an HTTP client, call function B the same" type orchestrator function (ugh), or even hard-coded each function to call the next one in the chain (ugh ugh). Perhaps we could have used an Enterprise Service Bus to glue it all together (multiple ughs).
+
+We think Flow hits a very sweet spot of allowing sophisticated stateful apps defined *in code*, and maintaining the promised benefits of FaaS a la [Serverless Manifesto](http://blog.rowanudell.com/the-serverless-compute-manifesto/). We think you'll like it too.
+
 
 ## Summary
 
-Congratulations - we've covered a lot! You've got a Flow function running, seen how to use the API to compose simple transformations and run things in parallel. Head to the [Flow 102](TBD) post to take your Flows to the next level.
+So, congratulations - we've covered a lot! You've got a Flow function running, seen how to use the API to compose simple transformations and run things in parallel. Head to the [Flow 102](/2017/10/11/FnProject-Flow-102.html) post to take your Flows to the next level.
+
+Any questions or comments? There is [#fn-flow](https://join.slack.com/t/fnproject/shared_invite/enQtMjIwNzc5MTE4ODg3LTdlYjE2YzU1MjAxODNhNGUzOGNhMmU2OTNhZmEwOTcxZDQxNGJiZmFiMzNiMTk0NjU2NTIxZGEyNjI0YmY4NTA) on the FnProject slack, and [our github](https://github.com/fnproject/). Or hit me up on Twitter as [@MaximumGilliard](https://twitter.com/maximumgilliard).
