@@ -59,6 +59,8 @@ Application CDS, [described here](https://bugs.openjdk.java.net/browse/JDK-81859
 
 **NB:** AppCDS is currently a "commercial" feature of Java, which means that you should not use it *in production* unless you have paid for a license. Experimenting, and using it in development is clearly not "production". Furthermore, at Java One in Oct 2017 [Mark Cavage](https://www.youtube.com/watch?v=UNg9lmk60sg) confirmed that Oracle has committed to opening up all the commercial features of the Oracle JVM, as [proposed by Mark Reinhold](http://mail.openjdk.java.net/pipermail/discuss/2017-September/004281.html) the previous month. So given that it *will* be opened up, I think it's something worth looking at right away.
 
+EDIT: JVM team member Ioi Lam has [proposed a patch](http://mail.openjdk.java.net/pipermail/hotspot-runtime-dev/2017-October/024831.html) which moves AppCDS into OpenJDK.
+
 With that said, lets do it. Create a list of loaded classes:
 
 ```
