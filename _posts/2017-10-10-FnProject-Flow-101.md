@@ -43,7 +43,7 @@ A simple Flow function looks like this:
 
 ```
 
-If you've used a promises-style API before then this will be familiar. The closest analogue in core Java is the [CompletionStage API](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html) which was even called [`Promise`](http://cs.oswego.edu/pipermail/concurrency-interest/2012-December/010423.html) in a pre-release draft.
+If you've used a promises-style API before then this will be familiar. The closest analogue in core Java is the [CompletionStage API](http://download.java.net/java/jdk9/docs/api/java/util/concurrent/CompletionStage.html) which was even called [`Promise`](http://cs.oswego.edu/pipermail/concurrency-interest/2012-December/010423.html) in a pre-release draft.
 
 Anyway it's easy to tell the stages of what's going to happen:
 
