@@ -140,3 +140,7 @@ As you could see from the code above, the `head` and `grep` are executed in para
 ## Further reading
 
 For a more thorough treatment of the different operations you can use to create Flows, see the [Fn Flow User Guide](https://github.com/fnproject/fdk-java/blob/master/docs/FnFlowsUserGuide.md). If you're at the top of the class, you can have a look at the [Flow - Advanced Topics](https://github.com/fnproject/fdk-java/blob/master/docs/FnFlowsAdvancedTopics.md) page. And a real example can be found in the [Asynchronous Thumbnails](https://github.com/fnproject/fdk-java/blob/master/examples/async-thumbnails/README.md) project.
+
+Finally, there is an explanation of [testing Fn Java Functions and Flows](https://github.com/fnproject/fdk-java/blob/master/docs/TestingFunctions.md)
+
+Any questions or comments? There is [#fn-flow](https://join.slack.com/t/fnproject/shared_invite/enQtMjIwNzc5MTE4ODg3LTdlYjE2YzU1MjAxODNhNGUzOGNhMmU2OTNhZmEwOTcxZDQxNGJiZmFiMzNiMTk0NjU2NTIxZGEyNjI0YmY4NTA) on the FnProject slack, and [our github](https://github.com/fnproject/). Or hit me up on Twitter as [@MaximumGilliard](https://twitter.com/maximumgilliard).
