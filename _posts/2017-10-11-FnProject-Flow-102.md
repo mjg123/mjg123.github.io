@@ -114,10 +114,10 @@ We'll want some test data:
 
 Deploy the function, and remember to configure the app with the location of the completer:
 
-```shell
+```shell{% raw %}
 ⇒ export DOCKER_LOCALHOST=$(docker inspect --type container -f '{{.NetworkSettings.Gateway}}' functions)
 ⇒ fn apps config set flow102 COMPLETER_BASE_URL "http://$DOCKER_LOCALHOST:8081"
-```
+{% endraw %}```
 
 And... send in the Shakespeare:
 
