@@ -5,13 +5,16 @@ layout: default
 <div class="home">
 
   <ul class="tag-list">
-  {% for tagitem in site.tags  %} 
-  <li><a href="/tags#{{tagitem[0]}}">{{ tagitem[0] }}</a></li>
-  {% endfor %}
+    {% for tagitem in site.tags  %}
+      {% if tagitem[0] != 'draft' %}
+    <li><a href="/tags#{{tagitem[0]}}">{{ tagitem[0] }}</a></li>
+      {% endif %}
+    {% endfor %}
   </ul>
   
   <ul class="post-list">
     {% for post in site.posts %}
+    {% unless post.tags contains 'draft' %}
       <li style="border-top: 1px solid #CCC">
         {% assign date_format = site.minima.date_format | default: "%b %-d, %Y" %}
 
@@ -28,6 +31,7 @@ layout: default
 	{% endfor %}
 	</ul>
       </li>
+    {% endunless %}
     {% endfor %}
   </ul>
 

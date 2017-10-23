@@ -1,8 +1,11 @@
 ---
 layout:     post
 title:      Futures and promises in core Java
-date:       2017-10-21 17:00:00
+date:       2017-10-23 17:00:00
 summary:    A summary of Futures and promises in core Java
+tags:
+- draft
+- flow
 ---
 
 This post is a summary of part of a talk I have given a few times about [FnFlow - LINK!!]() internals. I'm writing up the talk as a series of posts of which this is the first.
