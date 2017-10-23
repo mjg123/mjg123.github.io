@@ -41,8 +41,9 @@ jshell> exec.submit(System.out::println);
 Two errors. The first is confusing - hence it being a puzzle ;-) Here it is again:
 
 ```
-both <T>submit(java.util.concurrent.Callable<T>) ...
-    and submit(java.lang.Runnable) ... match
+reference to submit is ambiguous
+  both <T>submit(java.util.concurrent.Callable<T>) ...
+      and submit(java.lang.Runnable) ... match
 ```
 
 The compiler is complaining that it can't tell whether method reference `System.out::println` should have target type of `Runnable` or `Callable`.
