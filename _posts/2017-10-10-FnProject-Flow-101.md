@@ -3,6 +3,10 @@ layout:     post
 title:      Flow 101
 date:       2017-10-10 09:00:00
 summary:    First intro to FnProject Flow
+tags:
+- fnproject
+- flow
+- fdk-java
 ---
 
 [FnProject](http://fnproject.io) is out **now**. [Chad Arimura](https://twitter.com/chadarimura/) explained the motivation and structure of the project in a good amount of detail [in his recent post](https://twitter.com/chadarimura/status/917706536759234560), with one of the major components being **Fn Flow**. Flow allows developers to build high-level workflows of functions with some notable features:

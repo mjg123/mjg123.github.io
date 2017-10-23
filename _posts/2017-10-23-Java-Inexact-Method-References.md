@@ -1,8 +1,10 @@
 ---
 layout:     post
-title:      JavaTIL - Inexact Method References
+title:      Inexact Method References
 date:       2017-10-23 12:31:19
 summary:    TIL that method references have complicated rules
+tags:
+- java-TIL
 ---
 
 TIL that method references have complicated rules.

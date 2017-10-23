@@ -1,7 +1,7 @@
 ---
 layout: page
-title: About
+title: about me
 permalink: /about/
 ---
 
-Matthew works for Oracle in Bristol on Open-Source, Java and Cloud. Opinions and comments are his own.
+I work for Oracle in Bristol on Open-Source, Java and Cloud. Opinions and comments are my own.

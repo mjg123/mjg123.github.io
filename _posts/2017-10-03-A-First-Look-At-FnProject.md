@@ -3,6 +3,9 @@ layout:     post
 title:      A First Look at FnProject
 date:       2017-10-03 08:11:05
 summary:    FnProject plus fdk-java
+tags:
+- fnproject
+- fdk-java
 ---
 
 Yesterday at the [Java One Keynote](https://youtu.be/UNg9lmk60sg?t=4653) Mark Cavage and Chad Arimura announced the release of [FnProject](http://fnproject.io/) which is an [Open-Source](https://github.com/fnproject), container-based, cloud-agnostic FaaS platform.

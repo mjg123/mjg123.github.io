@@ -3,6 +3,9 @@ layout:     post
 title:      FnProject Java FDK
 date:       2017-10-03 17:20:19
 summary:    How to use the FDK and test your Java code
+tags:
+- fnproject
+- fdk-java
 ---
 
 

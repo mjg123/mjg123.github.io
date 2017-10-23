@@ -3,6 +3,9 @@ layout:     post
 title:      Quicker Clojure startup with AppCDS and AOT
 date:       2017-10-04 21:55:19
 summary:    Application CDS for quick Clojure startup
+tags:
+- jvm
+- clojure
 ---
 
 I found [previously](http://mjg123.github.io/2017/10/02/JVM-startup.html) that CDS and AOT can have a dramatic effect when used to speed up JVM startup for a simple "Hello World". Now, I want to see how effective that actually is in a more realistic setting. I chose to run [Clojure](http://clojure.org), because Clojure itself is quite large and complex in what it does, but very simple to invoke. It also gets a [lot](https://purelyfunctional.tv/article/the-legend-of-long-jvm-startup-times/) [of](https://dev.clojure.org/display/design/Improving+Clojure+Start+Time) [flak](https://purelyfunctional.tv/article/how-do-clojure-programmers-deal-with-long-startup-times/) about [startup](https://www.reddit.com/r/Clojure/comments/5zq45b/what_are_the_things_that_you_dont_like_in_clojure/df04iis/?st=j8d6uybf&sh=9186116c) time. Also, I ♡ Clojure.

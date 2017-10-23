@@ -1,0 +1,39 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+:target {
+  background-color: #EEF;
+  padding: 4px;
+  margin:  4px;
+  border: 1px solid #AAF;
+}
+
+.tagblock:not(:target) {
+  opacity: 0.5;
+}
+
+.tag-list > li {
+#  display: inline-block;
+  list-style: none;
+  background-image: url( {{ "assets/tag_purple.png" | relative_url }} );
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 15px;
+  padding: 0px 10px 0px 20px;
+  display: inline-block;
+  font-size: small;
+}
+
+.post-list > li {
+  margin-bottom: 12px;
+}
+
+.post-summary {
+  color: #666;
+}
+
+pre > code {
+  font-size: 0.8em;
+}

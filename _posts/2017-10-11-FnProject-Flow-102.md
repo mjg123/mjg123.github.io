@@ -3,6 +3,10 @@ layout:     post
 title:      Flow 102
 date:       2017-10-11 09:00:00
 summary:    Second intro to FnProject Flow
+tags:
+- fnproject
+- flow
+- fdk-java
 ---
 
 If you haven't read [Flow 101](/2017/10/10/FnProject-Flow-101.html) yet, I encourage you to start there and get grounded in what Flow is, what it's for and how it works.
