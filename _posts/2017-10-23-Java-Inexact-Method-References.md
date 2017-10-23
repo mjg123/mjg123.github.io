@@ -18,7 +18,7 @@ void puzzler() {
 
 First of all, I'll take Josh's word for it. But it looks to me like it *could* compile - `System.out.println` invoked with no args will do some stdio and return null, so `exec.submit()` can return a `Future<Void>`. Hmmm.
 
-Lets see the error then. I don't usually role-play as a compiler when I have a good one to hand in `jshell`:
+Lets see the error then. I don't usually [role-play as a compiler](https://www.youtube.com/watch?v=-xlbfBUZN5s) when I have a good one to hand in `jshell`:
 
 ```java
 jshell> ExecutorService exec = Executors.newCachedThreadPool();
