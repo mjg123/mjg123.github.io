@@ -1,11 +1,13 @@
 ---
 layout:     post
-title:      JavaTIL Inexact Method References
+title:      JavaTIL - Inexact Method References
 date:       2017-10-23 12:31:19
-summary:    What even are "Inexact" Method References?
+summary:    TIL that method references have complicated rules
 ---
 
-This is a quick post of **JavaTIL**. Todays topic inspired by a [Twitter post](https://twitter.com/joshbloch/status/921881630809014272) from Josh Bloch asking why the following Java code doesn't compile:
+TIL that method references have complicated rules.
+
+Todays topic inspired by a [Twitter post](https://twitter.com/joshbloch/status/921881630809014272) from Josh Bloch asking why the following Java code doesn't compile:
 
 ```java
 void puzzler() {
@@ -97,4 +99,6 @@ Given this, it's clear that `System.out::println` is **inexact** as there are 10
 
 ## Exactly...
 
-Method references don't work *quite* how I thought they did. JDK8 improved a lot of things, but in Josh's words "Compromises were required". [Here](http://bugs.java.com/bugdatabase/view_bug.do?bug_id=JDK-8144169) and [here](https://bugs.openjdk.java.net/browse/JDK-8176576) people have raised this behaviour as being a bug.
+Well, TIL that method references don't work *quite* how I thought they did. I can see this as a simple case where it looks like it *ought* to work, but more complex examples are easy to imagine.
+
+JDK8 improved a lot of things, but in Josh's words "Compromises were required". [Here](http://bugs.java.com/bugdatabase/view_bug.do?bug_id=JDK-8144169) and [here](https://bugs.openjdk.java.net/browse/JDK-8176576) people have raised this behaviour as being a bug.
