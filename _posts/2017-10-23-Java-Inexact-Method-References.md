@@ -47,7 +47,7 @@ The compiler is complaining that it can't tell whether method reference `System.
 
 But in other circumstances it can clearly tell that only `Runnable` matches:
 
-```
+```java
 jshell> Runnable r = System.out::println    // YEP!
 r ==> $Lambda$17/267760927@25bbe1b6
 
