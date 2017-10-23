@@ -7,7 +7,7 @@ summary:    TIL that method references have complicated rules
 
 TIL that method references have complicated rules.
 
-Todays topic inspired by a [Twitter post](https://twitter.com/joshbloch/status/921881630809014272) from Josh Bloch asking why the following Java code doesn't compile:
+Todays topic is inspired by a [Twitter post](https://twitter.com/joshbloch/status/921881630809014272) from Josh Bloch asking why the following Java code doesn't compile:
 
 ```java
 void puzzler() {
@@ -41,8 +41,8 @@ jshell> exec.submit(System.out::println);
 Two errors. The first is confusing - hence it being a puzzle ;-) Here it is again:
 
 ```
-both method <T>submit(java.util.concurrent.Callable<T>) in java.util.concurrent.ExecutorService
- and method submit(java.lang.Runnable) in java.util.concurrent.ExecutorService match
+both <T>submit(java.util.concurrent.Callable<T>) ...
+    and submit(java.lang.Runnable) ... match
 ```
 
 The compiler is complaining that it can't tell whether method reference `System.out::println` should have target type of `Runnable` or `Callable`.
