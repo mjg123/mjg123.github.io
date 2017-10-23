@@ -82,7 +82,7 @@ jshell> exec.submit(new Banana()::foo)
 
 As figured out by [@lhochstein](https://twitter.com/lhochstein/status/921913966925721600):
 
-There is a concept of **exact**ness which can be applied to a method reference. Quoting [JLS 15.13.1](https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.13.1) (last 2 paragraphs):
+There is a concept of **exactness** which can be applied to a method reference. Quoting [JLS 15.13.1](https://docs.oracle.com/javase/specs/jls/se8/html/jls-15.html#jls-15.13.1):
 
 > For some method reference expressions, there is **only one** possible compile-time declaration with **only one** possible invocation type, regardless of the targeted function type. Such method reference expressions are said to be **exact**. A method reference expression that is not exact is said to be **inexact**.
 
