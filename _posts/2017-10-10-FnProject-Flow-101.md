@@ -56,13 +56,13 @@ Anyway it's easy to tell the stages of what's going to happen:
   - Pass that to an external function called `./isPrime`
   - Then return get the result and return it
 
-Internally the `Flow` class submits each stage in this workflow to an Fn service we call the "Completer". You'll meet it soon. The Completer will then orchestrate each stage as an individual call to Fn. The completer is responsible for working out which stages are ready to be called, calling them, handling the results and triggering any following stages until you reach the point where there's no more work to do.
+Internally the `Flow` class submits each stage in this workflow to the Flow Server. You'll meet it soon. The Flow Server will then orchestrate each stage as an individual call to Fn. Flow Server is responsible for working out which stages are ready to be called, calling them, handling the results and triggering any following stages until you reach the point where there's no more work to do.
 
 This example could easily be written without Flow but it's good to start simple.
 
 ## Running your first Flow
 
-Currently FnProject is available to download, to experiment with, and to run on your private cloud. A managed service by Oracle is in the works. To play with Flow at the moment you will need to run everything locally, but it's not hard. We need **`fn`**, the **Fn server**, the **Completer** and not necessary but nice-to-have is the Completer **UI**
+Currently FnProject is available to download, to experiment with, and to run on your private cloud. A managed service by Oracle is in the works. To play with Flow at the moment you will need to run everything locally, but it's not hard. We need **`fn`**, the **Fn server**, the **Flow Server** and not necessary but nice-to-have is the Flow Server **UI**
 
 ### Setting up
 
@@ -86,13 +86,13 @@ time="2017-10-11T13:12:44Z" level=info msg="Serving Functions API on address `:8
         v0.3.119
 ```
 
-The **Completer** needs to know how to call the Fn server, so ask Docker which IP address to use.
+The **Flow Server** needs to know how to call the Fn server, so ask Docker which IP address to use.
 
 ```shell {% raw %}
 ⇒ DOCKER_LOCALHOST=$(docker inspect --type container -f '{{.NetworkSettings.Gateway}}' functions)
 {% endraw %}```
 
-Start the **Completer**:
+Start the **Flow Server**:
 
 ```shell
 ⇒ docker run --rm -d \
@@ -100,10 +100,10 @@ Start the **Completer**:
        -e API_URL="http://$DOCKER_LOCALHOST:8080/r" \
        -e no_proxy=$DOCKER_LOCALHOST \
        --name completer \
-       fnproject/completer:latest
+       fnproject/flow:latest
 ```
 
-Then start the Completer **UI**:
+Then start the Flow **UI**:
 
 ```shell
 ⇒ docker run --rm -d \
@@ -111,7 +111,7 @@ Then start the Completer **UI**:
        --name flowui \
        -e API_URL=http://$DOCKER_LOCALHOST:8080 \
        -e COMPLETER_BASE_URL=http://$DOCKER_LOCALHOST:8081 \
-       fnproject/completer:ui
+       fnproject/flow:ui
 ```
 
 Now, everything's set so lets crack on!
@@ -161,7 +161,7 @@ public class HelloFunction {
 }
 ```
 
-Then deploy this to an app which we call `flow101` on the local Fn server, and configure the function to talk to the Completer
+Then deploy this to an app which we call `flow101` on the local Fn server, and configure the function to talk to the Flow Server.
 
 ```shell
 ⇒ fn deploy --app flow101 --local
