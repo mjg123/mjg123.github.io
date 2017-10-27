@@ -16,10 +16,15 @@ body {
 
 .page-content > .wrapper {
   padding: 45px;
+  padding-top: 30px;
 }
 
 .site-header {
  border-bottom: none;
+}
+
+.site-footer > .wrapper {
+  padding-top: 15px;	    
 }
 
 :target {
