@@ -27,14 +27,8 @@ body {
   padding: 4px;
   margin:  4px;
   border: 1px solid #AAF;
-  transition-property: opacity;
-  transition-duration: 1s;
-  opacity: 1;
 }
 
-.tagblock:not(:target) {
-  opacity: 0.5;
-}
 
 .tag-list > li {
 #  display: inline-block;
