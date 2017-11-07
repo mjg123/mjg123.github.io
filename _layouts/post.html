@@ -20,6 +20,10 @@ layout: default
       {% endfor %}
     </ul>
 
+    {% if page.tags contains 'draft' %}
+      <div class="draft">This post is currently a draft</div>
+    {% endif %}
+    
     </p>
     
   </header>

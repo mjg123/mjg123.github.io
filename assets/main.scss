@@ -8,6 +8,13 @@ body {
     background-size: 8px 8px;
 }
 
+.draft {
+  color: red;
+  font-size: 200%;
+  border-top: 2px solid teal;
+  border-bottom: 2px solid teal;
+} 
+
 .wrapper {
   background: #FFF;
   border: 3px solid #EEE;
