@@ -111,8 +111,7 @@ Hello from mjg123.module
 
 ## Measurements
 
-### Disk size
-
+### Disk usage
 
 My `$JAVA_HOME` is 557Mb. How about the new one?
 
