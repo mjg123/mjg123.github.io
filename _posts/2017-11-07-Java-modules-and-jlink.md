@@ -72,7 +72,7 @@ mods
 
 ## Running our module
 
-We can run it using the `--module-path` option:
+We can run it using the `--module-path` and `-m` options:
 
 ```shell
 $ java --module-path mods -m mjg123.module/mjg123.module.Main
