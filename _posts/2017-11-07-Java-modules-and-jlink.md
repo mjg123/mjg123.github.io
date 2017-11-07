@@ -80,14 +80,7 @@ $ java --module-path mods -m mjg123.module/mjg123.module.Main
 Hello from mjg123.module
 ```
 
-This is using the regular `java` binary from the JDK 9.0.1 distribution, which comes with all the modules:
-
-```shell
-$ java --list-modules | wc -l
-99
-```
-
-We've got ourselves a module, and I do believe we're ready to use `jlink`!
+We have ourselves a module, and I do believe we're ready to use `jlink`!
 
 ## Using jlink
 
@@ -95,14 +88,7 @@ We've got ourselves a module, and I do believe we're ready to use `jlink`!
 $ jlink --module-path $JAVA_HOME/jmods:mods --add-modules mjg123.module --output linked
 ```
 
-It takes a couple of seconds to create the new binaries in `linked/bin`
-
-```shell
-$ linked/bin/java --list-modules
-java.base@9.0.1
-mjg123.module
-```
-We run the code just as before but using the new `java` binary:
+It takes a couple of seconds to create the new binaries in `linked/bin`, and we run the code just as before but using the new `java` binary:
 
 ```shell
 $ linked/bin/java --module-path mods -m mjg123.module/mjg123.module.Main
@@ -110,6 +96,19 @@ Hello from mjg123.module
 ```
 
 ## Measurements
+
+### Module count
+
+```shell
+$ java --list-modules | wc -l
+99
+```
+
+```shell
+$ linked/bin/java --list-modules
+java.base@9.0.1
+mjg123.module
+```
 
 ### Disk usage
 
@@ -124,7 +123,7 @@ There is some more stuff we could trim away in there, but this is already a lot 
 
 ### Execution time
 
-If you read my previous posts ([1](/2017/10/02/JVM-startup.html), [2](/2017/10/04/AppCDS-and-Clojure.html), [3](/2017/10/16/Clojure-1.9-startup.html)), you'll know I am mildly obsessed with startup time. Here's a couple of measurements:
+If you read my previous posts you'll know that I am [mildly](/2017/10/02/JVM-startup.html) [obsessed](/2017/10/04/AppCDS-and-Clojure.html) with [startup time](/2017/10/16/Clojure-1.9-startup.html). Here's a couple of quick measurements:
 
 Full JDK distribution:
 
