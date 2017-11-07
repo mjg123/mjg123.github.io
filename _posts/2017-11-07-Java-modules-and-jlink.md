@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Introduction to jlink
-date:       2017-10-23 12:31:19
+date:       2017-11-07 12:31:19
 summary:    /me dips toe into jlink
 tags:
 - java-TIL
