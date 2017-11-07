@@ -154,8 +154,9 @@ $ perf stat -r50 linked/bin/java -Xshare:on -m mjg123.module/mjg123.module.Main
 
 BAM! Another 24ms gone - we're twice as fast as before!
 
-
 ## Conclusion
+
+![graph]({{ "assets/jlink_startup.png" | absolute_url }})
 
 If you're able to use Java modules, `jlink` is an easy way to improve the size and speed of your Java apps. I would expect AOT and AppCDS to make it even faster.
 
