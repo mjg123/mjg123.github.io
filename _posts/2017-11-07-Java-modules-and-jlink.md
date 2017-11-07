@@ -7,7 +7,6 @@ tags:
 - java-TIL
 - jlink
 - jvm
-- draft
 ---
 
 Naturally, Question 1 is: What is `jlink`?
