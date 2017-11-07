@@ -19,6 +19,8 @@ Indeed, it is a requirement for `jlink` that you use Java modules. There is a lo
 
 If you package your code as a module then your code and its dependencies (including transitive ones) can be isolated from unused modules and a custom JVM can be created containing *only* necessary modules. That's what `jlink` does.
 
+Don't use [`java.xml`](https://docs.oracle.com/javase/9/docs/api/java.xml-summary.html)? Don't need it then.  Don't want [swing](https://docs.oracle.com/javase/9/docs/api/javafx.swing-summary.html)? Don't have it then. Simple.
+
 For the rest of this post I'll show you how to create a minimal Java module and use `jlink` to create a minimal JVM image. I'll chuck in some measurements too.
 
 ## A minimal Java module
