@@ -20,14 +20,14 @@ Indeed, it is a requirement for `jlink` that you use Java modules. There is a lo
 
 If you package your code as a module then your code and its dependencies (including transitive ones) can be isolated from unused modules and a custom JVM can be created containing *only* necessary modules. That's what `jlink` does.
 
-The rest of this post will show how to create a minimal Java module and use `jlink` to create a minimal JVM image. I'll chuck in some measurements too.
+For the rest of this post I'll show you how to create a minimal Java module and use `jlink` to create a minimal JVM image. I'll chuck in some measurements too.
 
 ## A minimal Java module
 
 Create a source directory
 
 ```shell
-$ mkdir -p src/mjg123.module/mjg123.module
+$ mkdir -p src/mjg123.module/mjg123/module
 $ cat > src/mjg123.module/module-info.java
 module mjg123.module {}
 
@@ -88,10 +88,10 @@ We have ourselves a module, and I do believe we're ready to use `jlink`!
 $ jlink --module-path $JAVA_HOME/jmods:mods --add-modules mjg123.module --output linked
 ```
 
-It takes a couple of seconds to create the new binaries in `linked/bin`, and we run the code just as before but using the new `java` binary:
+It takes a couple of seconds to create the new binaries in `linked/bin`, and we run the code just as before but using the new `java` binary. We don't need to specify `--module-path` because it's already linked in, and removing it will elide some runtime cost of scanning the module path.
 
 ```shell
-$ linked/bin/java --module-path mods -m mjg123.module/mjg123.module.Main
+$ linked/bin/java -m mjg123.module/mjg123.module.Main
 Hello from mjg123.module
 ```
 
@@ -136,23 +136,23 @@ $ perf stat -r50 java --module-path mods -m mjg123.module/mjg123.module.Main
 As shrunk by `jlink`:
 
 ```shell
-$ perf stat -r50 linked/bin/java --module-path mods -m mjg123.module/mjg123.module.Main
+$ perf stat -r50 linked/bin/java -m mjg123.module/mjg123.module.Main
 ...snip...
-       0.164922551 seconds time elapsed                                          ( +-  1.56% )
+       0.122966645 seconds time elapsed                                          ( +-  1.09% )
 ```
 
-20% improvement with no extra effort. We can also use CDS trivially:
+40% improvement with no extra effort. We can also use CDS trivially:
 
 ```shell
 $ linked/bin/java -Xshare:dump
 ...ignore warnings about missing classes...
 
-$ perf stat -r50 linked/bin/java -Xshare:on --module-path mods -m mjg123.module/mjg123.module.Main
+$ perf stat -r50 linked/bin/java -Xshare:on -m mjg123.module/mjg123.module.Main
 ...snip...
-       0.128856211 seconds time elapsed                                          ( +-  1.46% )
+       0.098581867 seconds time elapsed                                          ( +-  1.65% )
 ```
 
-BAM! Another 36ms gone!
+BAM! Another 24ms gone - we're twice as fast as before!
 
 
 ## Conclusion
