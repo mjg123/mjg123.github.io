@@ -17,11 +17,15 @@ Full Answer:
 
 > You can use the jlink tool to assemble and optimize a set of modules and their dependencies into a custom runtime image.
 
-Indeed, it is a requirement for [`jlink`](https://docs.oracle.com/javase/9/tools/jlink.htm) that you use Java modules. There is a lot written about modules elsewhere so I won't add to the pile, just assume you know roughly what they are. One critical point: **modules have to state which other modules they depend on**. The JDK itself is now modularized with the dependencies explicit ([visualised here](https://github.com/accso/java9-jigsaw-depvis#what-is-this-about)). I shudder to think about how much hard work went into that!
+Indeed the simplest way to use [`jlink`](https://docs.oracle.com/javase/9/tools/jlink.htm) is to use Java modules yourself. There is a lot written about modules elsewhere so I won't add to the pile, just assume you know roughly what they are. One critical point: **modules have to state which other modules they depend on**. The JDK itself is now modularized with the dependencies explicit ([visualised here](https://github.com/accso/java9-jigsaw-depvis#what-is-this-about)). I shudder to think about how much hard work went into that!
 
 If you package your code as a module then your code and its dependencies (including transitive ones) can be isolated from unused modules and a custom JVM can be created containing *only* necessary modules. That's what `jlink` does.
 
+If you do not package your code as a module then you can use the `jdeps` tool to identify module dependencies and have `jlink` create a JVM with only those modules you specify.
+
 Don't use [`java.xml`](https://docs.oracle.com/javase/9/docs/api/java.xml-summary.html)? Don't need it.  Don't want [swing](https://docs.oracle.com/javase/9/docs/api/javafx.swing-summary.html)? Don't have it then. Simple.
+
+(Edit: This section used to incorrectly claim that modularising your code was the *only* way to use `jlink`. Thanks [Claes](https://twitter.com/cl4es) for pointing out my error)
 
 For the rest of this post I'll show you how to create a minimal Java module and use `jlink` to create a minimal JVM image. I'll chuck in some measurements too, free of charge.
 
