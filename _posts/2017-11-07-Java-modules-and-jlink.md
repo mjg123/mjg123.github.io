@@ -13,9 +13,10 @@ Naturally, Question 1 is: What is `jlink`?
 
 TL;DR: It's a tool for creating custom JVMs containing *only* the modules you need.
 
-[Full Answer](https://docs.oracle.com/javase/9/tools/jlink.htm):
+Full Answer:
 
-> You can use the jlink tool to assemble and optimize a set of modules and their dependencies into a custom runtime image.
+> You can use the jlink tool to assemble and optimize a set of modules and their dependencies into a custom runtime image. [^](https://docs.oracle.com/javase/9/tools/jlink.htm):
+
 
 Indeed, it is a requirement for `jlink` that you use Java modules. There is a lot written about modules elsewhere so I won't add to the pile, just assume you know roughly what they are. One critical point: **modules have to state which other modules they depend on**. The JDK itself is now modularized with the dependencies explicit ([visualised here](https://github.com/accso/java9-jigsaw-depvis#what-is-this-about)). I shudder to think about how much hard work went into that!
 
