@@ -11,7 +11,7 @@ tags:
 
 Naturally, Question 1 is: What is `jlink`?
 
-TL;DR: It's a tool for creating small custom JVMs containing *only* the bits you need.
+TL;DR: It's a tool for creating small custom JVMs containing *only* the bits you need. They take less disk space and start faster than the full JVM.
 
 Full Answer:
 
@@ -166,3 +166,4 @@ If you're able to use Java modules, `jlink` is an easy way to improve the size a
 The ever-excellent Trisha Gee has some advice about [migrating existing code into modules](https://www.infoq.com/articles/Java-Jigsaw-Migration-Guide).
 
 Thanks for help writing this post: Alex Bransby-Sharples, Claes Redestad, Alan Bateman.
+
