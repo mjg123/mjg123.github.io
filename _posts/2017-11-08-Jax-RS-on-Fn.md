@@ -58,7 +58,7 @@ If you have seen JAX-RS code before then none of this will be a surprise:
 
 Standard stuff from a JAX-RS perspective, but isn't it neat to have three separate functions defined in one place with shared DTO and database code? This is what we alluded to earlier: a FaaS Application - not just a standalone Function which does one stateless thing in isolation but a coherent application built on a more flexible foundation without sacrificing its integritry.
 
-The only extra code you need is a class acting as an entrypoint to your function, which defines which classes Jersey should scan:
+The only extra code you need is a class acting as an entrypoint to your function, which defines which classes Jersey should consider as part of the app:
 
 ```java
 import com.jrestless.fnproject.FnFeature;
