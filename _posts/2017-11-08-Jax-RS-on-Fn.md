@@ -19,7 +19,7 @@ But you still have to have a server running night and day, scale it yourself etc
 
 A framework has already been developed specifically for this purpose. An open source project developed by Björn Bilger, [JRestless](https://github.com/bbilger/jrestless) is an impressive tool that allows you to wrap up a Jersey application and deploy it as a serverless function using a variety of different platforms
 
-JRestless initially targetted running on AWS Lambda but has since added OpenWhisk support, and through this PR [TODO -LINK!] now can run your JAX-RS apps on the [Fn Project](http://fnproject.io/) which was recently announced at JavaOne  in San Fransisco. 
+JRestless initially targetted running on AWS Lambda but has since added OpenWhisk support, and through [this PR](https://github.com/bbilger/jrestless/pull/43) now can run your JAX-RS apps on the [Fn Project](http://fnproject.io/) which was recently announced at JavaOne  in San Fransisco. 
 
 ## To The Code!
 
