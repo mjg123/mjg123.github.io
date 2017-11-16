@@ -18,7 +18,7 @@ But you still have to have a server running night and day, scale it yourself etc
 
 A framework has already been developed specifically for this purpose. An open source project developed by Björn Bilger, [JRestless](https://github.com/bbilger/jrestless) is an impressive tool that allows you to wrap up a Jersey application and deploy it as a serverless function using a variety of different platforms
 
-JRestless initially targetted running on AWS Lambda but has since added OpenWhisk support, and through [this PR](https://github.com/bbilger/jrestless/pull/43) now can run your JAX-RS apps on the [Fn Project](http://fnproject.io/) which was recently announced at JavaOne  in San Fransisco. 
+JRestless initially targeted running on AWS Lambda but has since added OpenWhisk support, and through [this PR](https://github.com/bbilger/jrestless/pull/43) now can run your JAX-RS apps on the [Fn Project](http://fnproject.io/) which was recently announced at JavaOne  in San Fransisco. 
 
 ## To The Code!
 
@@ -55,7 +55,7 @@ If you have seen JAX-RS code before then none of this will be a surprise:
     }
 ```
 
-Standard stuff from a JAX-RS perspective, but isn't it neat to have three separate functions defined in one place with shared DTO and database code? This is what we alluded to earlier: a *FaaS Application* - not just a standalone Function which does one stateless thing in isolation but a coherent application built on a more flexible foundation without sacrificing its integritry.
+Standard stuff from a JAX-RS perspective, but isn't it neat to have three separate functions defined in one place with shared DTO and database code? This is what we alluded to earlier: a *FaaS Application* - not just a standalone Function which does one stateless thing in isolation but a coherent application built on a more flexible foundation without sacrificing its integrity.
 
 The only extra code you need is a class acting as an entrypoint to your function, which defines which classes Jersey should consider as part of the app:
 
