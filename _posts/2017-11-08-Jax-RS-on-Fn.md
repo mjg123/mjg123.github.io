@@ -6,7 +6,6 @@ summary:    Deploying RESTful Java Apps on Fn
 tags:
 - fnproject
 - fdk-java
-- draft
 ---
 
 NB This is a guest post by our awesome intern [Rae Jeffries-Harris](https://github.com/raej), describing part of the work she did with our Bristol team over the summer. Thanks Rae.
