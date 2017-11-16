@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Announcing JAX-RS support for Fn
+title:      Announcing JAX-RS support for Fn Project
 date:       2017-11-08 14:48:00
 summary:    Deploying RESTful Java Apps on Fn
 tags:
