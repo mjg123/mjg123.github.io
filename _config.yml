@@ -18,11 +18,12 @@ title: Matthew Gilliard's blog
 email: matthew.gilliard@gmail.com
 description: >- #
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://mjg123.github.io"
 twitter_username: MaximumGilliard
 github_username:  mjg123
 google_analytics: UA-107370844-1
-disqus.shortname: mjg123
+disqus:
+  shortname: mjg123
 
 # Build settings
 markdown: kramdown
