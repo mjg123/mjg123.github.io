@@ -9,7 +9,7 @@ tags:
 - draft
 ---
 
-NB Similar to the JAX-RS support we [announced TODO_LINK]() last month, the Spring Cloud Function support on Fn Project was largely done by one of our awesome summer interns from the [University of Bristol](http://www.bristol.ac.uk/) - [Will Price](https://about.me/will_price).
+NB Similar to the JAX-RS support we [announced](/2017/11/08/Jax-RS-on-Fn.html) last month, the Spring Cloud Function support on Fn Project was largely done by one of our awesome summer interns from the [University of Bristol](http://www.bristol.ac.uk/) - [Will Price](https://about.me/will_price).
 
 ## Spring Cloud Function
 
@@ -58,7 +58,9 @@ cmd: com.fnproject.fn.springcloudfunction.CSFExample::handleRequest
 
 ### Which function will be called?
 
-The method defined in your `func.yaml` will not be called. In fact, we will be removing the need to define it at all in a future release. The `@Bean` annotated methods in Spring Cloud Function code are factory methods - they are called once at initialization time and return lambdas which are cached and used at invocation time. The beans are named after the method which created them. By default our integration will look for:
+Your functions are defined as Spring Beans. The method defined in your `func.yaml` will not be called (in fact, we will be removing the need to define it at all in a future release).
+
+The `@Bean` annotated methods in Spring Cloud Function code are factory methods - they are called once at initialization time and return lambdas which are cached and used when your function is invoked. The beans are named after the method which created them. By default our integration will look for:
 
   - A `@Bean` called `function` which returns an instance of `java.util.function.Function`
   - A `@Bean` called `consumer` which returns an instance of `java.util.function.Consumer`
@@ -69,7 +71,7 @@ These can be overridden by providing environment variables `FN_SPRING_{FUNCTION,
 
 ## Integration with other Spring components
 
-As Spring is managing the lifecycle of your components it is fine to use the regular Spring mechanisms, for example `@AutoWired` to inject dependencies or `@Repository` to set up really simple database access.
+As Spring is managing the lifecycle of your components it is fine to use the regular Spring application features, for example `@AutoWired` to inject dependencies or `@Repository` to set up really simple database access.
 
 
 ## Summary
