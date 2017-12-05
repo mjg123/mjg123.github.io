@@ -73,6 +73,20 @@ These can be overridden by providing environment variables `FN_SPRING_{FUNCTION,
 
 As Spring is managing the lifecycle of your components it is fine to use the regular Spring application features, for example `@AutoWired` to inject dependencies or `@Repository` to set up really simple database access.
 
+## Fluxin'
+
+As well as the normal `Function<IN, OUT>` -type functions, Spring Cloud Function also supports reactive streams, by allowing [Project Reactor](https://projectreactor.io) `Flux`-es as to represent a stream of input events: `Function<Flux<IN>, Flux<OUT>>`. In this case you deal with your input events as a stream rather than individually and you have loads of control over how they are treated. A simple example looks like:
+
+```java
+    @Bean
+    public Function<Flux<String>, Flux<String>> lowercase() {
+        return flux -> flux.map(value -> value.toLowerCase());
+    }
+```
+
+
+You can split/map/filter/combine/batch/etc your input events with a [super flexible](https://projectreactor.io/docs/core/release/api/reactor/core/publisher/Flux.html) API. This seems like a good fit for high-velocity events such as IoT sensor data.
+
 
 ## Summary
 
