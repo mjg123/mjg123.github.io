@@ -6,7 +6,6 @@ summary:    Deploying Spring Cloud Function code on Fn Project
 tags:
 - fnproject
 - fdk-java
-- draft
 ---
 
 NB Similar to the JAX-RS support we [announced](/2017/11/08/Jax-RS-on-Fn.html) last month, the Spring Cloud Function support on Fn Project was largely done by one of our awesome summer interns from the [University of Bristol](http://www.bristol.ac.uk/) - [Will Price](https://about.me/will_price).
