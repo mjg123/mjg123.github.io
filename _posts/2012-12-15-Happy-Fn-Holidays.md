@@ -25,7 +25,7 @@ or even
 
 Now - please don't think this post is going to be a ranty screed about how golang is terrible or anything like that. We're all grownup enough to know that it's a just tool and like any other it's perfectly capable if used in the right way, even if we do like a good moan from time to time. So, we decided to create: The Golang Swear Jar.
 
-PIC of SWEAR JAR
+![SwearBox]({{ "assets/swearbox.jpg" | absolute_url }})
 
 Every time some poor soul had an expectation/reality-mismatch they could simply drop 10p in the jar and be on their way.
 
@@ -35,7 +35,7 @@ And now, it's the end of the year and the jar is actually *full*. We've cracked 
 
 The jar had a space on the back where you could write down what you were complaining about:
 
-PIC of swear-o-gram
+![swear-o-gram]({{ "assets/swearing.png" | absolute_url }})
 
 
 ## EOM
