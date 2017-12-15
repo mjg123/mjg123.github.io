@@ -23,17 +23,17 @@ or even
 
 > TABS !!?!?!!
 
-Now - please don't think this post is going to be a ranty screed about how golang is terrible or anything like that. We're all grownup enough to know that it's a just tool and like any other it's perfectly capable if used in the right way, even if we do like a good moan from time to time. So, we decided to create: The Golang Swear Jar.
+Now - please don't think this post is going to be a ranty screed about how golang is terrible or anything like that. We're all grownup enough to know that it's a just tool and like any other it's perfectly capable if used in the right way, even if we do like a good moan from time to time. So, we decided to create:
 
 ![SwearBox]({{ "assets/swearbox_sm.jpg" | absolute_url }})
 
-Every time some poor soul had an expectation/reality-mismatch they could simply drop 10p in the jar and be on their way.
+Every time some poor soul had an expectation/reality-mismatch they could simply drop 10p in the tin and be on their way.
 
-And now, it's the end of the year and the jar is actually *full*. We've cracked it open, counted it, gotten Oracle to match the amount a few times over and round it up, and we're donating to charity (details TBC)
+And now, it's the end of the year and the swearbox is actually *full*. We've cracked it open, counted it, gotten Oracle to match the amount a few times over and round it up, and we're donating to charity (details TBC)
 
 ## What made us swear
 
-The jar had a space on the back where you could write down what you were complaining about:
+The swearbox had a space on the back where you could write down what you were complaining about:
 
 ![swear-o-gram]({{ "assets/swearing.png" | absolute_url }})
 
