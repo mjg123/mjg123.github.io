@@ -17,7 +17,7 @@ Most of Fn's code is written in go but many members of the Bristol team weren't 
 
 or
 
-> PR's with 10000s of lines changed? Ohhhh.....
+> This PR has 10000s of lines changed? Ohhhh.....
 
 or even
 
@@ -36,3 +36,8 @@ And now, it's the end of the year and the jar is actually *full*. We've cracked 
 The jar had a space on the back where you could write down what you were complaining about:
 
 PIC of swear-o-gram
+
+
+## EOM
+
+Anyway - happy holidays, see you for more serverless Fn in the new year!
