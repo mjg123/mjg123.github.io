@@ -32,7 +32,7 @@ The premise is that there are **enchanted forests** which contain many (or somet
 
 > Given any two birds A and B, if you call out the name of B to A it will respond by calling out the name of some bird to you.
 
-This bird whose name `A` calls when you call `B` is denoted as `AB`. Once you have several birds in place, a single call can cascade around the forest with each call following rules depending on who produces it and what they hear.
+This bird whose name `A` calls when you call `B` is denoted as `AB`. Once you have several birds in place, a single call can cascade around the forest with each call following rules depending on who produces it.
 
 The very first bird we are introduced to is the *Mockingbird* whose characteristic behaviour is that whatever name you call to the Mockingbird, it will reply as if it is the bird whose name you called. This is denoted:
 
