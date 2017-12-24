@@ -38,7 +38,7 @@ The very first bird we are introduced to is the *Mockingbird* whose characterist
 
 `Mx = xx`
 
-For *any* bird `x` we can say that `Mx` (the result of calling `x` to a Mockingbird) is the same as `xx` (the result of calling `x` to a bird of type `x`). It really does mock other birds!
+For *any* bird `x` we can say that `Mx` (the result of calling `x` to a Mockingbird) is the same as `xx` (the result of calling `x` to a bird of type `x`). It really does mock other birds! And what's more, the existence of the Mockingbird, in combination with various others, unlocks some really fascinating group behaviour from these birds.
 
 ## Birds birds birds
 
