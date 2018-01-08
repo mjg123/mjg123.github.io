@@ -60,7 +60,6 @@ In a new directory called `word-flow`:
 
 ```shell
 ⇒ fn init --runtime=java
-⇒ echo 'format: http' >> func.yaml
 ⇒ rm -rf src/test  ## yolo, again
 ```
 
@@ -119,8 +118,9 @@ We'll want some test data:
 Deploy the function, and remember to configure the app with the location of the completer:
 
 ```shell{% raw %}
-⇒ export DOCKER_LOCALHOST=$(docker inspect --type container -f '{{.NetworkSettings.Gateway}}' functions)
+⇒ export DOCKER_LOCALHOST=$(docker inspect --type container -f '{{.NetworkSettings.Gateway}}' fnserver)
 ⇒ fn apps config set flow102 COMPLETER_BASE_URL "http://$DOCKER_LOCALHOST:8081"
+⇒ fn deploy --app flow102 --local
 {% endraw %}```
 
 And... send in the Shakespeare:
