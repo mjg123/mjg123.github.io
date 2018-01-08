@@ -9,6 +9,8 @@ tags:
 - fdk-java
 ---
 
+NB: this post was updated 8/1/18 to account for: changed image names, "hot" invocation is now on by default.
+
 [FnProject](http://fnproject.io) is out **now**. [Chad Arimura](https://twitter.com/chadarimura/) explained the motivation and structure of the project in a good amount of detail [in his recent post](https://twitter.com/chadarimura/status/917706536759234560), with one of the major components being **Fn Flow**. Flow allows developers to build high-level workflows of functions with some notable features:
 
   - Flexible model of function composition. Sequencing, fan out/in, retries, error-handling and more.
@@ -89,7 +91,7 @@ time="2017-10-11T13:12:44Z" level=info msg="Serving Functions API on address `:8
 The **Flow Server** needs to know how to call the Fn server, so ask Docker which IP address to use.
 
 ```shell {% raw %}
-⇒ DOCKER_LOCALHOST=$(docker inspect --type container -f '{{.NetworkSettings.Gateway}}' functions)
+⇒ DOCKER_LOCALHOST=$(docker inspect --type container -f '{{.NetworkSettings.Gateway}}' fnserver)
 {% endraw %}```
 
 Start the **Flow Server**:
@@ -132,12 +134,6 @@ Flow has a comprehensive test framework, but lets concentrate on playing with th
 ```
 
 Make peace with yourself after that, then let's get the code in shape.
-
-Firstly, note that execution will happen much faster if your function is "hot":
-
-```
-⇒ echo 'format: http' >> func.yaml
-```
 
 Change `HelloFunction.java` to look like this:
 
