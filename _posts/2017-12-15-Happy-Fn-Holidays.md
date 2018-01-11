@@ -6,7 +6,6 @@ summary:    FnProject plus fdk-java
 tags:
 - fnproject
 - golang
-- draft
 ---
 
 Here in the Bristol (UK) office of Oracle we've had about ten people working on [Fn Project](http://fnproject.io) since May 2017. Along with the team members in the US and Ukraine (Hi Denis!) we've had a busy year [LINK TO CHAD'S POST HERE]()!
