@@ -12,9 +12,9 @@ tags:
 
 This post is a kind of counterpoint or add-on to Jörg Schad's recent post [*Nobody puts Java in a container*](https://jaxenter.com/nobody-puts-java-container-139373.html). I would absolutely recommend reading that for its excellent summary of how container technology affects the JVM today.
 
-I can't really agree with his title though - lots and lots of people *do* put JVM workloads in containers (spoiler: I have done so on my last several projects - we even [tune for it](https://github.com/fnproject/fdk-java/blob/master/runtime/Dockerfile-jdk9#L6-L18) in [Fn Project](http://fnproject.io)). As Jörg points out, when JDK10 is released support will be even better. In this post we'll see how the next release of the JDK will work in containers.
+I can't really agree with his title though - lots and lots of people *do* put JVM workloads in containers (spoiler: I have done so on my last several projects - we even [tune for it](https://github.com/fnproject/fdk-java/blob/master/runtime/Dockerfile-jdk9#L6-L18) in [Fn Project](http://fnproject.io)). As Jörg points out, when JDK10 is released the support will be even better. In this post we'll see how the next release of the JDK will be container-aware.
 
-I'll be using the Docker to run the latest nightly build of JDK10 - follow the `browser_download_url` for your architecture from [here](https://github.com/AdoptOpenJDK/openjdk10-nightly/blob/master/latest_nightly.json) ([Dockerfile](https://gist.github.com/mjg123/cbdee8a9ecba76ec19853d0ac0269d3d)). And I'll be using a baremetal instance on [Oracle Cloud Infrastructure](https://cloud.oracle.com/en_US/infrastructure/compute) which comes with 72 cores and 256Gb of RAM. Just the kind of place to worry about how best to run lots of things concurrently 😉
+I'll be using Docker to run the latest nightly build of JDK10. For the JDK follow the `browser_download_url` for your architecture from [here](https://github.com/AdoptOpenJDK/openjdk10-nightly/blob/master/latest_nightly.json), and I am using [this Dockerfile](https://gist.github.com/mjg123/cbdee8a9ecba76ec19853d0ac0269d3d). I'll be using a baremetal instance on [Oracle Cloud Infrastructure](https://cloud.oracle.com/en_US/infrastructure/compute) which comes with 72 cores and 256Gb of RAM. Just the kind of place to worry about how best to run lots of things concurrently 😉
 
 There are two places where the JVM's view of what hardware is available is important: user code and the JVM ergonomics.
 
@@ -130,3 +130,18 @@ So we became the latest victim of the OOM killer.
 
 
 
+.... Work in Progress .....
+
+## JVM self-tuning
+
+Ergonomics....
+
+### CPU
+
+Cores -> GC threads etc
+
+### Memory
+
+Heap size
+Other memory pool sizes?
+GC region sizes?
