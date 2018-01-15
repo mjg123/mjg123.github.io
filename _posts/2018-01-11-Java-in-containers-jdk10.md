@@ -79,7 +79,7 @@ $1 ==> 36
 
 The calculation the JVM uses is: `min(cpuset-cpus, cpu-shares/1024, cpus)` rounded up to the next whole number.
 
-It seems logical to use **CPU Sets** when you have enough cores as it should reduce context-switches and increase CPU cache coherency. Or maybe it would be OK to have more threads, if they spend a lot of their time parked and waiting on an interrupt... Contrary to the warnings in the JavaDoc I have not seen any occasions where `.availableProcessors()` changes its result over time within a single JVM.
+It seems logical to use **CPU Sets** when you have enough cores as it should reduce context-switches and increase CPU cache coherency. Or maybe it would be OK to have more threads, if they spend a lot of their time parked and waiting on an interrupt... Maybe you are happy with the constraints of CPU shares and are happy to be able to use spare CPU cycles. Contrary to the warnings in the JavaDoc I have not seen any occasions where `.availableProcessors()` changes its result over time within a single JVM.
 
 ### Memory
 
