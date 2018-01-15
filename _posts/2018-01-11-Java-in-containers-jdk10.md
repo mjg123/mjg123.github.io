@@ -16,7 +16,7 @@ I can't really agree with his title though - lots and lots of people *do* put JV
 
 There is a [significant amount of work](https://bugs.openjdk.java.net/browse/JDK-8146115) going into JDK10 to support containerized JVMs. In this post we'll see how the next release of the JDK will be container-aware.
 
-I'll be using Docker to run the latest build of JDK10. For the JDK download, head to [http://jdk.java.net/10/](http://jdk.java.net/10/). This will be in OpenJDK 10 as well, but I haven't found a recent enough build - these patches landed in 10+34. I am using [this Dockerfile](https://gist.github.com/mjg123/cbdee8a9ecba76ec19853d0ac0269d3d). I'll be using a baremetal instance on [Oracle Cloud Infrastructure](https://cloud.oracle.com/en_US/infrastructure/compute) which comes with 72 cores and 256Gb of RAM. Just the kind of place to worry about how best to run lots of things concurrently 😉
+I'll be using Docker to run the latest build of JDK10. For the JDK download, head to [http://jdk.java.net/10/](http://jdk.java.net/10/). These patches landed in 10+34. I am using [this Dockerfile](https://gist.github.com/mjg123/cbdee8a9ecba76ec19853d0ac0269d3d). I'll be using a baremetal instance on [Oracle Cloud Infrastructure](https://cloud.oracle.com/en_US/infrastructure/compute) which comes with 72 cores and 256Gb of RAM. Just the kind of place to worry about how best to run lots of things concurrently 😉
 
 ### CPU management
 
