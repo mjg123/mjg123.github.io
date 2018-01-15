@@ -12,7 +12,9 @@ tags:
 
 This post is a kind of counterpoint or add-on to Jörg Schad's recent post [*Nobody puts Java in a container*](https://jaxenter.com/nobody-puts-java-container-139373.html). I would absolutely recommend reading that for its excellent summary of how container technology affects the JVM today.
 
-I can't really agree with his title though - lots and lots of people *do* put JVM workloads in containers (spoiler: I have done so on my last several projects - we even [tune for it](https://github.com/fnproject/fdk-java/blob/master/runtime/Dockerfile-jdk9#L6-L18) in [Fn Project](http://fnproject.io)). As Jörg points out, when JDK10 is released the support will be even better. In this post we'll see how the next release of the JDK will be container-aware.
+I can't really agree with his title though - lots and lots of people *do* put JVM workloads in containers (spoiler: I have done so on my last several projects - we even [tune for it](https://github.com/fnproject/fdk-java/blob/master/runtime/Dockerfile-jdk9#L6-L18) in [Fn Project](http://fnproject.io)). As Jörg points out, when JDK10 is released the support will be even better.
+
+There is a [significant amount of work](https://bugs.openjdk.java.net/browse/JDK-8146115) going into JDK10 to support containerized JVMs. In this post we'll see how the next release of the JDK will be container-aware.
 
 I'll be using Docker to run the latest build of JDK10. For the JDK download, head to [http://jdk.java.net/10/](http://jdk.java.net/10/). This will be in OpenJDK 10 as well, but I haven't found a recent enough build - these patches landed in 10+34. I am using [this Dockerfile](https://gist.github.com/mjg123/cbdee8a9ecba76ec19853d0ac0269d3d). I'll be using a baremetal instance on [Oracle Cloud Infrastructure](https://cloud.oracle.com/en_US/infrastructure/compute) which comes with 72 cores and 256Gb of RAM. Just the kind of place to worry about how best to run lots of things concurrently 😉
 
@@ -31,8 +33,8 @@ Without specifying any constraints, a containerized process will be able to see 
   - CPU Share Constraint: `—cpu-shares`  
   ([Doc](https://docs.docker.com/engine/reference/run/#cpu-share-constraint)) This rations the CPU according to the proportions you choose, but only when the system is busy. For example you can have three containers with shares of 1024/512/512, but those limits are only applied when necessary. When there is headroom your containerized process can use left-over CPU time.
 
-  - CPU Period/Quota Contstraint: `—cpus` (or `—cpu-period` with `—cpu-quota`)  
-  ([Doc](https://docs.docker.com/engine/reference/run/#cpu-period-constraint)) This uses the Linux Completely Fair Scheduler to limit the container's CPU usage. This means that the container will be limited even when the machine is lightly-loaded but your workload may still be spread across all the CPUs on the host.
+  - CPU Period/Quota Constraint: `—cpus` (or `—cpu-period` with `—cpu-quota`)  
+  ([Doc](https://docs.docker.com/engine/reference/run/#cpu-period-constraint)) This uses the Linux Completely Fair Scheduler to limit the container's CPU usage. This means that the container will be limited even when the machine is lightly loaded but your workload may still be spread across all the CPUs on the host.
   
   - CPUSet Constraint: `—cpuset-cpus`  
   ([Doc](https://docs.docker.com/engine/reference/run/#cpuset-constraint)) Unlike the two previous constraints, this pins the containerized process to specific CPUs. Your process may have to share those CPUs, but will obviously not be allowed to use spare capacity on any others.
@@ -141,3 +143,5 @@ root@6a94863c54df:/# /java/jdk-10/bin/java -XX:+PrintFlagsFinal -version | grep 
 ## Summary
 
 In JDK10 it does seem that applying CPU and memory limits to your containerized JVMs will be straightforward. The JVM will detect hardware capability of the host correctly, tune itself appropriately and make a good representation of the available capacity to your application.
+
+Thanks to [@msgodf](https://twitter.com/msgodf) and Bob Vandette for help with this post.
