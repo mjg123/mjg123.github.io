@@ -12,7 +12,7 @@ tags:
 
 *TL;DR The JDK team has committed to making Java a good citizen in a world of containers. JDK10 contains several changes to have the JVM and your apps respect container hardware limits.*
 
-This post is a counterpoint or add-on to Jörg Schad's recent post [*Nobody puts Java in a container*](https://jaxenter.com/nobody-puts-java-container-139373.html). I would absolutely recommend reading that for its excellent summary of how container technology affects the JVM today.
+This post is a counterpoint or followup to Jörg Schad's recent post [*Nobody puts Java in a container*](https://jaxenter.com/nobody-puts-java-container-139373.html). I would absolutely recommend reading that for its excellent summary of how container technology affects the JVM today.
 
 I can't really agree with his title though - lots and lots of people *do* put JVM workloads in containers (spoiler: I have done so on my last several projects - we even [tune for it](https://github.com/fnproject/fdk-java/blob/master/runtime/Dockerfile-jdk9#L6-L18) in [Fn Project](http://fnproject.io)). As Jörg points out, when JDK10 is released the support will be even better.
 
