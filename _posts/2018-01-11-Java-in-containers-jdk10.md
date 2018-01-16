@@ -10,7 +10,7 @@ tags:
 - draft
 ---
 
-*TL;DR The JDK team has committed to making Java a good citizen in a world of containers. JDK10 contains several changes to have the JVM and your apps respect container hardware limits.*
+*TL;DR The JDK team has committed to making Java a good citizen in a world of containers. JDK10 contains several changes to have the JVM and your apps respect container hardware limits. JDK10 is due to be released in March 2018.*
 
 This post is a counterpoint or followup to Jörg Schad's recent post [*Nobody puts Java in a container*](https://jaxenter.com/nobody-puts-java-container-139373.html). I would absolutely recommend reading that for its excellent summary of how container technology affects the JVM today.
 
