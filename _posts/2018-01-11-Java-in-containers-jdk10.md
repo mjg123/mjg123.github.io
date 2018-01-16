@@ -22,7 +22,7 @@ I'll be using Docker to run the latest build of JDK10. For the JDK download, hea
 
 ## CPU management
 
-Much code will use [`Runtime.getRuntime().availableProcessors()`](http://download.java.net/java/jdk10/docs/api/java/lang/Runtime.html#availableProcessors()) to size thread pools, for example:
+A lot of existing code uses [`Runtime.getRuntime().availableProcessors()`](http://download.java.net/java/jdk10/docs/api/java/lang/Runtime.html#availableProcessors()) to size thread pools, for example:
 
   - [core.async](https://github.com/clojure/core.async/blob/d81acd/src/main/clojure/clojure/core/async/impl/concurrent.clj#L28-L30)
   - [ElasticSearch](https://github.com/clojure/core.async/blob/d81acd/src/main/clojure/clojure/core/async/impl/concurrent.clj#L28-L30)
