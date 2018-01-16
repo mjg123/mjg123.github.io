@@ -10,6 +10,8 @@ tags:
 - draft
 ---
 
+*TL;DR The JDK team has committed to making Java a good citizen in a world of containers. JDK10 contains several changes to have the JVM and your apps respect container hardware limits.*
+
 This post is a kind of counterpoint or add-on to Jörg Schad's recent post [*Nobody puts Java in a container*](https://jaxenter.com/nobody-puts-java-container-139373.html). I would absolutely recommend reading that for its excellent summary of how container technology affects the JVM today.
 
 I can't really agree with his title though - lots and lots of people *do* put JVM workloads in containers (spoiler: I have done so on my last several projects - we even [tune for it](https://github.com/fnproject/fdk-java/blob/master/runtime/Dockerfile-jdk9#L6-L18) in [Fn Project](http://fnproject.io)). As Jörg points out, when JDK10 is released the support will be even better.
@@ -20,13 +22,13 @@ I'll be using Docker to run the latest build of JDK10. For the JDK download, hea
 
 ### CPU management
 
-Many apps will use [`Runtime.getRuntime().availableProcessors()`](http://download.java.net/java/jdk10/docs/api/java/lang/Runtime.html#availableProcessors()) to size thread pools, for example:
+Much code will use [`Runtime.getRuntime().availableProcessors()`](http://download.java.net/java/jdk10/docs/api/java/lang/Runtime.html#availableProcessors()) to size thread pools, for example:
 
   - [core.async](https://github.com/clojure/core.async/blob/d81acd/src/main/clojure/clojure/core/async/impl/concurrent.clj#L28-L30)
   - [ElasticSearch](https://github.com/clojure/core.async/blob/d81acd/src/main/clojure/clojure/core/async/impl/concurrent.clj#L28-L30)
   - [Netty](https://github.com/netty/netty/blob/98beb777f81f092aa0fddf49ed08b426b2c72f01/common/src/main/java/io/netty/util/NettyRuntime.java#L69)
   
-  ... and so on. It's a sensible strategy.
+  It's a sensible strategy. Even if your code doesn't do so directly, you're pretty likely to be using something which uses the ForkJoinPool under the hood, and [Oh Look!](http://hg.openjdk.java.net/jdk10/jdk10/jdk/file/777356696811/src/java.base/share/classes/java/util/concurrent/ForkJoinPool.java#l2178)
   
 Without specifying any constraints, a containerized process will be able to see and use all the hardware on the host. If that's not what you want there are several ways to limit the CPU which a container can use in Docker:
 
@@ -39,7 +41,7 @@ Without specifying any constraints, a containerized process will be able to see 
   - CPUSet Constraint: `—cpuset-cpus`  
   ([Doc](https://docs.docker.com/engine/reference/run/#cpuset-constraint)) Unlike the two previous constraints, this pins the containerized process to specific CPUs. Your process may have to share those CPUs, but will obviously not be allowed to use spare capacity on any others.
 
-You can mix these options together, too - eg 50% of time on cores 0 through 8. It's well documented by Docker which will link you through to the kernel docs for more info. What we care about now is how big our thread pools will be.
+You can mix these options together, too - eg 50% of time on cores 0 through 8. It's well documented by Docker which will link you through to the kernel docs for more info. What we care about now is how the JVM uses and represents that capacity.
 
 #### Host OS
 
@@ -59,7 +61,7 @@ $1 ==> 36
 
 **NB 1** This is based on the relationship 1 CPU = 1024 'shares'. `36864 = 36×1024`.  
 **NB 2** That said, 1024 is the default setting, so specifying 1024 here will cause the JVM to report 72 processors. This seems like a gotcha waiting to happen.  
-**NB 3** CPU shares are hard for the JVM to work with as the arg you specify is interpreted relative to all the other containers on the system and doesn't mean much by itself.
+**NB 3** CPU shares are hard for the JVM (or any containerized process trying to do this kind of introspection) to work with as the arg you specify is interpreted relative to all the other containers on the system and doesn't mean much by itself.
 
 #### CPU Period/Quota
 
@@ -79,7 +81,7 @@ $1 ==> 36
 
 The calculation the JVM uses is: `min(cpuset-cpus, cpu-shares/1024, cpus)` rounded up to the next whole number.
 
-It seems logical to use **CPU Sets** when you have enough cores as it should reduce context-switches and increase CPU cache coherency. Or maybe it would be OK to have more threads, if they spend a lot of their time parked and waiting on an interrupt... Maybe you are happy with the constraints of CPU shares and are happy to be able to use spare CPU cycles. Contrary to the warnings in the JavaDoc I have not seen any occasions where `.availableProcessors()` changes its result over time within a single JVM.
+It seems logical to use **CPU Sets** when you have enough cores as it should reduce context-switches and increase CPU cache coherency. Or maybe it would be OK to have more threads, if they spend a lot of their time parked and waiting on an interrupt... Maybe you are happy with the constraints of **CPU shares** and are happy to be able to use spare CPU cycles. Contrary to the warnings in the JavaDoc I have not seen any occasions where `.availableProcessors()` changes its result over time within a single JVM.
 
 ### Memory
 
@@ -142,6 +144,6 @@ root@6a94863c54df:/# /java/jdk-10/bin/java -XX:+PrintFlagsFinal -version | grep 
 
 ## Summary
 
-In JDK10 it does seem that applying CPU and memory limits to your containerized JVMs will be straightforward. The JVM will detect hardware capability of the host correctly, tune itself appropriately and make a good representation of the available capacity to your application.
+In JDK10 it does seem that applying CPU and memory limits to your containerized JVMs will be straightforward. The JVM will detect hardware capability of the container correctly, tune itself appropriately and make a good representation of the available capacity to your application.
 
 Thanks to [@msgodf](https://twitter.com/msgodf) and Bob Vandette for help with this post.
