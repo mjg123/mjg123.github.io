@@ -64,7 +64,7 @@ This example could easily be written without Flow but it's good to start simple.
 
 ## Running your first Flow
 
-Currently FnProject is available to download, to experiment with, and to run on your private cloud. A managed service by Oracle is in the works. To play with Flow at the moment you will need to run everything locally, but it's not hard. We need **`fn`**, the **Fn server**, the **Flow Server** and not necessary but nice-to-have is the Flow Server **UI**
+Currently FnProject is available to download, to experiment with, and to run on your private cloud. A managed service by Oracle is in the works. To play with Flow at the moment you will need to run everything locally, but it's not hard. We need **`fn`**, the **Fn server**, the **Flow Server** and not necessary but nice-to-have is the Flow Server **UI**. These run on ports 8080, 8081 and 3002 respectively so you might need to configure firewalls to allow access.
 
 ### Setting up
 
