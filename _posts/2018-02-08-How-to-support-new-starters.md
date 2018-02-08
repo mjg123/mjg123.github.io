@@ -90,6 +90,7 @@ AKA career mentor
   - **First month**
     + Frequent 1-1s
 	+ Up to this point, they should not have had to care about politics/deadlines/other corporate stuff. Start to introduce it now.
+	+ (flipside of the above) Start to widen their network outside of co-located teams.
 	+ Training/learning needs identified. Show O'Reilly bookshelf, find external courses/MOOCs if necessary.
   - **First year**
     + Weekly 1-1s

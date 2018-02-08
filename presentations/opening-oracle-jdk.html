@@ -9,30 +9,92 @@
        padding: 0;
        width: 100%;
        height: 100%;
+       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
    }
    #presentation {
-       margin: 0 auto 0 auto;
-       width: 100%;
-       height: 100%;
+       position: fixed;
+       top: 10px;
+       bottom: 30px;
+       right: 10px;
+       left: 10px;
+       
    }
    #presentation>div {
        width: 100%;
        height: 100%;
-       padding: 10%;
+       //       padding: 10%;
+       background-image: linear-gradient(to right,
+       #feffff 0%,
+       #feffff 35%,
+       #a0d8ef 35%,
+       #a0d8ef 100%);
+       box-sizing: border-box;
+       background-size: 100%;
+   }
+   #contact {
+       position: fixed;
+       bottom: 2px;
+       left: 10px;
+       color: #AAA;
    }
   </style>
   
   <div id="presentation" style="dislay: block">
-      <div data-slidr="1">
+      <div data-slidr="title">
 	  Title: Opening the Oracle JDK
       </div>
-      <div data-slidr="2">
+      <div data-slidr="safe-harbor">
 	  TODO: Add Safe Harbor slide
       </div>
-      <div data-slidr="3">3</div>
-      <div data-slidr="3.1">3.1</div>
-      <div data-slidr="3.2">3.2</div>
-      <div data-slidr="4">4</div>
+      <div data-slidr="self-intro">
+	  Who are you and why are you talking about this?
+      </div>
+
+      <div data-slidr="what-why-when">
+	  Opening the Oracle JDK: What, Why, When?
+      </div>
+      <div data-slidr="jdk-timeline">
+	  Image of JDK release timelines
+      </div>
+
+      <div data-slidr="jdk-anatomy-1">
+	  Build
+      </div>
+      <div data-slidr="jdk-anatomy-2">
+	  Build up
+      </div>
+      <div data-slidr="jdk-anatomy-3">
+	  Build up the
+      </div>
+      <div data-slidr="jdk-anatomy-4">
+	  Build up the diagram
+      </div>
+
+      <div data-slidr="testing">
+	  Tonga, Vulnerability tests.
+      </div>
+      <div data-slidr="packaging-tooling">
+	  Packaging and tooling
+      </div>
+
+      <div data-slidr="jvm-quickies">
+	  Font rendering, ZGC, DetGC
+      </div>      
+      <div data-slidr="jvm-jfr">
+	  JFR & JMC
+      </div>
+      <div data-slidr="jvm-appcds">
+	  Application CDS
+      </div>
+      
+      <div data-slidr="thank-you">
+	  Thanks for your time
+      </div>
+      
+  </div>
+
+  <div id="contact">
+      Matthew Gilliard @MaximumGilliard #openingOracleJDK
   </div>
   
   <script src="./slidr.min.js"></script>
@@ -41,18 +103,30 @@
    slidr.create('presentation' ,{
        breadcrumbs: true,
        controls: 'none',
-       //       direction: 'vertical',
-       //       fade: false,
        keyboard: true,
-       //       overflow: true,
+       //overflow: true,
        theme: '#AAA',
-       //       timing: { 'cube': '0.5s ease-in' },
+       timing: { 'linear': '0.5s ease-in-out' },
        touch: true,
        transition: 'linear'
    })
-	.add('h', ['1', '2', '3'])
-	.add('h', ['3', '3.1', '3.2'], 'none')
-        .add('h', ['3.2', '4'])
+	.add('h', ['title',
+		   'safe-harbor',
+		   'self-intro',
+		   'what-why-when',
+		   'jdk-timeline',
+		   'jdk-anatomy-1'])
+	.add('h', ['jdk-anatomy-1',
+		   'jdk-anatomy-2',
+		   'jdk-anatomy-3',
+		   'jdk-anatomy-4'], 'none')
+	.add('h', ['jdk-anatomy-4',
+		   'testing',
+		   'packaging-tooling',
+		   'jvm-quickies',
+		   'jvm-jfr',
+		   'jvm-appcds',
+		   'thank-you'])
 	.start();
   </script>
   
