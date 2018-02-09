@@ -36,7 +36,7 @@ We identified 6 independent roles, and made sure that each of the needs would be
 
  - People in each role are identified *before* the new starter joins
  - Roles are independent, but multiple roles could be filled by the same individual
- - The person in a particular role is _not_ responsibly for meeting each of the needs in that role. They _are_ responsible for noticing whether the needs are being met and providing help if necessary.
+ - The person in a particular role is _not_ responsible for meeting each of the needs in that role. They _are_ responsible for noticing whether the needs are being met and providing help if necessary.
 
 So, what did we find?
 
