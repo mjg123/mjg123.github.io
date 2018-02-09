@@ -178,4 +178,4 @@ Oh yes, they have some responsibilty for their own destiny!
 
 ## Summary
 
-We felt positive at the end of this meeting. I would absolutely appreciate your advice and insights. New starters due soon!
+We felt positive at the end of this meeting. I would absolutely appreciate your advice and insights. New starters due soon and we're super-excited about it!
