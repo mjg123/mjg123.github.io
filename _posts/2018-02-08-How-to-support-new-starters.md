@@ -8,7 +8,7 @@ tags:
 - draft
 ---
 
-The office I work in has a diversity problem. Specifically around age and experience: we used to heavily recruit for "more experienced engineers" ([hmm](https://twitter.com/mnowster/status/954673462743838721)). Recently we took the chance to reflect on our demographics and decided to hire several junior engineers. We were able to get several applicants through outreach to universities, internships, meetups and the hard work of our recruitment team (thanks Mike!) but this post isn't about that. It's about the _next_ problem: **how to support junior engineers when they start working with us?**
+IT has several issues with diversity. Recently the teams in my workplace took the chance to reflect on our this and decided to hire several junior engineers. We were able to get several applicants through outreach to universities, internships, meetups and the hard work of our recruitment team but this post isn't about that. It's about the _next_ problem: **how to support junior engineers when they start working with us?**
 
 We want new starters to feel welcomed and comfortable, and we want them to be able to grow into wonderfully productive and happy colleagues. The most important output of the best senior engineers is more excellent engineers. But we have _little-to-no experience_ of how this actually happens. Therefore our first step was to think about what the needs and wishes of a new starter are, and make sure that we had some way of ensuring that those needs would be met.
 
@@ -20,7 +20,7 @@ After a brief mention in our weekly huddle, we found a half-dozen interested peo
 
 ![diverge and converge]({{ "assets/new_starter_meeting.jpg" | relative_url }})
 
-Our first objective: **What does a new starter need?**
+Our first objective is to answer: **What does a new starter need?**
 
  - **before they start**
  - **on day 1**
@@ -30,7 +30,9 @@ Our first objective: **What does a new starter need?**
  
  Also: **what new-starter antipatterns should we avoid?**
 
-This generated *a lot* of ideas. So we merged them into similar groups and considered the question from another angle: **What roles need to exist to make sure that the starter's needs are met?**
+The specific times there (day/week/month/year) are rather arbitrary - intended to make sure we consider their changing needs as they settle into their new job.
+
+So, this generated *a lot* of ideas. So we discussed them for a while and then considered the question from another angle: **What roles need to exist to make sure these needs are met?**
 
 We identified 6 independent roles, and made sure that each of the needs would be naturally met by a person in one of the roles. A few important notes:
 
