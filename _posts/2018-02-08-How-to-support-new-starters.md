@@ -34,7 +34,7 @@ The specific times there (day/week/month/year) are rather arbitrary - intended t
 
 So, this generated *a lot* of ideas. So we discussed them for a while and then considered the question from another angle: **What roles need to exist to make sure these needs are met?**
 
-Our approach here was to spend time grouping and classifying the starter's needs, discussing who could be responsible for making sure they are met. We also considered that this is a _living process_ and should explicitly be sustainability and improvement. We identified 6 independent roles, and made sure that each of the needs would be naturally met by a person in one of the roles. A few important notes:
+Our approach here was to spend time grouping and classifying the starter's needs, discussing who could be responsible for making sure they are met. We also considered that this is a _living process_ and should explicitly consider sustainability and feedback for improvement. We identified 6 independent roles, and made sure that each of the needs would be naturally met by a person in one of the roles. A few important notes:
 
  - People in each role are identified *before* the new starter joins
  - Roles are independent, but multiple roles could be filled by the same individual
