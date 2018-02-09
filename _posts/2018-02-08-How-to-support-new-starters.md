@@ -115,7 +115,7 @@ AKA career mentor
 This is someone on the dev team they are initially joining
 
   - **Before they start**
-    + Some advice on background reading for that team's work.
+    + Some advice on (optional) background reading for that team's work.
   - **Day 1**
     + Empty and clean desk is available. Within the team space, not isolated.
 	+ Help dealing with the monitor stands, unboxing laptop.
@@ -141,7 +141,7 @@ Oh yes, they have some responsibilty for their own destiny!
     + Go with the flow. Stay chilled.
   - **Week 1**
     + Continue being relaxed.
-    + Knows everyone on their team and be comfortable interrupting anyone
+    + Knows everyone on their team and is comfortable interrupting anyone
     + Is asking lots of questions
 	+ Identify areas for self-study
   - **First month**
