@@ -34,17 +34,19 @@ The specific times there (day/week/month/year) are rather arbitrary - intended t
 
 So, this generated *a lot* of ideas. So we discussed them for a while and then considered the question from another angle: **What roles need to exist to make sure these needs are met?**
 
-We identified 6 independent roles, and made sure that each of the needs would be naturally met by a person in one of the roles. A few important notes:
+Our approach here was to spend time grouping and classifying the starter's needs, discussing who could be responsible for making sure they are met. We also considered that this is a _living process_ and should explicitly be sustainability and improvement. We identified 6 independent roles, and made sure that each of the needs would be naturally met by a person in one of the roles. A few important notes:
 
  - People in each role are identified *before* the new starter joins
  - Roles are independent, but multiple roles could be filled by the same individual
  - The person in a particular role is _not_ responsible for meeting each of the needs in that role. They _are_ responsible for noticing whether the needs are being met and providing help if necessary.
 
-So, what did we find?
+
 
 ### Onboarding buddy
 
-The onboarding buddy is usually expected to be the previous most recent new starter.
+Goal: Make sure the initial onboarding instructions are accurate and provide help with things which starters need to do only once.
+
+The onboarding buddy is usually expected to be the previous most recent new starter. I've worked with this setup before and it's helpful for a number of reasons
 
   - **Before they start**
     + Make sure the new-starter checklist is up-to-date (this says how to check SSO/access email/setup VPN etc)
@@ -61,6 +63,8 @@ The onboarding buddy is usually expected to be the previous most recent new star
 
 ### Social buddy
 
+Goal: Check that the new starter feels comfortable, is known in the office, and is included in social activities.
+
 Maybe best if it's someone from a different team. If the new starter already knows someone then so much the better.
 
   - **Day 1**
@@ -76,7 +80,7 @@ Maybe best if it's someone from a different team. If the new starter already kno
 
 ### Manager
 
-AKA career mentor
+Goals: First point of contact. Career mentor. Various bureaucratic responsibilities. Represents the starter in the company.
 
   - **Before they start**
     + Decide who the manager is (this hasn't always happened here!), introduce yourself by email.
@@ -107,12 +111,16 @@ AKA career mentor
 
 ### HR/Admin team
 
+Goals: Excellent logistics
+
   - **Before they start**
     + Requests hardware (laptops etc) with enough lead-time
 	+ Request accounts on HR systems etc
     + Building pass
 
 ### Team buddy
+
+Goals: Welcome the starter into the team. Work together.
 
 This is someone on the dev team they are initially joining
 
