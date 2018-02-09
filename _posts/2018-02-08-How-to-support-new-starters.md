@@ -42,7 +42,7 @@ So, what did we find?
 
 ### Onboarding buddy
 
-The onboarding buddy is usually expected to be the most recent new starter.
+The onboarding buddy is usually expected to be the previous most recent new starter.
 
   - **Before they start**
     + Make sure the new-starter checklist is up-to-date (this says how to check SSO/access email/setup VPN etc)
