@@ -95,13 +95,13 @@ AKA career mentor
 	+ Training/learning needs identified. Show O'Reilly bookshelf, find external courses/MOOCs if necessary.
   - **First year**
     + Weekly 1-1s
+	+ They have worked on several different teams
     + Ensure increasing levels of responsibility/autonomy/independence/trust.
 	+ Ask if they can join the hiring/interviewing teams
 	+ Get involved with meetups/conference speaker/uni visits (if wanted)
 	+ Progressive targets & encourage setting of own targets
 	+ Broad understanding of several work areas. Contributions to a subset of that.
     + Starter still works here. Or, if it's genuinely not working out, make sure there is a clear understanding of why not and possibly help with further career goals outside of our company.
-	+ They have worked on several different teams
 
 ### HR/Admin team
 
