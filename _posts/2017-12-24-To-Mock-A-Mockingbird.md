@@ -6,6 +6,7 @@ summary:    To Mock A Mockingbird
 tags:
 - maths
 - not-computers
+- book
 ---
 
 ![Smullyan]({{ "assets/smullyan2.jpg" | absolute_url }})
