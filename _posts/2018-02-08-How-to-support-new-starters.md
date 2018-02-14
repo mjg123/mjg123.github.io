@@ -36,11 +36,11 @@ So, this generated *a lot* of ideas. So we discussed them for a while and then c
 
 Our approach here was to spend time grouping and classifying the starter's needs, discussing who could be responsible for making sure they are met. We also recognised that this is a _living process_ and should explicitly consider sustainability and feedback for improvement. We identified 6 independent roles, and made sure that each of the needs would be naturally met by a person in one of the roles. A few important notes:
 
- - People in each role are identified *before* the new starter joins
- - Roles are independent, but multiple roles could be filled by the same individual
- - The person in a particular role is _not_ responsible for meeting each of the needs in that role. They _are_ responsible for noticing whether the needs are being met and providing help if necessary.
+ - Who is responsible for each role is identified *before* the new starter joins.
+ - Roles are independent, so it's possible that multiple roles are taken care of by the same individual. Also recognise that people may move in or out of our team.
+ - The person in a particular role is _not_ responsible for meeting each of the starter's needs. They _are_ responsible for noticing whether the needs are being met and providing help if necessary.
 
-
+Here are the roles we ended up with:
 
 ### Onboarding buddy
 
