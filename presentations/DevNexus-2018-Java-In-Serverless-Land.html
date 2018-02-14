@@ -1,379 +1,606 @@
 <html DOCTYPE=html5>
 
-    <title>Opening the Oracle JDK</title>
+    <title>Java in Serverless Land</title>
 
+    <meta name="author" content="Matthew Gilliard @MaximumGilliard"/>
+    <meta name="description" content="Presentation for DevNexus 2018."/>
+    <meta name="keywords" content="FnProject,Java,Serverless,Flow,Containers"/>
+    
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
   
-  <style type="text/css">
-   body {
-       overflow: hidden;
-       margin: 0;
-       padding: 0;
-       width: 100%;
-       height: 100%;
-       font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-   }
-   #presentation {
-       position: fixed;
-       top: 10px;
-       bottom: 30px;
-       right: 10px;
-       left: 10px;
-       
-   }
-   #presentation>div {
-       width: 100%;
-       height: 100%;
-       padding-left: 32px;
-       background-image: linear-gradient(to right,
-       #D00 0,
-       #D00 20px,
-       #FFF 20px,
-       #FFF 100%);
-       box-sizing: border-box;
-       background-size: 100%;
-       font-size: 32pt;
-   }
-   #presentation>div.title {
-       padding: 10%;
-       background: #D00;
-       color: #FFF;
-       text-align: center;
-       font-size: 100pt;
-       font-weight: bold;
-       font-family: 'Roboto Slab', serif;
-   }
+    <style type="text/css">
+     body {
+	 overflow: hidden;
+	 margin: 0;
+	 padding: 0;
+	 width: 100%;
+	 height: 100%;
+	 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+     }
+     #presentation {
+	 position: fixed;
+	 top: 10px;
+	 bottom: 30px;
+	 right: 10px;
+	 left: 10px;
+     }
+     #presentation>div {
+	 width: 100%;
+	 height: 100%;
+	 padding-left: 32px;
+	 background-image: linear-gradient(to right,
+	 #D00 0,
+	 #D00 20px,
+	 #FFF 20px,
+	 #FFF 100%);
+	 box-sizing: border-box;
+	 background-size: 100%;
+	 font-size: 32pt;
+     }
+     #presentation>div.title {
+	 padding: 10%;
+	 background: #D00;
+	 color: #FFF;
+	 text-align: center;
+	 font-size: 100pt;
+	 font-weight: bold;
+	 font-family: 'Roboto Slab', serif;
+     }
+     
+     img {
+	 width: 100%;
+     }
+     
+     .col2 {
+	 width: 45%;
+	 float: left;
+     }
+     
+     li {
+	 margin-top: 16px;
+     }
+     
+     em {
+	 color: #800
+     }
+     
+     tt {
+	 font-family: Courier New, mono;
+	 background-color: #DDD;
+	 border: 1px solid #888;
+     }
 
-   img {
-       width: 100%;
-   }
-   
-   .col2 {
-       width: 45%;
-       float: left;
-   }
-   
-   li {
-       margin-top: 16px;
-   }
+     br {
+	 margin-top: 12px;
+     }
 
-   em {
-       color: #800
-   }
+     .gist-data{
+	 height:65%; // Any height
+	 overflow-y: visible;
+     }
+     
+     .slide-footer {
+	 position: fixed;
+	 bottom: 32px;
+	 font-size: 22pt;
+     }
+     
+     .slide-section {
+	 text-align: right;
+	 font-size: 12pt;
+	 color: #888;
+     }
+     .slide-title {
+	 font-weight: bold;
+	 font-size: 48pt;
+	 margin-bottom: 12pt;
+     }
+     .slide-content {
+	 margin-left: 32px;
+	 font-size: 24pt;
+     }
+     
+     #contact {
+	 position: fixed;
+	 bottom: 8px;
+	 left: 10px;
+	 color: #444;
+     }
+    </style>
+    
+    <div id="presentation" style="dislay: block">
+	<div data-slidr="title" class="title">
+	    Java In Serverless Land
+	</div>
+	
+	
+	<div data-slidr="title-fn-flow" class="title">
+	    Fn Flow
+	</div>
 
-   tt {
-       font-family: Courier New, mono;
-       background-color: #DDD;
-       border: 1px solid #888;
-   }
+	<div data-slidr="fn-flow-intro">
+	    <div class="slide-section">fn flow</div>
+	    <div class="slide-title">Fn Flow</div>
+	    <div class="slide-content">
+		What is Flow for?
+		<ul>
+		    <li>Fn Flow lets you build <em>reliable</em> and <em>scalable</em> FaaS applications as functions</li>
+		    <li>Flow functions <em>only</em> consume resources when they have work to do</li>
+		    <li>Flow functions are written <em>purely in code</em></li>
+		    <li>Flow empowers you to build distributed applications that can be as <em>simple</em> or <em>complex</em> as you need them to be</li>
+		    <li>Flow supports <em>rich concurrency primitives</em> including fork-join, chaining, delays and error handling</li>
+		</ul>
+	    </div>
+	</div>
 
-   .slide-footer {
-       position: fixed;
-       bottom: 32px;
-   }
-   
-   .slide-section {
-       text-align: right;
-       font-size: 12pt;
-       color: #888;
-   }
-   .slide-title {
-       font-weight: bold;
-       font-size: 48pt;
-       margin-bottom: 12pt;
-   }
-   .slide-content {
-       margin-left: 32px;
-       font-size: 24pt;
-   }
-   
-   #contact {
-       position: fixed;
-       bottom: 8px;
-       left: 10px;
-       color: #444;
-   }
-  </style>
-  
-  <div id="presentation" style="dislay: block">
-      <div data-slidr="title" class="title">
-	  Java In Serverless Land
-      </div>
+	<div data-slidr="fn-flow-vista-example-1">
+	    <div class="slide-section">fn flow</div>
+	    <div class="slide-title">Fn Flow: Vista</div>
+	    <div class="slide-content">
 
-      
-      <div data-slidr="title-java-containers" class="title">
-	  Java In Container Land
-      </div>
-      
-      <div data-slidr="java-in-containers">
-	  <div class="slide-section">Java in Container Land</div>
-	  <div class="slide-title">
-	      Java in containers
-	  </div>
-	  <div class="slide-content">
-	      What do we want containerized JVMs to do?
-	      <ul>
-		  <li>Start <em>fast</em></li>
-		  <li>Run in <em>small</em> images</li>
-		  <li>Respect resource constraints</li>
-	      </ul>
-	  </div>
-      </div>
+		We want code to:
+		<ul>
+		    <li>Hit the Flickr API for "license plate car usa" (we have a Ruby fn for this)</li>
+		    <li>In each image, look for specific license plates (golang, uses OpenALPR)</li>
+		    <li>If we find a match, drop a message into Slack about it (golang again)</li>
+		    <li>Draw a box around the license plate (Ruby again)</li>
+		    <li>Save the images (in Minio)</li>
+		</ul>
+		
+		<div class="slide-footer"><a href="https://github.com/carimura/vista">https://github.com/carimura/vista</a></div>
+	    </div>
+	</div>
 
-      <div data-slidr="java-in-containers-starts-fast">
-	  <div class="slide-section">Java in Container Land</div>
-	  <div class="slide-title">
-	      Fast JVM startup
-	  </div>
-	  <div class="slide-content">
-	      Moving <em>startup</em> costs to <em>build-time</em> also allows us to share pre-built assets between JVMs. How can we take advantage of container deployment patterns?
-	      <ul>
-		  <li><tt>libc</tt>, <tt>libjava.so</tt> can be shared (assuming same layer/file/inode)</li>
-		  <li>What else can we share?
-		      <ul>
-			  <li>Class Data Sharing (CDS)</li>
-			  <li>Application CDS</li>
-			  <li>AOT compilation</li>
-		      </ul>
-		  </li>
-	      </ul>
-	  </div>
-      </div>
+	<div data-slidr="fn-flow-vista-example-2">
+	    <div class="slide-section">fn flow</div>
+	    <div class="slide-title">Fn Flow: Vista</div>
+	    <div class="slide-content">
+		<script src="https://gist.github.com/mjg123/8198a1311f4e8fa3b8376e93d24cafb1.js"></script>
+		<div class="slide-footer"><a href="https://github.com/carimura/vista">https://github.com/carimura/vista</a></div>
+	    </div>
+	</div>
 
-      <div data-slidr="java-in-containers-starts-fast-cds">
-	  <div class="slide-section">Java in Container Land</div>
-	  <div class="slide-title">
-	      Fast JVM startup - CDS
-	  </div>
-	  <div class="slide-content">
-	      <span class="col2">
-		  <img src="./cds.png" />
-	      </span>
-	      <span class="col2">
-		  <ul>
-		      <li>Like an shared object file but for Java Class Data</li>
-		      <li>Memory-mapped, ReadOnly + COW</li>
-		      <li>Class data read from memory without reading/parsing/verifying classes from Jar files</li>
-		      <li>Class data can be shared between containers</li>
-		  </ul>
-	      </span>
-	      <div class="slide-footer">
-		  <a href="https://mjg123.github.io/2017/10/02/JVM-startup.html">https://mjg123.github.io/2017/10/02/JVM-startup.html</a>
-	      </div>
-	  </div>
-      </div>
+	<div data-slidr="fn-flow-vista-example-3">
+	    <div class="slide-section">fn flow</div>
+	    <div class="slide-title">Fn Flow: Vista</div>
+	    <div class="slide-content">
 
-      <div data-slidr="java-in-containers-starts-fast-appcds">
-	  <div class="slide-section">Java in Container Land</div>
-	  <div class="slide-title">
-	      Fast JVM startup - AppCDS
-	  </div>
-	  <div class="slide-content">
-	      Application CDS is like "regular" CDS, but for application classes.
-	      <ul>
-		  <li>Cache size & speedup depends on how big your <em>application's classes</em> are</li>
-		  <li>Memory saving depends on <em>number of containers</em> sharing the same cache</li>
-		  <li>(eg) Several seconds and hundreds of MB saved with AppCDS using WebLogic</li>
-	      </ul>
-	      <div class="slide-footer">
-		  <a href="https://mjg123.github.io/2017/10/04/AppCDS-and-Clojure.html">https://mjg123.github.io/2017/10/04/AppCDS-and-Clojure.html</a>
-	      </div>
-	  </div>
-      </div>
-
-      <div data-slidr="java-in-containers-starts-fast-aot">
-	  <div class="slide-section">Java in Container Land</div>
-	  <div class="slide-title">
-	      Fast JVM startup - AOT
-	  </div>
-	  <div class="slide-content">
-	      Ahead-of-time compilation for Java classes. Does some of the work that HotSpot would do in compiling bytecode to native, at build-time.
-	      <ul>
-		  <li>Shared memory</li>
-		  <li>Reduced footprint</li>
-		  <li>Quicker startup</li>
-		  <li>Optionally include profiling paths</li>
-	      </ul>
-	      <div class="slide-footer">
-		  <a href="https://mjg123.github.io/2017/10/04/AppCDS-and-Clojure.html">https://mjg123.github.io/2017/10/04/AppCDS-and-Clojure.html</a>
-	      </div>
-	  </div>
-      </div>
-
-      <div data-slidr="java-in-containers-small-images">
-	  <div class="slide-section">Java in Container Land</div>
-	  <div class="slide-title">
-	      Smaller images
-	  </div>
-	  <div class="slide-content">
-	      Smaller JVM container images mean faster startup:
-	      <ul>
-		  <li>Transferring images to the host</li>
-		  <li>COW caches</li>
-		  <li>Overlay FS</li>
-	      </ul>
-	      Techniques:
-	      <ul>
-		  <li><tt>jlink</tt> - remove unused core libraries</li>
-		  <li>Smaller base images</li>
-		  <li>Substrate VM - Compile Java to a static binary</li>
-	      </ul>
-	  </div>
-      </div>
-
-      <div data-slidr="java-in-containers-small-images-jlink">
-	  <div class="slide-section">Java in Container Land</div>
-	  <div class="slide-title">
-	      Smaller images - <tt>jlink</tt>
-	  </div>
-	  <div class="slide-content">
-	      Remove parts of Java standard library that you don't use:
-	      <span class="col2">
-		  <img src="jlink.png"/>
-	      </span>
-	      <span class="col2">
-		  <ul>
-		      <li>Only includes the jdk9 modules you use</li>
-		      <li>Make even smaller with <tt>--compress</tt></li>
-		      <li>Also: <tt>--vm minimal</tt> includes only Serial GC and client compiler - size reduced to ~15MB</li>
-		  </ul>
-	      </span>
-	  </div>
-      </div>
-
-      <div data-slidr="java-in-containers-small-images-alpine">
-	  <div class="slide-section">Java in Container Land</div>
-	  <div class="slide-title">
-	      Smaller images - Alpine &amp; Musl
-	  </div>
-	  <div class="slide-content">
-	      Ubuntu / Debian / Oracle Linux base images can be <em>100s of MB</em>, even the "slim" versions. We don't care much about the base image so long as it can run Java. Project Portola makes the JVM run on Alpine Linux/Musl.
-	      <ul>
-		  <li><img style="width:200px" src="https://alpinelinux.org/alpinelinux-logo.svg"/><br/>Alpine Linux is a security-oriented, lightweight Linux distribution based on musl libc and busybox. Alpine base image is 4mb (!)</li>
-		  <li><img style="width:100px" src="https://pbs.twimg.com/profile_images/445099121699872768/9_ErbOeX.png"/><br/>Musl is lightweight, fast, simple, free, and strives to be correct in the sense of standards-conformance and safety.</li>
-	      </ul>
+		<img style="height:75%" src="./flow-ui.png"/>
+		
+		<div class="slide-footer"><a href="https://github.com/carimura/vista">https://github.com/carimura/vista</a></div>
+	    </div>
+	</div>
 
 
-	  </div>
-      </div>
+	
+	<div data-slidr="fn-flow-saga-example-1">
+	    <div class="slide-section">fn flow</div>
+	    <div class="slide-title">Fn Flow: Serverless Sagas</div>
+	    <div class="slide-content">
 
-      <div data-slidr="java-in-containers-small-images-svm">
-	  <div class="slide-section">Java in Container Land</div>
-	  <div class="slide-title">
-	      Smaller images - Substrate VM
-	  </div>
-	  <div class="slide-content">
-	      Substrate VM from Oracle Labs compiles Java source to a single binary, like C or Golang.
-	      <ul>
-		  <li>Part of Graal project</li>
-		  <li>Tiny image sizes (>10mb)</li>
-		  <li>Small VM overhead</li>
-		  <li>Experimental, in active development</li>
-		  <li>No support for dynamic code generation, serialization</li>
-		  <li>Limited support for reflection</li>
-	      </ul>
-	  </div>
-      </div>
+		<div class="col2">
+		    We want code to:
+		    <ul>
+			<li>Book a flight, a hotel, and a car</li>
+			<li>If there are any errors, release all bookings</li>
+		    </ul>
+		    Managing transactional behaviour like this in a distributed system can be <em>tricky</em>.
+		</div>
+		<div class="col2">
+		    <img src="./sagas-fns.png"/>
+		</div>
+		
+		<div class="slide-footer"><a href="https://medium.com/fnproject/serverless-sagas-with-fn-flow-d8199b608b12">https://medium.com/fnproject/serverless-sagas-with-fn-flow-d8199b608b12</a></div>
+	    </div>
+	</div>
 
-      
-      <div data-slidr="java-in-containers-respect-resource-constraints">
-	  <div class="slide-section">Java in Container Land</div>
-	  <div class="slide-title">
-	      Respecting Resource Constraints
-	  </div>
-	  <div class="slide-content">
-	      The JVM self-tunes to the underlying system (aka <em>Ergonomics</em>).
-	      <ul>
-		  <li>Memory
-		      <ul>
-			  <li>Heap size</li>
-			  <li>GC region sizes</li>
-			  <li>JIT code cache sizes</li>
-		      </ul>
-		  </li>
-		  <li>CPU
-		      <ul>
-			  <li>ThreadPool sizes</li>
-			  <li><tt>Runtime.availableProcessors()</tt></li>
-		      </ul>
-		  </li>
-	      </ul>
-	      This is <em>not</em> transparent - requires JVM to support cgroups resource limitations. Much good stuff landed recently for JDK10. See <a href="https://bugs.openjdk.java.net/browse/JDK-8146115">JDK-8146115</a> for more details.
-	  </div>
-      </div>
+	<div data-slidr="fn-flow-saga-example-2">
+	    <div class="slide-section">fn flow</div>
+	    <div class="slide-title">Fn Flow: Serverless Sagas</div>
+	    <div class="slide-content">
 
-      
-      <div data-slidr="java-in-containers-respect-resource-constraints-2">
-	  <div class="slide-section">Java in Container Land</div>
-	  <div class="slide-title">
-	      Being Container Friendly
-	  </div>
-	  <div class="slide-content">
-	      Other work:
-	      <ul>
-		  <li><a href="https://bugs.openjdk.java.net/browse/JDK-8179498">JDK-8179498</a>: <tt>attach</tt> in linux should be relative to <tt>/proc/pid/root</tt> and namespace aware (JDK 10)</li>
-		  <li><a href="https://bugs.openjdk.java.net/browse/JDK-8193710">JDK-8193710</a>: <tt>jcmd -l</tt> and <tt>jps</tt> commands do not list Java processes running in Docker containers (JDK 11)</li>
-		  <li>And more... <a href="https://bugs.openjdk.java.net/browse/JDK-8182070">JDK-8182070</a>: Container aware Java</li>
-	      </ul>
-	  </div>
-      </div>
-      
-      <!--
-	   <div data-slidr="java-in-containers">
-	   <div class="slide-section">section</div>
-	   <div class="slide-title">
-	     title
-	   </div>
-	   <div class="slide-content">
-	     blah blah
-	   </div>
-	   </div>
-      -->
+		<script src="https://gist.github.com/tteggel/cf12bbbc7ebf7d6b5df5053f0d800c7a.js"></script>
 
-      
-      <div class="title" data-slidr="thank-you">
-	  Thank you for listening
-      </div>
-      
-  </div>
+		<div class="slide-footer"><a href="https://medium.com/fnproject/serverless-sagas-with-fn-flow-d8199b608b12">https://medium.com/fnproject/serverless-sagas-with-fn-flow-d8199b608b12</a></div>
+	    </div>
+	</div>
+	
+	<div data-slidr="fn-flow-how-it-works">
+	    <div class="slide-section">fn flow</div>
+	    <div class="slide-title">Fn Flow</div>
+	    <div class="slide-content">
+		How does it even work?
+		<ul>
+		    <li>Inspiration from features of Java 8</li>
+		    <ul>
+			<li>CompletableFuture</li>
+			<li>Lambdas</li>
+		    </ul>
+		</ul>
+	    </div>
+	</div>
 
-  <div id="contact">
-      Java In Serverless Land ::
-      Matthew Gilliard ::
-      DevNexus ::
-      22 Feb 2018 ::
-      @MaximumGilliard ::
-      #javaServerless
-  </div>
-  
-  <script src="./slidr.min.js"></script>
-  
-  <script>
-   slidr.create('presentation' ,{
-       breadcrumbs: true,
-       controls: 'none',
-       keyboard: true,
-       //overflow: true,
-       theme: '#AAA',
-       timing: { 'linear': '0.5s ease-in-out' },
-       touch: true,
-       transition: 'linear'
-   })
-	.add('h', ['title', 'title-java-containers'], 'none')
-	.add('h', ['title-java-containers',
-		   'java-in-containers',
-		   'java-in-containers-starts-fast',
-		   'java-in-containers-starts-fast-cds',
-		   'java-in-containers-starts-fast-appcds',
-		   'java-in-containers-starts-fast-aot',
-		   'java-in-containers-small-images',
-		   'java-in-containers-small-images-jlink',
-		   'java-in-containers-small-images-alpine',
-		   'java-in-containers-small-images-svm',
-		   'java-in-containers-respect-resource-constraints',
-		   'java-in-containers-respect-resource-constraints-2',
-		   'thank-you'])
-	.start();
-  </script>
-  
+	
+	<div data-slidr="fn-flow-under-the-hood" class="title">
+	    Under the Hood of Fn Flow
+	</div>
+	
+	<div data-slidr="cfuture-intro">
+	    <div class="slide-section">fn flow</div>
+	    <div class="slide-title">CompletableFuture</div>
+	    <div class="slide-content">
+		CompletableFuture is a representation of a <em>single asynchronous action</em>. It is also a <em>framework</em> for composing these actions to define complex asynchronous behaviours.
+		<ul>
+		    <li>Since JDK8</li>
+		    <li>Part of <tt>java.util.concurrent</tt></li>
+		    <li>Uses <tt>ForkJoinPool</tt></li>
+		    <li>Written by Doug Lea (genius)</li>
+		</ul>
+		Fn Flow is a framework for composing <em>distributed</em> asynchronous actions, based on CompletableFuture.
+	    </div>
+	</div>
+	
+	<div data-slidr="cfuture-start">
+	    <div class="slide-section">fn flow</div>
+	    <div class="slide-title">CompletableFuture</div>
+	    <img style="width:65%; margin-left:15%;"
+		 src="./CompletableFutureStart.png"/>
+	</div>
+	
+	<div data-slidr="cfuture-compose">
+	    <div class="slide-section">fn flow</div>
+	    <div class="slide-title">CompletableFuture</div>
+	    <img style="width:65%; margin-left:15%;"
+		 src="./CompletableFutureCompose.png"/>
+	</div>
+	
+	<div data-slidr="cfuture-fan-out">
+	    <div class="slide-section">fn flow</div>
+	    <div class="slide-title">CompletableFuture</div>
+	    <img style="width:65%; margin-left:15%;"
+		 src="./CompletableFutureFanOut.png"/>
+	</div>
+	
+	<div data-slidr="cfuture-fan-in">
+	    <div class="slide-section">fn flow</div>
+	    <div class="slide-title">CompletableFuture</div>
+	    <img style="width:65%; margin-left:15%;"
+		 src="./CompletableFutureFanIn.png"/>
+	</div>
+	
+	<div data-slidr="cfuture-all">
+	    <div class="slide-section">fn flow</div>
+	    <div class="slide-title">CompletableFuture</div>
+	    <img style="width:65%; margin-left:15%;"
+		 src="./CompletableFutureAll.png"/>
+	</div>
+	
+	<div data-slidr="lambda-ser-1">
+	    <div class="slide-section">fn flow</div>
+	    <div class="slide-title">Lambdas</div>
+	    <div class="slide-content">
+		Everyone knows Java 8 lambdas, right?
+		<img src="./lambda-ser.png"/>
+	    </div>
+	</div>
+	
+	<div data-slidr="lambda-ser-2">
+	    <div class="slide-section">fn flow</div>
+	    <div class="slide-title">Lambdas</div>
+	    <div class="slide-content">
+		<div>
+		    Everyone knows Java 8 lambdas, right?
+		    <img src="./lambda-ser.png"/>
+		</div>
+		<div style="margin-top:10%">
+		    Did you know they can be serializable?
+		    <img src="./lambda-ser-cast.png"/>
+		</div>
+		This is a <em>cast expression</em> - <tt>f</tt> implements <tt>Function</tt> <em>and</em> <tt>Serializable</tt>.
+	    </div>
+	</div>
+
+	<div data-slidr="lambda-ser-3">
+	    <div class="slide-section">fn flow</div>
+	    <div class="slide-title">Lambdas</div>
+	    <div class="slide-content">
+		Serializing Lambdas gives us a way to take <em>compiled</em>, <em>type-safe</em>, <em>pure Java</em> code and send it to the Fn Flow server to be run as a separate function:
+		<ul>
+		    <li>independent concurrency and resource limits</li>
+		    <li>pay per compute-time</li>
+		    <li>still testable</li>
+		    <li>still debuggable and inspectable</li>
+		</ul>
+	    </div>
+	</div>	
+	
+	<div data-slidr="title-java-containers" class="title">
+	    Java In Container Land
+	</div>
+	
+	<div data-slidr="java-in-containers">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Java in containers
+	    </div>
+	    <div class="slide-content">
+		What do we want containerized JVMs to do?
+		<ul>
+		    <li>Start <em>fast</em></li>
+		    <li>Run in <em>small</em> images</li>
+		    <li>Respect resource constraints</li>
+		</ul>
+	    </div>
+	</div>
+	
+	<div data-slidr="java-in-containers-starts-fast">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Fast JVM startup
+	    </div>
+	    <div class="slide-content">
+		Moving <em>startup</em> costs to <em>build-time</em> also allows us to share pre-built assets between JVMs. How can we take advantage of container deployment patterns?
+		<ul>
+		    <li><tt>libc</tt>, <tt>libjava.so</tt> can be shared (assuming same layer/file/inode)</li>
+		    <li>What else can we share?
+			<ul>
+			    <li>Class Data Sharing (CDS)</li>
+			    <li>Application CDS</li>
+			    <li>AOT compilation</li>
+			</ul>
+		    </li>
+		</ul>
+	    </div>
+	</div>
+	
+	<div data-slidr="java-in-containers-starts-fast-cds">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Fast JVM startup - CDS
+	    </div>
+	    <div class="slide-content">
+		<span class="col2">
+		    <img src="./cds.png" />
+		</span>
+		<span class="col2">
+		    <ul>
+			<li>Like an shared object file but for Java Class Data</li>
+			<li>Memory-mapped, ReadOnly + COW</li>
+			<li>Class data read from memory without reading/parsing/verifying classes from Jar files</li>
+			<li>Class data can be shared between containers</li>
+		    </ul>
+		</span>
+		<div class="slide-footer">
+		    <a href="https://mjg123.github.io/2017/10/02/JVM-startup.html">https://mjg123.github.io/2017/10/02/JVM-startup.html</a>
+		</div>
+	    </div>
+	</div>
+	
+	<div data-slidr="java-in-containers-starts-fast-appcds">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Fast JVM startup - AppCDS
+	    </div>
+	    <div class="slide-content">
+		Application CDS is like "regular" CDS, but for application classes.
+		<ul>
+		    <li>Cache size & speedup depends on how big your <em>application's classes</em> are</li>
+		    <li>Memory saving depends on <em>number of containers</em> sharing the same cache</li>
+		    <li>(eg) Several seconds and hundreds of MB saved with AppCDS using WebLogic</li>
+		</ul>
+		<div class="slide-footer">
+		    <a href="https://mjg123.github.io/2017/10/04/AppCDS-and-Clojure.html">https://mjg123.github.io/2017/10/04/AppCDS-and-Clojure.html</a>
+		</div>
+	    </div>
+	</div>
+	
+	<div data-slidr="java-in-containers-starts-fast-aot">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Fast JVM startup - AOT
+	    </div>
+	    <div class="slide-content">
+		Ahead-of-time compilation for Java classes. Does some of the work that HotSpot would do in compiling bytecode to native, at build-time.
+		<ul>
+		    <li>Shared memory</li>
+		    <li>Reduced footprint</li>
+		    <li>Quicker startup</li>
+		    <li>Optionally include profiling paths</li>
+		</ul>
+		<div class="slide-footer">
+		    <a href="https://mjg123.github.io/2017/10/04/AppCDS-and-Clojure.html">https://mjg123.github.io/2017/10/04/AppCDS-and-Clojure.html</a>
+		</div>
+	    </div>
+	</div>
+	
+	<div data-slidr="java-in-containers-small-images">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Smaller images
+	    </div>
+	    <div class="slide-content">
+		Smaller JVM container images mean faster startup:
+		<ul>
+		    <li>Transferring images to the host</li>
+		    <li>COW caches</li>
+		    <li>Overlay FS</li>
+		</ul>
+		Techniques:
+		<ul>
+		    <li><tt>jlink</tt> - remove unused core libraries</li>
+		    <li>Smaller base images</li>
+		    <li>Substrate VM - Compile Java to a static binary</li>
+		</ul>
+	    </div>
+	</div>
+	
+	<div data-slidr="java-in-containers-small-images-jlink">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Smaller images - <tt>jlink</tt>
+	    </div>
+	    <div class="slide-content">
+		Remove parts of Java standard library that you don't use:
+		<span class="col2">
+		    <img src="jlink.png"/>
+		</span>
+		<span class="col2">
+		    <ul>
+			<li>Only includes the jdk9 modules you use</li>
+			<li>Make even smaller with <tt>--compress</tt></li>
+			<li>Also: <tt>--vm minimal</tt> includes only Serial GC and client compiler - size reduced to ~15MB</li>
+		    </ul>
+		</span>
+	    </div>
+	</div>
+	
+	<div data-slidr="java-in-containers-small-images-alpine">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Smaller images - Alpine &amp; Musl
+	    </div>
+	    <div class="slide-content">
+		Ubuntu / Debian / Oracle Linux base images can be <em>100s of MB</em>, even the "slim" versions. We don't care much about the base image so long as it can run Java. Project Portola makes the JVM run on Alpine Linux/Musl.
+		<ul>
+		    <li><img style="width:200px" src="https://alpinelinux.org/alpinelinux-logo.svg"/><br/>Alpine Linux is a security-oriented, lightweight Linux distribution based on musl libc and busybox. Alpine base image is 4mb (!)</li>
+		    <li><img style="width:100px" src="https://pbs.twimg.com/profile_images/445099121699872768/9_ErbOeX.png"/><br/>Musl is lightweight, fast, simple, free, and strives to be correct in the sense of standards-conformance and safety.</li>
+		</ul>
+		
+		
+	    </div>
+	</div>
+	
+	<div data-slidr="java-in-containers-small-images-svm">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Smaller images - Substrate VM
+	    </div>
+	    <div class="slide-content">
+		Substrate VM from Oracle Labs compiles Java source to a single binary, like C or Golang.
+		<ul>
+		    <li>Part of Graal project</li>
+		    <li>Tiny image sizes (>10mb)</li>
+		    <li>Small VM overhead</li>
+		    <li>Experimental, in active development</li>
+		    <li>No support for dynamic code generation, serialization</li>
+		    <li>Limited support for reflection</li>
+		</ul>
+	    </div>
+	</div>
+	
+	
+	<div data-slidr="java-in-containers-respect-resource-constraints">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Respecting Resource Constraints
+	    </div>
+	    <div class="slide-content">
+		The JVM self-tunes to the underlying system (aka <em>Ergonomics</em>).
+		<ul>
+		    <li>Memory
+			<ul>
+			    <li>Heap size</li>
+			    <li>GC region sizes</li>
+			    <li>JIT code cache sizes</li>
+			</ul>
+		    </li>
+		    <li>CPU
+			<ul>
+			    <li>ThreadPool sizes</li>
+			    <li><tt>Runtime.availableProcessors()</tt></li>
+			</ul>
+		    </li>
+		</ul>
+		This is <em>not</em> transparent - requires JVM to support cgroups resource limitations. Much good stuff landed recently for JDK10. See <a href="https://bugs.openjdk.java.net/browse/JDK-8146115">JDK-8146115</a> for more details.
+	    </div>
+	</div>
+	
+	
+	<div data-slidr="java-in-containers-respect-resource-constraints-2">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Being Container Friendly
+	    </div>
+	    <div class="slide-content">
+		Other work:
+		<ul>
+		    <li><a href="https://bugs.openjdk.java.net/browse/JDK-8179498">JDK-8179498</a>: <tt>attach</tt> in linux should be relative to <tt>/proc/pid/root</tt> and namespace aware (JDK 10)</li>
+		    <li><a href="https://bugs.openjdk.java.net/browse/JDK-8193710">JDK-8193710</a>: <tt>jcmd -l</tt> and <tt>jps</tt> commands do not list Java processes running in Docker containers (JDK 11)</li>
+		    <li>And more... <a href="https://bugs.openjdk.java.net/browse/JDK-8182070">JDK-8182070</a>: Container aware Java</li>
+		</ul>
+	    </div>
+	</div>
+	
+	<div class="title" data-slidr="thank-you">
+	    Thank you for listening
+	</div>
+	
+    </div>
+    
+    <div id="contact">
+	Java In Serverless Land ::
+	Matthew Gilliard ::
+	DevNexus ::
+	22 Feb 2018 ::
+	@MaximumGilliard ::
+	#javaServerless
+    </div>
+    
+    <script src="./slidr.min.js"></script>
+    
+    <script>
+     slidr.create('presentation' ,{
+	 breadcrumbs: true,
+	 controls: 'none',
+	 keyboard: true,
+	 //overflow: true,
+	 theme: '#AAA',
+	 timing: { 'linear': '1s ease-in-out' },
+	 touch: true,
+	 transition: 'linear'
+     })
+	  .add('h', ['title', 'title-fn-flow'], 'none')
+
+          .add('h', ['title-fn-flow',
+		     'fn-flow-intro',
+		     'fn-flow-vista-example-1',
+		     'fn-flow-vista-example-2',
+		     'fn-flow-vista-example-3',
+		     'fn-flow-saga-example-1',
+		     'fn-flow-saga-example-2',
+		     'fn-flow-under-the-hood',
+		     'fn-flow-how-it-works',
+		     'cfuture-intro',
+		     'cfuture-start'])
+     
+	  .add('h', ['cfuture-start',
+		     'cfuture-compose',
+		     'cfuture-fan-out',
+		     'cfuture-fan-in',
+		     'cfuture-all'], 'none')
+
+          .add('h', ['cfuture-all',
+		     'lambda-ser-1'])
+     
+	  .add('h', ['lambda-ser-1',
+		     'lambda-ser-2'], 'none')
+     
+	  .add('h', ['lambda-ser-2',
+		     'lambda-ser-3',
+		     'title-java-containers',
+		     'java-in-containers',
+		     'java-in-containers-starts-fast',
+		     'java-in-containers-starts-fast-cds',
+		     'java-in-containers-starts-fast-appcds',
+		     'java-in-containers-starts-fast-aot',
+		     'java-in-containers-small-images',
+		     'java-in-containers-small-images-jlink',
+		     'java-in-containers-small-images-alpine',
+		     'java-in-containers-small-images-svm',
+		     'java-in-containers-respect-resource-constraints',
+		     'java-in-containers-respect-resource-constraints-2',
+		     'thank-you'])
+	  .start();
+    </script>
+    
 </html>
