@@ -91,7 +91,7 @@ time="2017-10-11T13:12:44Z" level=info msg="Serving Functions API on address `:8
 The **Flow Server** needs to know how to call the Fn server, so ask Docker which IP address to use.
 
 ```shell {% raw %}
-⇒ DOCKER_LOCALHOST=$(docker inspect --type container -f '{{.NetworkSettings.Gateway}}' fnserver)
+⇒ DOCKER_LOCALHOST=$(docker network inspect bridge -f '{{range .IPAM.Config}}{{.Gateway}}{{end}}')
 {% endraw %}```
 
 Start the **Flow Server**:
