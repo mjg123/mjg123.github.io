@@ -10,7 +10,7 @@ tags:
 
 Recently the teams in my workplace have decided to hire several junior engineers. We have been able to get several excellent applicants through outreach to universities, internships, meetups and the hard work of our recruitment team but this post isn't about that. It's about the _next_ problem: **how to support junior engineers when they start working with us?**
 
-We want new starters to feel welcomed and comfortable, and we want them to be able to grow into wonderfully productive and happy colleagues. The most important output of the best senior engineers is more excellent engineers. But we have _little-to-no experience_ of how this actually happens. Therefore our first step was to think about what the needs and wishes of a new starter are, and make sure that we had some way of ensuring that those needs would be met.
+We want new starters to feel welcomed and comfortable, and we want them to be able to grow into wonderfully productive and happy colleagues. The most important output of the best senior engineers is more excellent engineers. But we have _little experience_ of how this actually happens. Therefore our first step was to think about what the needs and wishes of a new starter are, and make sure that we had some way of ensuring that those needs would be met.
 
 This post describes how we did that, and what we discovered. Some of it is naturally specific to our situation (3 dev teams, cloud infrastructure work) and some is probably useful to any team. I found that there was not much information online on this topic so I hope my writeup here is helpful.
 
