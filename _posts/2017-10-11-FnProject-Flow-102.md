@@ -44,7 +44,7 @@ Clone this repo of simple Bash functions and deploy them all:
 ```shell
 ⇒ git clone https://github.com/mjg123/fnproject-text-functions.git
 ⇒ cd fnproject-text-functions
-⇒ fn deploy --app flow102 --local --all
+⇒ fn deploy --local --all
 ```
 
 You can test all of these individually, for example:
