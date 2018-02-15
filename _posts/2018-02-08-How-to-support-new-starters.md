@@ -90,27 +90,27 @@ Maybe best if it's someone from a different team. If the new starter already kno
     + Send out a day 1 itinerary. What time to arrive? What to bring?
 	+ If multiple new starters are starting together (eg intern groups) connect them with each other
   - **Day 1**
-    + Is physically present when the new starter arrives. If not possible due to travel/illness/vacation/etc, has delegated all day 1 activities cleanly.
+    + Is physically present when the new starter arrives. If not possible due to travel/illness/vacation/etc, has delegated all day 1 activities cleanly
 	+ Introduce to other supporters (social buddy etc)
     + Inform if anything important is happening today (visitors, all-hands, etc)
-    + Tour of the office. Fire escapes.
-	+ Knows which team the starter will join initially.
+    + Tour of the office. Fire escapes
+	+ Knows which team the starter will join initially
   - **Week 1**
-    + Explain what projects are happening in the office. Both the technical teams and the university/startup outreach teams.
+    + Explain what projects are happening in the office. Both the technical teams and the university/startup outreach teams
   - **First month**
     + Frequent 1-1s
-	+ Up to this point, new starters should not have had to care about politics/deadlines/other corporate stuff. Start to introduce it now.
-	+ Start to widen their network outside of co-located teams.
-	+ Training/learning needs identified. Show O'Reilly bookshelf, find external courses/MOOCs if desired.
+	+ Up to this point, new starters should not have had to care about politics/deadlines/other corporate stuff. Start to introduce it now
+	+ Start to widen their network outside of co-located teams
+	+ Training/learning needs identified. Show O'Reilly bookshelf, find external courses/MOOCs if desired
   - **First year**
     + Weekly 1-1s
 	+ They have worked on several different teams
-    + Ensure increasing levels of responsibility/autonomy/independence/trust.
+    + Ensure increasing levels of responsibility/autonomy/independence/trust
 	+ Ask if they can join the hiring/interviewing teams
 	+ Get involved with meetups/conference speaker/uni visits (if wanted)
 	+ Progressive targets & encourage setting of own targets
-	+ Broad understanding of several work areas. Contributions to a subset of that.
-    + Starter still works here. Or, if it's genuinely not working out, make sure there is a clear shared understanding of why not and possibly help with further career goals outside of our company.
+	+ Broad understanding of several work areas. Contributions to a subset of that
+    + Starter still works here. Or, if it's genuinely not working out, make sure there is a clear shared understanding of why not and possibly help with further career goals outside of our company
 
 ### HR/Admin team
 
@@ -128,14 +128,14 @@ Maybe best if it's someone from a different team. If the new starter already kno
 This is someone on the dev team they are initially joining
 
   - **Before they start**
-    + Some advice on (optional) background reading for that team's work.
+    + Some advice on (optional) background reading for that team's work
   - **Day 1**
-    + Empty and clean desk is available. Within the team space, not isolated.
-	+ Help dealing with the monitor stands, unboxing laptop.
+    + Empty and clean desk is available. Within the team space, not isolated
+	+ Help dealing with the monitor stands, unboxing laptop
 	+ What slack channels should they join (apart from #fooz of course)
 	+ Commit some code (as part of a pair, probably)!
   - **Week 1**
-    + Ensure the team goals are understood, also who is working on what.
+    + Ensure the team goals are understood, also who is working on what
 	+ Provide help with dev processes (source-control, CI, IDE, communication tools etc)
 	+ Provide a well-defined concrete task (again, as part of a pair is fine)
   - **First month**
@@ -151,19 +151,19 @@ Oh yes, they have some responsibilty for their own destiny!
   - **Before they start**
     + Chill out!
   - **Day 1**
-    + Go with the flow. Stay chilled.
+    + Go with the flow. Stay chilled
   - **Week 1**
-    + Continue being relaxed.
+    + Continue being relaxed
     + Knows everyone on their team and is comfortable interrupting anyone
     + Is asking lots of questions
 	+ Identify areas for self-study
   - **First month**
     + Be ready to be someone else's onboarding buddy
     + Articulate some personal goals for the next few months
-    + Decide which of the teams' areas of work is most interesting and move toward it.
-    + Actively contributing to a project.
-    + Has done a demo on behalf of their team, to the other teams.
-	+ Gives feedback on the new-starter process.
+    + Decide which of the teams' areas of work is most interesting and move toward it
+    + Actively contributing to a project
+    + Has done a demo on behalf of their team, to the other teams
+	+ Gives feedback on the new-starter process
   - **First year**
     + Is setting own goals and tracking progress effectively
 
@@ -191,4 +191,8 @@ Oh yes, they have some responsibilty for their own destiny!
 
 ## Summary
 
-We felt positive at the end of this meeting. I would absolutely appreciate your advice and insights on how we can make it better. New starters due soon and we're super-excited about it!
+We felt positive at the end of this meeting. We will be using this as a basis for how we treat new starters.
+
+I would absolutely appreciate your advice and insights on how we can make it better.
+
+New starters due soon and we're super-excited about it!
