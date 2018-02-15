@@ -2,7 +2,7 @@
 layout:     post
 title:      Supporting a New Starter
 date:       2018-02-15 10:00:00
-summary:    How we look after people when then join us
+summary:    How we look after people when they join us
 tags:
 - not-computers
 - people
