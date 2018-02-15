@@ -5,7 +5,7 @@ date:       2018-02-08 10:00:00
 summary:    How people can make the most of your company
 tags:
 - not-computers
-- draft
+- people
 ---
 
 Recently the teams in my workplace have decided to hire several junior engineers. We have been able to get several excellent applicants through outreach to universities, internships, meetups and the hard work of our recruitment team. But this post isn't about that - it's about the _next_ problem: **how to support junior engineers when they start working with us?**
