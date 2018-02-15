@@ -38,8 +38,6 @@ Our approach here was to spend time grouping and classifying the starter's needs
 
 We identified 6 independent roles, which seemed to naturally cover the set of things we want to do. A few important notes:
 
- - Who is responsible for each role should identified *before* the new starter joins.
- - Roles are independent, so it's possible that multiple roles are taken care of by the same individual. Also recognise that people may move in or out of our team, be able to adapt to that.
  - The person in a particular role is _not_ responsible for meeting each of the starter's needs. They _are_ responsible for noticing whether the needs are being met and providing help if necessary.
  - Support and training should be available for people looking after new starters.
 
