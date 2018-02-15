@@ -43,7 +43,7 @@ We identified 6 independent roles, which seemed to naturally cover the set of th
 
 Here are the roles we ended up with:
 
-### Onboarding buddy
+### 1. Onboarding buddy
 
 **Goal**: _Make sure the initial onboarding instructions are accurate and provide help with things which starters need to do only once._
 
@@ -62,7 +62,7 @@ The onboarding buddy is usually expected to be the previous most recent new star
     + Support when the starter is someone else's onboarding buddy
 
 
-### Social buddy
+### 2. Social buddy
 
 **Goals:** _Check that the new starter feels comfortable, is known in the office, and is included in social activities._
 
@@ -79,7 +79,7 @@ Maybe best if it's someone from a different team. If the new starter already kno
   - **First year**
     + Make sure there are more social events (karting, bowling, gin-tasting, etc)
 
-### Manager
+### 3. Manager
 
 **Goals:** _First point of contact. Career mentor. Various bureaucratic responsibilities. Represents the starter in the company._
 
@@ -110,7 +110,7 @@ Maybe best if it's someone from a different team. If the new starter already kno
 	+ Broad understanding of several work areas. Contributions to a subset of that
     + Starter still works here. Or, if it's genuinely not working out, make sure there is a clear shared understanding of why not and possibly help with further career goals outside of our company
 
-### HR/Admin team
+### 4. HR/Admin team
 
 **Goals:** _Excellent logistics_
 
@@ -119,7 +119,7 @@ Maybe best if it's someone from a different team. If the new starter already kno
 	+ Request accounts on HR systems etc
     + Building pass
 
-### Team buddy
+### 5. Team buddy
 
 **Goals:** _Welcome the starter into the team. Work together and teach how the team works._
 
@@ -142,7 +142,7 @@ This is someone on the dev team they are initially joining
     + Starter been to an external conference (ideally with the team)
 	+ Starter is delivering/contributing regularly
 
-### The new starter
+### 6. The new starter
 
 Oh yes, they have some responsibilty for their own destiny!
 
