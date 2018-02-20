@@ -117,21 +117,7 @@
 	 color: #444;
      }
 
-     @keyframes heartFadeInOut {
-	 0% {transform: scale(1);}
-	 25% {transform: scale(.97);}
-	 35% {transform: scale(.9);}
-	 45% {transform: scale(1.1);}
-	 55% {transform: scale(.9);}
-	 65% {transform: scale(1.1);}
-	 75% {transform: scale(1.03);}
-	 100% {transform: scale(1);}
-     }
-
      .hearty {
-	 animation-name: heartFadeInOut; 
-	 animation-iteration-count: infinite;
-	 animation-duration: 2s;
 	 color: #A00
      }
           
@@ -162,13 +148,13 @@
 	    <div class="slide-section">Serverless Java</div>
 	    <div class="slide-title">Serverless Java in history</div>
 	    <div class="slide-content">
-		AWS Lambda launched <em>Nov 2014</em>, with Java support added <em>Jun 2015</em>.
-		<br/>
+		AWS Lambda launched <em>November 2014</em>, with Java support added <em>June 2015</em>.
 		So why are Python &amp; Node more popular?
 		<ul>
 		    <li>FaaS as a scripting language for the web?</li>
-		    <li>Early adopters had the simplest use-cases?</li>
+		    <li>Early adopters had simple use-cases?</li>
 		    <li>Doesn't fit normal Java development patterns?</li>
+		    <li>JVM not suitable for short-lived apps?</li>
 		</ul>
 	    </div>		
 	</div>
@@ -177,30 +163,20 @@
 	    <div class="slide-section">Serverless Java</div>
 	    <div class="slide-title"></div>
 	    <div class="slide-content">
-		When Web Companies Grow Up They Turn into Java shops
-		(Redmonk, pic)
+		<img style="width: 60%; display: block; margin: 0 auto;" src="./monkchips.png"/>
+		<div class="slide-footer"><a href="http://redmonk.com/jgovernor/2016/10/12/when-web-companies-grow-up-they-turn-into-java-shops/">http://redmonk.com/jgovernor/2016/10/12/when-web-companies-grow-up-they-turn-into-java-shops</a></div>
 	    </div>		
 	</div>
 
 	<div data-slidr="java-serverless-summary-4">
 	    <div class="slide-section">Serverless Java</div>
-	    <div class="slide-title"></div>
+	    <div class="slide-title">Grownup Java</div>
 	    <div class="slide-content">
-		When Web Companies Grow Up They Turn into Java shops
-		(Redmonk)
-		What happens as FaaS providers and applications grow up?
-	    </div>		
-	</div>
-
-	<div data-slidr="java-serverless-summary-5">
-	    <div class="slide-section">Serverless Java</div>
-	    <div class="slide-title"></div>
-	    <div class="slide-content">
-		What does grownup Java development look like?
+		What does it look like?
 		<ul>
 		    <li>Plain Java</li>
 		    <li>Wide choice of good tooling</li>
-		    <li>Wide choice of dependencies</li>
+		    <li>Huge number of available libraries</li>
 		    <li>Complex applications</li>
 		    <li>Using the JVM effectively</li>
 		</ul>
@@ -214,7 +190,7 @@
 
 	<div data-slidr="fn-intro">
 	    <div class="slide-section">fn</div>
-	    <div class="slide-title">Fn</div>
+	    <div class="slide-title"><img style="width: 300px;" src="./fn-300x125.png"/></div>
 	    <div class="slide-content">
 		What the Fn?
 		<ul>
@@ -224,6 +200,9 @@
 		    <li>Independent but supported (by Oracle)</li>
 		    <li>Fn <span class="hearty">♥</span> Java</li>
 		</ul>
+	    </div>
+	    <div class="slide-footer">
+		<a href="http://fnproject.io">http://fnproject.io</a>
 	    </div>
 	</div>
 
@@ -720,7 +699,6 @@
 		     'java-serverless-summary-2',
 		     'java-serverless-summary-3',
 		     'java-serverless-summary-4',
-		     'java-serverless-summary-5',
 		     'title-fn',
 		     'fn-intro',
 		     'fn-demo'])
