@@ -69,7 +69,12 @@
 	 background-color: #DDD;
 	 border: 1px solid #888;
      }
-
+     
+     a {
+	 text-decoration: none;
+	 color: #004;
+     }
+     
      br {
 	 margin-top: 12px;
      }
@@ -99,6 +104,11 @@
 	 margin-left: 32px;
 	 font-size: 24pt;
      }
+
+     .note {
+	 color: #888;
+	 font-size: 18pt;
+     }
      
      #contact {
 	 position: fixed;
@@ -106,18 +116,126 @@
 	 left: 10px;
 	 color: #444;
      }
+
+     @keyframes heartFadeInOut {
+	 0% {transform: scale(1);}
+	 25% {transform: scale(.97);}
+	 35% {transform: scale(.9);}
+	 45% {transform: scale(1.1);}
+	 55% {transform: scale(.9);}
+	 65% {transform: scale(1.1);}
+	 75% {transform: scale(1.03);}
+	 100% {transform: scale(1);}
+     }
+
+     .hearty {
+	 animation-name: heartFadeInOut; 
+	 animation-iteration-count: infinite;
+	 animation-duration: 2s;
+	 color: #A00
+     }
+          
     </style>
     
     <div id="presentation" style="dislay: block">
 	<div data-slidr="title" class="title">
 	    Java In Serverless Land
+	    <div class="slide-footer">
+		<a href="http://mjg123.github.io/DevNexus2018">http://mjg123.github.io/DevNexus2018</a>
+	    </div>
 	</div>
-	
-	
+
+	<div data-slidr="java-serverless-summary">
+	    <div class="slide-section">Serverless Java</div>
+	    <div class="slide-title">Serverless Java</div>
+	    <div class="slide-content">
+		Java is...
+		<ul>
+		    <li>the <em>most popular</em> language <span class="note">[TIOBE, indeed.com]</span></li>
+		    <li>Java is <em>3rd</em> in serverless <span class="note">[serverless.com]</span></li>
+		</ul>
+		...why?
+	    </div>		
+	</div>
+
+	<div data-slidr="java-serverless-summary-2">
+	    <div class="slide-section">Serverless Java</div>
+	    <div class="slide-title">Serverless Java in history</div>
+	    <div class="slide-content">
+		AWS Lambda launched <em>Nov 2014</em>, with Java support added <em>Jun 2015</em>.
+		<br/>
+		So why are Python &amp; Node more popular?
+		<ul>
+		    <li>FaaS as a scripting language for the web?</li>
+		    <li>Early adopters had the simplest use-cases?</li>
+		    <li>Doesn't fit normal Java development patterns?</li>
+		</ul>
+	    </div>		
+	</div>
+
+	<div data-slidr="java-serverless-summary-3">
+	    <div class="slide-section">Serverless Java</div>
+	    <div class="slide-title"></div>
+	    <div class="slide-content">
+		When Web Companies Grow Up They Turn into Java shops
+		(Redmonk, pic)
+	    </div>		
+	</div>
+
+	<div data-slidr="java-serverless-summary-4">
+	    <div class="slide-section">Serverless Java</div>
+	    <div class="slide-title"></div>
+	    <div class="slide-content">
+		When Web Companies Grow Up They Turn into Java shops
+		(Redmonk)
+		What happens as FaaS providers and applications grow up?
+	    </div>		
+	</div>
+
+	<div data-slidr="java-serverless-summary-5">
+	    <div class="slide-section">Serverless Java</div>
+	    <div class="slide-title"></div>
+	    <div class="slide-content">
+		What does grownup Java development look like?
+		<ul>
+		    <li>Plain Java</li>
+		    <li>Wide choice of good tooling</li>
+		    <li>Wide choice of dependencies</li>
+		    <li>Complex applications</li>
+		    <li>Using the JVM effectively</li>
+		</ul>
+		on FaaS?
+	    </div>		
+	</div>
+
+	<div data-slidr="title-fn" class="title">
+	    Fn
+	</div>
+
+	<div data-slidr="fn-intro">
+	    <div class="slide-section">fn</div>
+	    <div class="slide-title">Fn</div>
+	    <div class="slide-content">
+		What the Fn?
+		<ul>
+		    <li>Open-source Serverless Compute Platform</li>
+		    <li>Run anywhere: Datacenter / laptop / rPi</li>
+		    <li>Extensibility &amp; pluggability</li>
+		    <li>Independent but supported (by Oracle)</li>
+		    <li>Fn <span class="hearty">♥</span> Java</li>
+		</ul>
+	    </div>
+	</div>
+
+	<div data-slidr="fn-demo">
+	    <div class="slide-section">fn</div>
+	    <div class="slide-title">Demo time!</div>
+	</div>
+
 	<div data-slidr="title-fn-flow" class="title">
 	    Fn Flow
 	</div>
-
+	
 	<div data-slidr="fn-flow-intro">
 	    <div class="slide-section">fn flow</div>
 	    <div class="slide-title">Fn Flow</div>
@@ -127,7 +245,7 @@
 		    <li>Fn Flow lets you build <em>reliable</em> and <em>scalable</em> FaaS applications as functions</li>
 		    <li>Flow functions <em>only</em> consume resources when they have work to do</li>
 		    <li>Flow functions are written <em>purely in code</em></li>
-		    <li>Flow empowers you to build distributed applications that can be as <em>simple</em> or <em>complex</em> as you need them to be</li>
+		    <li>Flow allows you to build distributed applications</li>
 		    <li>Flow supports <em>rich concurrency primitives</em> including fork-join, chaining, delays and error handling</li>
 		</ul>
 	    </div>
@@ -140,11 +258,11 @@
 
 		We want code to:
 		<ul>
-		    <li>Hit the Flickr API for "license plate car usa" (we have a Ruby fn for this)</li>
-		    <li>In each image, look for specific license plates (golang, uses OpenALPR)</li>
-		    <li>If we find a match, drop a message into Slack about it (golang again)</li>
-		    <li>Draw a box around the license plate (Ruby again)</li>
-		    <li>Save the images (in Minio)</li>
+		    <li>Hit the Flickr API for "license plate car usa"</li>
+		    <li>In each image, look for specific license plates</li>
+		    <li>If we find a plate we're looking for, draw a box around the license plate</li>
+		    <li>Drop a message into Slack about it, and post to twitter</li>
+
 		</ul>
 		
 		<div class="slide-footer"><a href="https://github.com/carimura/vista">https://github.com/carimura/vista</a></div>
@@ -155,12 +273,48 @@
 	    <div class="slide-section">fn flow</div>
 	    <div class="slide-title">Fn Flow: Vista</div>
 	    <div class="slide-content">
-		<script src="https://gist.github.com/mjg123/8198a1311f4e8fa3b8376e93d24cafb1.js"></script>
+
+		<img style="height:75%" src="./vista1.png"/>
+		
 		<div class="slide-footer"><a href="https://github.com/carimura/vista">https://github.com/carimura/vista</a></div>
 	    </div>
 	</div>
 
 	<div data-slidr="fn-flow-vista-example-3">
+	    <div class="slide-section">fn flow</div>
+	    <div class="slide-title">Fn Flow: Vista</div>
+	    <div class="slide-content">
+
+		<img style="height:75%" src="./vista2.png"/>
+		
+		<div class="slide-footer"><a href="https://github.com/carimura/vista">https://github.com/carimura/vista</a></div>
+	    </div>
+	</div>
+
+	<div data-slidr="fn-flow-vista-example-4">
+	    <div class="slide-section">fn flow</div>
+	    <div class="slide-title">Fn Flow: Vista</div>
+	    <div class="slide-content">
+
+		<img style="height:75%" src="./vista3.png"/>
+		
+		<div class="slide-footer"><a href="https://github.com/carimura/vista">https://github.com/carimura/vista</a></div>
+	    </div>
+	</div>
+
+	<div data-slidr="fn-flow-vista-example-5">
+	    <div class="slide-section">fn flow</div>
+	    <div class="slide-title">Fn Flow: Vista</div>
+	    <div class="slide-content">
+
+		<img style="height:75%" src="./vista4.png"/>
+		
+		<div class="slide-footer"><a href="https://github.com/carimura/vista">https://github.com/carimura/vista</a></div>
+	    </div>
+	</div>
+
+	
+	<div data-slidr="fn-flow-vista-example-6">
 	    <div class="slide-section">fn flow</div>
 	    <div class="slide-title">Fn Flow: Vista</div>
 	    <div class="slide-content">
@@ -172,38 +326,39 @@
 	</div>
 
 
-	
-	<div data-slidr="fn-flow-saga-example-1">
-	    <div class="slide-section">fn flow</div>
-	    <div class="slide-title">Fn Flow: Serverless Sagas</div>
-	    <div class="slide-content">
+	<!--
+	     <div data-slidr="fn-flow-saga-example-1">
+	     <div class="slide-section">fn flow</div>
+	     <div class="slide-title">Fn Flow: Serverless Sagas</div>
+	     <div class="slide-content">
 
-		<div class="col2">
-		    We want code to:
-		    <ul>
-			<li>Book a flight, a hotel, and a car</li>
-			<li>If there are any errors, release all bookings</li>
-		    </ul>
-		    Managing transactional behaviour like this in a distributed system can be <em>tricky</em>.
-		</div>
-		<div class="col2">
-		    <img src="./sagas-fns.png"/>
-		</div>
-		
-		<div class="slide-footer"><a href="https://medium.com/fnproject/serverless-sagas-with-fn-flow-d8199b608b12">https://medium.com/fnproject/serverless-sagas-with-fn-flow-d8199b608b12</a></div>
-	    </div>
-	</div>
+	     <div class="col2">
+	     We want code to:
+	     <ul>
+	     <li>Book a flight, a hotel, and a car</li>
+	     <li>If there are any errors, release all bookings</li>
+	     </ul>
+	     Managing transactional behaviour like this in a distributed system can be <em>tricky</em>.
+	     </div>
+	     <div class="col2">
+	     <img src="./sagas-fns.png"/>
+	     </div>
+	     
+	     <div class="slide-footer"><a href="https://medium.com/fnproject/serverless-sagas-with-fn-flow-d8199b608b12">https://medium.com/fnproject/serverless-sagas-with-fn-flow-d8199b608b12</a></div>
+	     </div>
+	     </div>
 
-	<div data-slidr="fn-flow-saga-example-2">
-	    <div class="slide-section">fn flow</div>
-	    <div class="slide-title">Fn Flow: Serverless Sagas</div>
-	    <div class="slide-content">
+	     <div data-slidr="fn-flow-saga-example-2">
+	     <div class="slide-section">fn flow</div>
+	     <div class="slide-title">Fn Flow: Serverless Sagas</div>
+	     <div class="slide-content">
 
-		<script src="https://gist.github.com/tteggel/cf12bbbc7ebf7d6b5df5053f0d800c7a.js"></script>
+	     <script src="https://gist.github.com/tteggel/cf12bbbc7ebf7d6b5df5053f0d800c7a.js"></script>
 
-		<div class="slide-footer"><a href="https://medium.com/fnproject/serverless-sagas-with-fn-flow-d8199b608b12">https://medium.com/fnproject/serverless-sagas-with-fn-flow-d8199b608b12</a></div>
-	    </div>
-	</div>
+	     <div class="slide-footer"><a href="https://medium.com/fnproject/serverless-sagas-with-fn-flow-d8199b608b12">https://medium.com/fnproject/serverless-sagas-with-fn-flow-d8199b608b12</a></div>
+	     </div>
+	     </div>
+	-->
 	
 	<div data-slidr="fn-flow-how-it-works">
 	    <div class="slide-section">fn flow</div>
@@ -306,10 +461,10 @@
 	    <div class="slide-content">
 		Serializing Lambdas gives us a way to take <em>compiled</em>, <em>type-safe</em>, <em>pure Java</em> code and send it to the Fn Flow server to be run as a separate function:
 		<ul>
-		    <li>independent concurrency and resource limits</li>
-		    <li>pay per compute-time</li>
-		    <li>still testable</li>
-		    <li>still debuggable and inspectable</li>
+		    <li><em>independent</em> concurrency and resource limits</li>
+		    <li>billable on compute-time <em>only</em></li>
+		    <li>still <em>testable</em></li>
+		    <li>still <em>debuggable</em> and <em>inspectable</em></li>
 		</ul>
 	    </div>
 	</div>	
@@ -542,8 +697,9 @@
 	Matthew Gilliard ::
 	DevNexus ::
 	22 Feb 2018 ::
-	@MaximumGilliard ::
-	#javaServerless
+	<a href="https://twitter.com/MaximumGilliard">@MaximumGilliard</a> ::
+	#javaServerless ::
+	http://mjg123.github.io/DevNexus2018
     </div>
     
     <script src="./slidr.min.js"></script>
@@ -559,15 +715,29 @@
 	 touch: true,
 	 transition: 'linear'
      })
-	  .add('h', ['title', 'title-fn-flow'], 'none')
+	  .add('h', ['title',
+		     'java-serverless-summary',
+		     'java-serverless-summary-2',
+		     'java-serverless-summary-3',
+		     'java-serverless-summary-4',
+		     'java-serverless-summary-5',
+		     'title-fn',
+		     'fn-intro',
+		     'fn-demo'])
 
-          .add('h', ['title-fn-flow',
+          .add('h', ['fn-demo',
+		     'title-fn-flow',
 		     'fn-flow-intro',
 		     'fn-flow-vista-example-1',
-		     'fn-flow-vista-example-2',
+		     'fn-flow-vista-example-2' ])
+	  .add('h',[ 'fn-flow-vista-example-2',
 		     'fn-flow-vista-example-3',
-		     'fn-flow-saga-example-1',
-		     'fn-flow-saga-example-2',
+		     'fn-flow-vista-example-4',
+		     'fn-flow-vista-example-5'], 'none')
+	  .add('h',[ 'fn-flow-vista-example-5',
+		     'fn-flow-vista-example-6',
+		     //		     'fn-flow-saga-example-1',
+		     //		     'fn-flow-saga-example-2',
 		     'fn-flow-under-the-hood',
 		     'fn-flow-how-it-works',
 		     'cfuture-intro',
