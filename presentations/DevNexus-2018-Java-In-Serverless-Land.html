@@ -72,7 +72,7 @@
      
      a {
 	 text-decoration: none;
-	 color: #004;
+	 color: #008;
      }
      
      br {
@@ -136,6 +136,20 @@
     </style>
     
     <div id="presentation" style="dislay: block">
+
+	<div data-slidr="safe-harbor">
+	    <div class="slide-section">Safe Harbor</div>
+	    <div class="slide-title">Safe Harbor Statement</div>
+	    <div class="slide-content">
+		The following is intended to outline our general product direction. It is intended for information purposes only, and may not be incorporated into any contract. It is not a commitment to deliver any material, code, or functionality, and should not be relied upon in making purchasing decisions. The development, release, and timing of any features or functionality described for Oracle’s products remains at the sole discretion of Oracle.
+		<div class="slide-footer">
+		    <img style="float: right; width: 50%" src="./oracle-logo.png">
+		</div>
+	    </div>		
+	</div>
+
+
+	
 	<div data-slidr="title" class="title">
 	    Java In Serverless Land
 	    <div class="slide-footer">
@@ -209,7 +223,7 @@
 		    <li>Open-source Serverless Compute Platform</li>
 		    <li>Run anywhere: Datacenter / laptop / rPi</li>
 		    <li>Functions are <em>containers</em> <a href="https://twitter.com/kelseyhightower/status/921527605110513665">⇗</a></li>
-		    <li>Independent but supported (by Oracle)</li>
+		    <li>Fully open (Apache 2.0) with commercial backing from Oracle</li>
 		    <li>Fn <span class="hearty">♥</span> Java</li>
 		</ul>
 	    </div>
@@ -383,7 +397,6 @@
 		    <li>Since JDK8</li>
 		    <li>Part of <tt>java.util.concurrent</tt></li>
 		    <li>Uses <tt>ForkJoinPool</tt></li>
-		    <li>Written by Doug Lea (genius)</li>
 		</ul>
 		Fn Flow is a framework for composing <em>distributed</em> asynchronous actions, based on CompletableFuture.
 	    </div>
@@ -609,7 +622,7 @@
 		Smaller images - Alpine &amp; Musl
 	    </div>
 	    <div class="slide-content">
-		Ubuntu / Debian / Oracle Linux base images can be <em>100s of MB</em>, even the "slim" versions. We don't care much about the base image so long as it can run Java. Project Portola makes the JVM run on Alpine Linux/Musl.
+		Ubuntu / Debian / Oracle Linux base images can be <em>100s of MB</em>, even the "slim" versions. We don't care much about the base image so long as it can run Java. <a href="http://openjdk.java.net/projects/portola/">Project Portola</a> makes the JVM run on Alpine Linux/Musl.
 		<ul>
 		    <li><img style="width:200px" src="https://alpinelinux.org/alpinelinux-logo.svg"/><br/>Alpine Linux is a security-oriented, lightweight Linux distribution based on musl libc and busybox. Alpine base image is 4mb (!)</li>
 		    <li><img style="width:100px" src="https://pbs.twimg.com/profile_images/445099121699872768/9_ErbOeX.png"/><br/>Musl is lightweight, fast, simple, free, and strives to be correct in the sense of standards-conformance and safety.</li>
@@ -705,7 +718,8 @@
 	 touch: true,
 	 transition: 'linear'
      })
-	  .add('h', ['title',
+	  .add('h', ['safe-harbor',
+		     'title',
 		     'java-serverless-summary',
 		     'java-serverless-summary-2',
 		     'java-serverless-summary-3',
