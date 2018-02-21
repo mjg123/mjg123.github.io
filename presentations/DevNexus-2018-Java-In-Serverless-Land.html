@@ -117,10 +117,22 @@
 	 color: #444;
      }
 
-     .hearty {
-	 color: #A00
+     @keyframes heartFadeInOut {
+	 0% {font-size: 1em;}
+	 10% {font-size: .9em;}
+	 100% {font-size: 1em;}
      }
-          
+
+     .hearty {
+	 display: inline-block;
+	 text-align: center;
+	 width: 30px;
+	 animation-name: heartFadeInOut; 
+	 animation-iteration-count: infinite;
+	 animation-duration: 1.2s;
+	 color: #A00;
+	 }
+         
     </style>
     
     <div id="presentation" style="dislay: block">
@@ -209,6 +221,9 @@
 	<div data-slidr="fn-demo">
 	    <div class="slide-section">fn</div>
 	    <div class="slide-title">Demo time!</div>
+	    <div class="slide-footer">
+		<a href="http://fnproject.io">http://fnproject.io</a>
+	    </div>
 	</div>
 
 	<div data-slidr="title-fn-flow" class="title">
