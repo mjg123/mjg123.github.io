@@ -194,3 +194,14 @@ We felt positive at the end of this meeting. We will be using this as a basis fo
 I would absolutely appreciate your advice and insights on how we can make it better.
 
 New starters due soon and we're super-excited about it!
+
+
+## Addenda
+
+I received some excellent feedback to this post - thanks to everyone who read and shared. First of all, I need to credit some colleagues for their help: [Thom](https://twitter.com/@thomleg) [Rik](https://twitter.com/@gibborik) [Martin](https://twitter.com/@martinahogg) [Alex](https://twitter.com/@adoublebarrel) [Owain](https://twitter.com/@owainlewis) [Andrea](https://twitter.com/@reclaro) Jade, Eric and Dario.
+
+Specific pieces of advice which might be helpful:
+
+  - I think that there's an important anti-pattern to avoid: *do too much for the new starter* to avoid bridle him when they want to prove they're good for the job.
+  - The "*Team Buddy*" need to be careful not to be too intrusive and not to break-down the work down to the smallest detail. (thanks Eric Saint-Etienne)
+  - Consider how long the new starter should be given to solve some problem independently. Don't jump in too soon or leave it too long. Seen errors in both directions. (thanks [Stuart](https://twitter.com/stuartmarks))
