@@ -8,7 +8,7 @@ tags:
 - jvm
 ---
 
-At Java One in Oct 2017 Mark Cavage announced that Oracle will be open-sourcing all the proprietary features of the Oracle JDK so that there will be "zero differences" between Oracle and Open JDK. This got a big round of applause at the time, and another when Mark Reinhold repeated that pledge in his "State of OpenJDK" talk at FOSDEM Jan 2018. Those who are paying customers of Oracle might be familiar with some of the features in question, as will the developers who work on the JDK itself. But I think the vast majority of Java programmers worldwide will not be so knowledgeable. Until recently I had to include myself in that group but after the announcements above I got curious.
+At Java One in Oct 2017 [Mark Cavage announced that Oracle will be open-sourcing all the proprietary features of the Oracle JDK](https://youtu.be/Tf5rlIS6tkg?t=567) so that there will be "zero differences" between Oracle and Open JDK. This got a big round of applause at the time, and another when Mark Reinhold repeated that pledge in his [State of OpenJDK](https://fosdem.org/2018/schedule/event/state_openjdk/) talk at FOSDEM Feb 2018. Those who are paying customers of Oracle might be familiar with some of the features in question, as will the developers who work on the JDK itself. But I think the vast majority of Java programmers worldwide will not be so knowledgeable. Until recently I had to include myself in that group but after the announcements above I got curious.
 
 I have been lucky enough to be able to speak to several of the people involved in the work of "Opening the Oracle JDK". I hope I can explain some of the less well-known things, and point out some cool new stuff which will be added to OpenJDK.
 
