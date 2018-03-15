@@ -8,7 +8,7 @@ tags:
 - jvm
 ---
 
-At Java One in Oct 2017 [Mark Cavage announced that Oracle will be open-sourcing all the proprietary features of the Oracle JDK](https://youtu.be/Tf5rlIS6tkg?t=567) so that there will be "zero differences" between Oracle and Open JDK. This got a big round of applause at the time, and another when Mark Reinhold repeated that pledge in his [State of OpenJDK](https://fosdem.org/2018/schedule/event/state_openjdk/) talk at FOSDEM Feb 2018. Those who are paying customers of Oracle might be familiar with some of the features in question, as will the developers who work on the JDK itself. But I think the vast majority of Java programmers worldwide will not be so knowledgeable. Until recently I had to include myself in that group but after the announcements above I got curious.
+At Java One in Oct 2017 Mark Cavage announced that [Oracle will be open-sourcing all the proprietary features of the Oracle JDK](https://youtu.be/Tf5rlIS6tkg?t=567) so that there will be "zero differences" between Oracle and Open JDK. This got a big round of applause at the time, and another when Mark Reinhold repeated that pledge in his [State of OpenJDK](https://fosdem.org/2018/schedule/event/state_openjdk/) talk at FOSDEM Feb 2018. Those who are paying customers of Oracle might be familiar with some of the features in question, as will the developers who work on the JDK itself. But I think the vast majority of Java programmers worldwide will not be so knowledgeable. Until recently I had to include myself in that group but after the announcements above I got curious.
 
 I have been lucky enough to be able to speak to several of the people involved in the work of "Opening the Oracle JDK". I hope I can explain some of the less well-known things, and point out some cool new stuff which will be added to OpenJDK.
 
@@ -23,7 +23,7 @@ Java is the same everywhere. There are no Oracle-only language features of Java.
 `java.util.Hashmap` and so on are exactly the same on Oracle and Open JDKs. There are some libraries distributed in the `com.oracle` package with Oracle JDK, but these will be either deprecated or moved to standalone libraries. I didn't find anything eye-catching for the average Java user amongst these.
 
 ### Tooling
-JDK tooling includes several end-user things like `jlink`, as well as the tools needed to build and distribute the JDK itself. Packaging the JDK to create installers for MacOS and Windows uses some software whose licenses make it hard to open-source so there will be some changes there (notice that you can download `exe` and `dmg` installers for Oracle JDK from http://jdk.java.net/10/ but OpenJDK is all `.tar.gz`). This is very important and legally tricky, but not something that Java programmers think about very often. The the timezone updater has some interesting history, and JMC is well worth knowing about. There are also some changes to testing frameworks and how secutiry vulnerabilities are handled.
+JDK tooling includes several end-user things like `jlink`, as well as the tools needed to build and distribute the JDK itself. Packaging the JDK to create installers for MacOS and Windows uses some software whose licenses make it hard to open-source so there will be some changes there (notice that you can download `exe` and `dmg` installers for Oracle JDK from [http://jdk.java.net/10/](http://jdk.java.net/10/) but OpenJDK is all `.tar.gz`). This is very important and legally tricky, but not something that Java programmers think about very often. The the timezone updater has some interesting history, and JMC is well worth knowing about. There are also some changes to testing frameworks and how secutiry vulnerabilities are handled.
 
 ### The JVM
 This is where the vast majority of the Oracle-JDK differences are. Oracle is open-sourcing a new GC, performance enhancements, monitoring tools and a host of smaller changes.
@@ -87,7 +87,7 @@ In development it is permitted to use OracleJDK commercial features, so you can 
 
 Here is [a proposal to open Flight Recorder](http://openjdk.java.net/jeps/328), and [a proposal for a proposal for a new OpenJDK project for Mission Control](http://mail.openjdk.java.net/pipermail/discuss/2018-March/004715.html). Note that "Java" has been dropped from both names.
 
-Here's JFR/JMC lead [Marcus Hirt](https://twitter.com/hirt) talking about JFR:
+Here's JFR/JMC lead [Marcus Hirt](https://twitter.com/hirt) talking about them at JFokus a few years ago:
 
 <iframe width="700" height="400" src="https://www.youtube.com/embed/EOeNugl0NlU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
@@ -95,14 +95,13 @@ Here's JFR/JMC lead [Marcus Hirt](https://twitter.com/hirt) talking about JFR:
 
 I admit this won't affect your life as a Java programmer, but I thought it was an interesting situation which has come about through quite normal bureacracy.
 
-Tonga is a testing framework which is used at Oracle to run some tests of JDK functionality, both Oracle-proprietary and open. As is normal in testing code, there is a dependency from the test code itself on the framework. Unfortunately Tonga contains some licensed (non-Oracle) code which Oracle is not able to distribute. So, in fact _Oracle maintains some closed tests of open functionality_. Of course this looks rather inefficient, and indeed Oracle engineers are rewriting these tests and contributing them to OpenJDK (TODO: Any evidence of this?!). The result should be more reliable code and less overhead for JVM engineers.
+Tonga is a testing framework which is used at Oracle to run some tests of JDK functionality, both Oracle-proprietary and open. As is common in testing code, there is a dependency from the test code itself on the framework. Unfortunately Tonga contains some licensed (non-Oracle) code which Oracle is not able to distribute. So, in fact _Oracle maintains some closed tests of open functionality_. Of course this looks rather inefficient, and indeed Oracle engineers are rewriting these tests and contributing them to OpenJDK (TODO: Any evidence of this?!). The result should be more reliable code and less overhead for JVM engineers.
 
 Oracle also maintains some vulnerabilty tests internally which will hopefully be moved to the [OpenJDK Vulnerability Group](http://cr.openjdk.java.net/~mr/ojvg/) (once it exists).
 
 ## Summary
 
 As I said at the start, it seems like a popular move for Oracle to contribute to open-source. And I think the JDK features I've written about here will be welcome additions that people can use for free, as well as it being good to remove some confusion about what is the difference between Oracle and Open JDKs. There will still be an OracleJDK, for the purposes of offering commercial support, but it will be the exactly same functionally as OpenJDK.
-
 The other, even larger change to Java which was announced at the same time was the change to a 6-monthly release cycle. As features are not committed to a release until they are ready, they must be held in a branch which increases the testing burden on engineers and their testing infrastructure. So I think that stopping carrying proprietary extensions to OpenJDK will be helpful for the smoothness of the new release cycle too.
 
 Every JDK engineer I spoke to is proud of their work, and everyone is happy to be able to have it more widely used. I hope that the developers among you who target the JVM get a chance to try these new features as they arrive.
