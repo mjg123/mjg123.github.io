@@ -1,0 +1,646 @@
+<html DOCTYPE=html5>
+
+    <title>Java in a World of Containers</title>
+
+    <meta name="author" content="Matthew Gilliard @MaximumGilliard"/>
+    <meta name="description" content="Presentation for Virtual JUG, March 2018."/>
+    <meta name="keywords" content="FnProject,Java,Containers"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+
+    <style type="text/css">
+     body {
+	 overflow: hidden;
+	 margin: 0;
+	 padding: 0;
+	 width: 100%;
+	 height: 100%;
+	 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+     }
+     #presentation {
+	 position: fixed;
+	 top: 10px;
+	 bottom: 30px;
+	 right: 10px;
+	 left: 10px;
+     }
+     #presentation>div {
+	 width: 100%;
+	 height: 100%;
+	 padding-left: 32px;
+	 background-image: linear-gradient(to right,
+	 #D00 0,
+	 #D00 20px,
+	 #FFF 20px,
+	 #FFF 100%);
+	 box-sizing: border-box;
+	 background-size: 100%;
+	 font-size: 32pt;
+     }
+     #presentation>div.title {
+	 padding: 10%;
+	 background: #D00;
+	 color: #FFF;
+	 text-align: center;
+	 font-size: 100pt;
+	 font-weight: bold;
+	 font-family: 'Roboto Slab', serif;
+     }
+
+     img {
+	 width: 100%;
+     }
+
+     .col2 {
+	 width: 45%;
+	 float: left;
+     }
+
+     li {
+	 margin-top: 16px;
+     }
+
+     em {
+	 color: #800
+     }
+
+     tt {
+	 font-family: Courier New, mono;
+	 background-color: #DDD;
+	 border: 1px solid #888;
+     }
+
+     a {
+	 text-decoration: none;
+	 color: #008;
+     }
+
+     br {
+	 margin-top: 12px;
+     }
+
+     .gist-data{
+	 height:65%; // Any height
+	 overflow-y: visible;
+     }
+
+     .slide-footer {
+	 position: fixed;
+	 bottom: 32px;
+	 font-size: 22pt;
+     }
+
+     .slide-section {
+	 text-align: right;
+	 font-size: 12pt;
+	 color: #888;
+     }
+     .slide-title {
+	 font-weight: bold;
+	 font-size: 48pt;
+	 margin-bottom: 12pt;
+     }
+     .slide-content {
+	 margin-left: 32px;
+	 font-size: 24pt;
+     }
+
+     .note {
+	 color: #888;
+	 font-size: 18pt;
+     }
+
+     #contact {
+	 position: fixed;
+	 bottom: 8px;
+	 left: 10px;
+	 color: #444;
+     }
+
+     @keyframes heartFadeInOut {
+	 0% {font-size: 1em;}
+	 10% {font-size: .8em;}
+	 100% {font-size: 1em;}
+     }
+
+     .hearty {
+	 display: inline-block;
+	 text-align: center;
+	 width: 30px;
+	 animation-name: heartFadeInOut;
+	 animation-iteration-count: infinite;
+	 animation-duration: 1.2s;
+	 color: #A00;
+	 }
+
+    </style>
+
+    <div id="presentation" style="dislay: block">
+
+	<div data-slidr="safe-harbor">
+	    <div class="slide-section">Safe Harbor</div>
+	    <div class="slide-title">Safe Harbor Statement</div>
+	    <div class="slide-content">
+		The following is intended to outline our general product direction. It is intended for information purposes only, and may not be incorporated into any contract. It is not a commitment to deliver any material, code, or functionality, and should not be relied upon in making purchasing decisions. The development, release, and timing of any features or functionality described for Oracle’s products remains at the sole discretion of Oracle.
+		<div class="slide-footer">
+		    <img style="float: right; width: 50%" src="./oracle-logo.png">
+		</div>
+	    </div>
+	</div>
+
+	<div data-slidr="title" class="title">
+	    Java in a World of Containers
+	    <div class="slide-footer">
+		Slides: <a href="http://goo.gl/kR6hQD">TODO!</a>
+	    </div>
+	</div>
+
+	<div data-slidr="mjg-intro">
+	    <div class="slide-section">intro</div>
+	    <div class="slide-title">Who me?</div>
+	    <div class="slide-content">
+		<ul>
+		    <li>Matthew Gilliard (<a href="https://twitter.com/MaximumGilliard">@MaximumGilliard</a>)</li>
+		    <li>Java user since 199x</li>
+		    <li>Now working for Oracle since 2015</li>
+		    <li>Working on <a href="http://fnproject.io">FnProject</a> since mid-2017</li>
+		</ul>
+	    </div>
+	    <div class="slide-footer">
+		<a href="https://mjg123.github.io">https://mjg123.github.io</a>
+	    </div>
+	</div>
+
+	<div data-slidr="fn-intro">
+	    <div class="slide-section">intro</div>
+	    <div class="slide-title"><img style="width: 300px;" src="./fn-300x125.png"/></div>
+	    <div class="slide-content">
+		What the Fn?
+		<ul>
+		    <li>Open-source Serverless Compute Platform</li>
+		    <li>Run anywhere: Datacenter / laptop / rPi</li>
+		    <li>Functions are <em>containers</em> <a href="https://twitter.com/kelseyhightower/status/921527605110513665">⇗</a></li>
+		    <li>Fully open (Apache 2.0) with commercial backing from Oracle</li>
+		    <li>Fn <span class="hearty">♥</span> Java</li>
+		</ul>
+	    </div>
+	    <div class="slide-footer">
+		<a href="https://fnproject.io">https://fnproject.io</a>
+	    </div>
+	</div>
+
+ 	<div data-slidr="world-of-containers">
+	    <div class="slide-section">The World of Containers</div>
+	    <div class="slide-title">
+		World of Containers
+	    </div>
+	    <div class="slide-content">
+		What can we expect in a world of containers?
+		<ul>
+		    <li>Mixed workloads</li>
+		    <li>Many instances</li>
+		    <li>Heterogeneous hardware</li>
+		    <li>Heterogeneous configuration</li>
+		</ul>
+	    </div>
+	</div>
+
+ 	<div data-slidr="java-runtime">
+	    <div class="slide-section">World of Containers</div>
+	    <div class="slide-title">
+		So.... isn't Java already perfect?
+	    </div>
+	    <div class="slide-content">
+		<div class="note">(spoiler: not quite)</div>
+		Good points about Java:
+		<ul>
+		    <li>Managed Runtime</li>
+		    <li>Hardware and OS agnostic</li>
+		    <li>Safety and Security</li>
+		    <li>Runtime adaptive: Stable in differing environments</li>
+		</ul>
+		<strong>JPG is committed to keeping Java as the first choice for container deployments</strong>
+	    </div>
+	</div>
+
+	<div data-slidr="demo-1" class="title">
+	    Demo:<br/>
+	    Hello Container
+	</div>
+
+	<div data-slidr="java-in-containers">
+	    <div class="slide-section">Java in Containers</div>
+	    <div class="slide-title">
+		Java in containers
+	    </div>
+	    <div class="slide-content">
+		What do we want containerized JVMs to do?
+		<ul>
+		    <li>Start <em>fast</em></li>
+		    <li>Run in <em>small</em> images</li>
+		    <li><em>Respect</em> container environment</li>
+		</ul>
+	    </div>
+	</div>
+
+	<div data-slidr="starting-fast-title" class="title">
+	    Starting Fast
+	</div>
+	
+	<div data-slidr="java-in-containers-starts-fast-1">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Fast JVM startup
+	    </div>
+	    <div class="slide-content">
+		<div>
+		    Why? Containerized JVMs can be stopped/started/moved/rescheduled more frequently. Any delay is annoying.
+		</div>
+		<br/>
+		<div>
+		    For serverless workloads, startup latency (aka <strong>cold start</strong>) is <em>crucial</em>.
+		</div>
+	    </div>
+	</div>
+
+	<div data-slidr="java-in-containers-starts-fast-2">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Fast JVM startup
+	    </div>
+	    <div class="slide-content">
+		How? Move <em>startup</em> costs to <em>build-time</em>. Also allows us to share the pre-built cached data between JVMs.
+		<ul>
+		    <li><tt>libc</tt>, <tt>libjava.so</tt> can be shared (assuming same layer/file/inode)</li>
+		    <li>What else can we share?
+			<ul>
+			    <li>Class Data Sharing (CDS)</li>
+			    <li>Application CDS</li>
+			    <li>AOT compilation</li>
+			</ul>
+		    </li>
+		</ul>
+	    </div>
+	</div>
+
+	<div data-slidr="java-in-containers-starts-fast-cds">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Fast JVM startup - CDS
+	    </div>
+	    <div class="slide-content">
+		<span class="col2">
+		    <img src="./cds.png" />
+		</span>
+		<span class="col2">
+		    <ul>
+			<li>Like an shared object file but for Java Class Data</li>
+			<li>Memory-mapped, ReadOnly + COW</li>
+			<li>Class data read from mmap'd file <tt>classes.jsa</tt> without reading/parsing classes from Jar files</li>
+			<li>Class data can be shared between containers</li>
+		    </ul>
+
+		    Demo time!
+		    <ul>
+			<li>Anecdata: saves me about 40ms at startup</li>
+			<li>Use <tt>java -Xshare:dump</tt> to create the cache</li>
+			<li>And use <tt>java -Xshare:on ...</tt> to force usage</li>
+		    </ul>
+
+		</span>
+		<div class="slide-footer">
+		    <a href="https://mjg123.github.io/2017/10/02/JVM-startup.html">https://mjg123.github.io/2017/10/02/JVM-startup.html</a>
+		</div>
+	    </div>
+	</div>
+
+	<div data-slidr="java-in-containers-starts-fast-appcds-1">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Fast JVM startup - AppCDS
+	    </div>
+	    <div class="slide-content">
+		Application CDS is like "regular" CDS, but for application classes.
+		<ul>
+		    <li>Cache size & speedup depends on how big your <em>application's classes</em> are</li>
+		    <li>Memory saving depends on <em>number of containers</em> sharing the same cache</li>
+		    <li>AppCDS was an OracleJDK commercial feature until <img style="width:1.5em; height:1.5em" src="party.png">JDK10<img style="width:1.5em; height:1.5em" src="./party.png"></li>
+		</ul>
+		<div class="slide-footer">
+		    <a href="https://mjg123.github.io/2017/10/04/AppCDS-and-Clojure.html">https://mjg123.github.io/2017/10/04/AppCDS-and-Clojure.html</a>
+		</div>
+	    </div>
+	</div>
+
+	<div data-slidr="java-in-containers-starts-fast-appcds-2">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Fast JVM startup - AppCDS
+	    </div>
+	    <div class="slide-content">
+		How to use it?
+		<ul>
+		    <li>You need to provide a list of classes to cache:
+			<ul>
+			    <li><tt>-XX:DumpLoadedClassList=myapp.classlist</tt></li>
+			</ul>
+		    </li>
+		    <li>Then write out the cache with
+			<ul>
+			    <li><tt>-Xshare:dump</tt></li>
+			    <li><tt>-XX:SharedClassListFile=myapp.classlist</tt></li>
+			    <li><tt>-XX:SharedArchiveFile=myapp.jsa</tt></li>
+			</ul>
+		    </li>
+		    <li>
+			Finally you can run with AppCDS enabled!
+			<ul>
+			    <li><tt>-XX:+UseAppCDS</tt></li>
+			    <li><tt>-Xshare:on</tt></li>
+			    <li><tt>-XX:SharedArchiveFile=myapp.jsa</tt></li>
+			</ul>
+		    </li>
+		</ul>
+		<div class="slide-footer">
+		    <a href="https://mjg123.github.io/2017/10/04/AppCDS-and-Clojure.html">https://mjg123.github.io/2017/10/04/AppCDS-and-Clojure.html</a>
+		</div>
+	    </div>
+	</div>
+
+	<div data-slidr="java-in-containers-starts-fast-aot-1">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Fast JVM startup - AOT
+	    </div>
+	    <div class="slide-content">
+		Ahead-of-time compilation for Java classes, ie bytecode ⇨ native code. Available since Java 9.
+		<ul>
+		    <li>Shared memory</li>
+		    <li>Quicker startup</li>
+		    <li>Optionally include profiling paths</li>
+		</ul>
+		<div class="slide-footer">
+		    <a href="https://mjg123.github.io/2017/10/04/AppCDS-and-Clojure.html">https://mjg123.github.io/2017/10/04/AppCDS-and-Clojure.html</a>
+		</div>
+	    </div>
+	</div>
+
+	<div data-slidr="java-in-containers-starts-fast-aot-2">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Fast JVM startup - AOT
+	    </div>
+	    <div class="slide-content">
+		How? You need to specify a list of which <em>methods</em> in which <em>classes</em> should be compiled. This isn't easy to generate but you can start with:
+		<ul>
+		    <li><tt>-XX:+UnlockDiagnosticVMOptions</tt></li>
+		    <li><tt>-XX:+LogTouchedMethods</tt></li>
+		    <li><tt>-XX:+PrintTouchedMethodsAtExit</tt></li>
+		</ul>
+		<div>
+		    ...then massage this data with <tt>grep</tt> and/or <tt>sed</tt>... Then you have to pass this list to <tt>jaotc</tt> which compiles your bytecodes into a Shared Object file. Not easy, maybe worth it though.
+		</div>
+		<br/>
+		<div>
+		    More anec-data: I found that using CDS, AppCDS and AOT all at once cut the startup time for a Clojure application by <em>over 60%</em>. <span class="note">YMMV, of course.</span>
+		</div>
+		<div class="slide-footer">
+		    <a href="https://mjg123.github.io/2017/10/04/AppCDS-and-Clojure.html">https://mjg123.github.io/2017/10/04/AppCDS-and-Clojure.html</a>
+		</div>
+	    </div>
+	</div>
+
+	<div data-slidr="small-images-title" class="title">
+	    Smaller images
+	</div>
+	
+	<div data-slidr="java-in-containers-small-images-1">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Smaller images
+	    </div>
+	    <div class="slide-content">
+		Why? Smaller container images mean faster startup:
+		<ul>
+		    <li>Transferring images to the host</li>
+		    <li>COW caches</li>
+		    <li>Overlay FS</li>
+		</ul>
+		Again, for serverless, this translates into relief from the dreaded <em>cold start</em>.
+	    </div>
+	</div>
+
+	<div data-slidr="java-in-containers-small-images-2">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Smaller images
+	    </div>
+	    <div class="slide-content">
+		How? Put less stuff in 'em!
+		<ul>
+		    <li><tt>jlink</tt> - remove unused core JDK modules</li>
+		    <li>Smaller base images - remove unnecessary OS stuff</li>
+		    <li>Substrate VM - futuristic new JVM, compile your Java to a static binary</li>
+		</ul>
+	    </div>
+	</div>
+
+	<div data-slidr="java-in-containers-small-images-jlink-1">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Smaller images - <tt>jlink</tt>
+	    </div>
+	    <div class="slide-content">
+		<span class="col2">
+		    <img src="jlink.png"/>
+		</span>
+		<span class="col2">
+		    <ul>
+			<li>Only includes the jigsaw modules you use</li>
+			<li>Make even smaller with <tt>--compress</tt></li>
+			<li>Also: <tt>--vm minimal</tt> includes only Serial GC and client compiler - size reduced to ~15MB (32bit JVM only tho)</li>
+		    </ul>
+		</span>
+		<div style="clear:both">
+		    <em>Question</em> Do I need to use modules to use <tt>jlink</tt>?
+		    <br/>
+		    <em>Answer</em> Nope, you can use <tt>jdeps</tt> to generate a list of modules used by non-module code.
+		</div>
+	    </div>
+	</div>
+
+	<div data-slidr="java-in-containers-small-images-jlink-2">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Smaller images - <tt>jlink</tt>
+	    </div>
+	    <div class="slide-content">
+		How?
+		<ul>
+		    <li><tt>jlink</tt></li>
+		    <li><tt>--module-path $JAVA_HOME/jmods:mods</tt></li>
+		    <li><tt>--add-modules myapp.module</tt></li>
+		    <li><tt>--output linked</tt></li>
+		</ul>
+		<div>
+		    This creates a smaller JVM in directory called <tt>linked</tt>.
+		</div>
+		<br/>
+		<div>
+		    <em>Question</em> Can I use <tt>jlink</tt>, CDS, AppCDS and AOT all at the same time?
+		    <br/>
+		    <em>Answer</em> Yes, yes you can. This speeds JVM startup over 2x, even outside of a container.
+		</div>
+		<div class="slide-footer"><a href="https://mjg123.github.io/2017/11/07/Java-modules-and-jlink.html">https://mjg123.github.io/2017/11/07/Java-modules-and-jlink.html</a></div>
+	    </div>
+	</div>
+
+	<div data-slidr="java-in-containers-small-images-alpine-1">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Smaller images - Alpine &amp; Musl
+	    </div>
+	    <div class="slide-content">
+		Ubuntu / Debian / Oracle Linux base images can be <em>100s of MB</em>, even the "slim" versions. We don't care much about the base image so long as it can run Java. <a href="http://openjdk.java.net/projects/portola/">Project Portola</a> makes the JVM run on Alpine Linux/Musl.
+		<ul>
+		    <li><img style="width:200px" src="./alpinelinux-logo.svg"/><br/>Alpine Linux is a security-oriented, lightweight Linux distribution based on musl libc and busybox. Alpine base image is 5mb (!)</li>
+		    <li><img style="width:100px" src="./musl-logo.png"/><br/>Musl is lightweight, fast, simple, free, and strives to be correct in the sense of standards-conformance and safety.</li>
+		</ul>
+		Let's have another quick demo!
+	    </div>
+	</div>
+
+	<div data-slidr="java-in-containers-small-images-alpine-2">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Smaller images - Alpine &amp; Musl
+	    </div>
+	    <div class="slide-content">
+		A request: Currently is it <em>unknown</em> whether there is enough interest in JVM on Alpine to justify a GA release of Portola. If you are interested <em>please please</em> show your interest to project lead <a href="https://twitter.com/MikaelVidstedt">@MikaelVidstedt</a>.
+	    </div>
+	</div>
+
+	<div data-slidr="java-in-containers-small-images-svm">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Smaller images - Substrate VM
+	    </div>
+	    <div class="slide-content">
+		Substrate VM from Oracle Labs compiles Java source to a single binary, like C or Golang.
+		<ul>
+		    <li>Part of Graal project</li>
+		    <li>Small VM overhead</li>
+		    <li>Experimental, in active development</li>
+		    <li>No support for dynamic code generation, serialization</li>
+		    <li>Limited support for reflection</li>
+		    <li>Tiny image sizes (<10mb)</li>
+		</ul>
+		<div class="slide-footer"><a href="https://github.com/oracle/graal/tree/master/substratevm#substrate-vm">https://github.com/oracle/graal/tree/master/substratevm#substrate-vm</a></div>
+	    </div>
+	</div>
+
+
+	<div data-slidr="respect-title" class="title">
+	    Respecting the Environment
+	</div>
+	
+	<div data-slidr="java-in-containers-respect-resource-constraints">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Respecting Resource Constraints
+	    </div>
+	    <div class="slide-content">
+		The JVM self-tunes to the underlying system (aka <em>Ergonomics</em>).
+		<ul>
+		    <li>Memory
+			<ul>
+			    <li>Heap size</li>
+			    <li>GC region sizes</li>
+			    <li>JIT code cache sizes</li>
+			</ul>
+		    </li>
+		    <li>CPU
+			<ul>
+			    <li>ThreadPool sizes</li>
+			    <li><tt>Runtime.availableProcessors()</tt></li>
+			</ul>
+		    </li>
+		</ul>
+		This is <em>not</em> transparent - requires JVM to support cgroups resource limitations. Much good stuff landed recently for JDK10. See <a href="https://bugs.openjdk.java.net/browse/JDK-8146115">JDK-8146115</a> for more details.
+	    </div>
+	</div>
+
+
+	<div data-slidr="java-in-containers-respect-resource-constraints-2">
+	    <div class="slide-section">Java in Container Land</div>
+	    <div class="slide-title">
+		Being Container Friendly
+	    </div>
+	    <div class="slide-content">
+		Other work:
+		<ul>
+		    <li><a href="https://bugs.openjdk.java.net/browse/JDK-8179498">JDK-8179498</a>: <tt>attach</tt> in linux should be relative to <tt>/proc/pid/root</tt> and namespace aware (JDK 10) - this means you can run tools that inspect running JVMs, against containerized JVMs</li>
+		    <li><a href="https://bugs.openjdk.java.net/browse/JDK-8193710">JDK-8193710</a>: <tt>jcmd -l</tt> and <tt>jps</tt> commands do not list Java processes running in Docker containers (JDK 11)</li>
+		    <li>And more... <a href="https://bugs.openjdk.java.net/browse/JDK-8182070">JDK-8182070</a>: Container aware Java</li>
+		</ul>
+	    </div>
+	</div>
+
+	<div class="title" data-slidr="thank-you">
+	    Thank you for listening
+	    <img style="width:40%" src="./di-cap.jpg"/>
+	</div>
+
+    </div>
+
+    <div id="contact">
+	Java in a World of Containers ::
+	<a href="https://twitter.com/MaximumGilliard">@MaximumGilliard</a> ::
+	Virtual JUG, 28 March 2018
+    </div>
+
+    <script src="./slidr.min.js"></script>
+
+    <script>
+     slidr.create('presentation' ,{
+	 breadcrumbs: true,
+	 controls: 'none',
+	 keyboard: true,
+	 //overflow: true,
+	 theme: '#AAA',
+	 timing: { 'linear': '1s ease-in-out' },
+	 touch: true,
+	 transition: 'fade'
+     })
+	  .add('h', ['safe-harbor',
+		     'title',
+		     'mjg-intro',
+		     'fn-intro',
+		     'world-of-containers',
+		     'java-runtime',
+		     'demo-1',
+		     'java-in-containers',
+		     'start-fast-title',
+		     'java-in-containers-starts-fast-1',
+		     'java-in-containers-starts-fast-2',
+		     'java-in-containers-starts-fast-cds',
+		     'java-in-containers-starts-fast-appcds-1',
+		     'java-in-containers-starts-fast-appcds-2',
+		     'java-in-containers-starts-fast-aot-1',
+		     'java-in-containers-starts-fast-aot-2',
+		     'small-images-title',
+		     'java-in-containers-small-images-1',
+		     'java-in-containers-small-images-2',
+		     'java-in-containers-small-images-jlink-1',
+		     'java-in-containers-small-images-jlink-2',
+		     'java-in-containers-small-images-alpine-1',
+		     'java-in-containers-small-images-alpine-2',
+		     'java-in-containers-small-images-svm',
+		     'respect-title',
+		     'java-in-containers-respect-resource-constraints-1',
+		     'java-in-containers-respect-resource-constraints-2',
+		     'thank-you'])
+	  .start();
+    </script>
+
+</html>
