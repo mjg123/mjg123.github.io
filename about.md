@@ -10,11 +10,13 @@ I love speaking and teaching and am looking for opportunities to do more of it. 
 
 ## 2018
 
+[Java in a World of Containers](https://www.youtube.com/watch?v=2TwjNcrfjKM) (60 mins), Virtual JUG
+
 Serverless Panel w/ Fn, Riff and Kelsey Hightower (video TBC), DevNexus, Atlanta GA USA
 
 [Java in Serverless Land](https://devnexus.com/presentations/1556) ([slides](https://mjg123.github.io/presentations/DevNexus-2018-Java-In-Serverless-Land.html), video TBC), DevNexus, Atlanta GA USA
 
-[Java in a World of Containers](https://www.youtube.com/watch?v=s3NZcKtg-5c), Free Java Room, FOSDEM, Brussels Belgium
+[Java in a World of Containers](https://www.youtube.com/watch?v=s3NZcKtg-5c) (25 mins), Free Java Room, FOSDEM, Brussels Belgium
 
 ## 2017
 

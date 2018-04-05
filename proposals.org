@@ -1,0 +1,21 @@
+* Proposals for conferences
+
+** containerdays.io
+
+2018-06-18 - 2018-06-20
+
+*** Java in a world of Containers
+
+
+
+*** Half-day workshop
+
+Fn Project, announced Oct 2017, is an open-source container-based serverless compute platform. This workshop will introduce serverless computing using Fn Project.
+
+To start with there will be a chance to discuss what "serverless" even means, what Function-as-a-Service (FaaS) platforms are for, what they're good at and what they're not, and how containers fit into the picture.
+
+Then we will see how to create our own functions as containers, run and test them locally and deploy them to a FaaS platform to build event-driven applications. Some knowledge of Docker will be useful here but not essential.
+
+We will see what architectural patterns FaaS enables and encourages and how we can use it as a platform to build larger applications. If there is interest we can also look behind the scenes at how Fn Project is architected, and how it is similar/different to other Faas platforms.
+
+This session would suit people with no experience of serverless or FaaS - being familiar with docker concepts will be helpful. If you have an idea you're dying to try out then so much the better!
