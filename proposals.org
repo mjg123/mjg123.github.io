@@ -1,3 +1,16 @@
+* Me
+
+Matthew is a (somewhat) functional programmer who enjoys all kinds of language nerdery.
+
+He currently works on open-source code at Oracle, helping to make Java in the cloud be as good as it can. If not there, you might find him at a local meetup, teaching kids to code, or away from computers hiking and running in Southwest England.
+
+Past lives include OpenStack, teaching English to highschoolers and a whole lot of Clojure and Java.
+
+** Extra info about me & my speaking
+
+Since Fn Project was announced publicly in October 2017 I have found there is a lot of interest in it, firstly as a serverless platform and secondly as an Oracle product which is being developed in a fully open-source manner.  We've worked hard on our Java integration and have had help from the Java Platform Group in Oracle to do so, and what we have learned about Java in serverless, and especially about Java's behaviour in containers is of general interest to Java-using folks everywhere.
+
+
 * Proposals for conferences
 
 ** containerdays.io
@@ -5,7 +18,6 @@
 2018-06-18 - 2018-06-20
 
 *** Java in a world of Containers
-
 
 
 *** Half-day workshop
@@ -19,3 +31,18 @@ Then we will see how to create our own functions as containers, run and test the
 We will see what architectural patterns FaaS enables and encourages and how we can use it as a platform to build larger applications. If there is interest we can also look behind the scenes at how Fn Project is architected, and how it is similar/different to other Faas platforms.
 
 This session would suit people with no experience of serverless or FaaS - being familiar with docker concepts will be helpful. If you have an idea you're dying to try out then so much the better!
+
+
+
+
+** JavaZone
+
+12/13-9-18
+
+*** Java in Serverless Land
+
+Serverless and FaaS are rapidly establishing themselves as fundamental cloud services. It's a radically simple model for deployment and management of code in the cloud, but while Java is regularly topping the usage charts for most types of server-side development uptake in Serverless is slower.
+
+In this talk I'll explore some of the reasons why that might be the case. Looking at the features of Java we'll see how the people who use it are (and aren't) served by Serveless platforms, and what we are doing to make serverless more Java-friendly in Fn Project, a new Open Source Serverless Compute Platform sponsored by Oracle.
+
+*** Java in a World of Containers
