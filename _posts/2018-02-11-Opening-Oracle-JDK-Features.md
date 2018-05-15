@@ -69,7 +69,7 @@ Here's an image showing OracleJDK (top) vs OpenJDK (bottom) rendering some text:
 
 ![different?]({{ "assets/JDK-font-rendering.png" | absolute_url }})
 
-There is no difference. In fact the JDK uses OS font services most of the time, but in the case of TrueType fonts loaded from a stream at runtime T2K or FreeType might be used. If this change causes some of your tests to fail after OracleJDK switches to FreeType (a change is already in the JDK11 codebase) then you have my sincere sympathy.
+There is no difference. In fact both JDKs use OS font services most of the time, but in the case of TrueType fonts loaded from a stream at runtime T2K or FreeType might be used. If this change causes some of your tests to fail after OracleJDK switches to FreeType (a change is already in the JDK11 codebase) then you have my sincere sympathy.
 
 ### Java Flight Recorder and Java Mission Control
 
@@ -104,3 +104,7 @@ As I said at the start, I am personally delighted to see Oracle commit to contri
 The other, even larger change to Java which was announced at the same time was the change to a 6-monthly release cycle. As features are not committed to a release until they are ready, they must be held in a branch which increases the testing burden on engineers and their testing infrastructure. So I think that stopping carrying proprietary extensions to OpenJDK will be helpful for the smoothness of the new release cycle too.
 
 Every JDK engineer I spoke to is proud of their work, and everyone is happy to be able to have it more widely used. I hope that the developers among you who use the JVM get a chance to try these new features as they arrive.
+
+## Credits
+
+I would like to thank Mikael Vidstedt, Sharat Chander and most of all Dalibor Topic for helping me prepare this post. I am also extremely grateful to the numerous JDK engineers I have spoken to over the last few months.
