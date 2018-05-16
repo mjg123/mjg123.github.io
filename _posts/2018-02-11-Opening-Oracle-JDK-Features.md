@@ -71,9 +71,9 @@ Here's an image showing OracleJDK (top) vs OpenJDK (bottom) rendering some text:
 
 There is no difference. In fact both JDKs use OS font services most of the time, but in the case of TrueType fonts loaded from a stream at runtime T2K or FreeType might be used. If this change causes some of your tests to fail after OracleJDK switches to FreeType (a change is already in the JDK11 codebase) then you have my sincere sympathy.
 
-### Java Flight Recorder and Java Mission Control
+### Flight Recorder and JDK Mission Control
 
-Flight Recorder (FR) is a profiling tool. Mission Control (MC) is for viewing the output of FR. I personally expect these to become standard tools for profiling JVM workloads and diagnosing performance problems.
+Flight Recorder (FR) is a profiling tool. JDK Mission Control is for viewing the output of FR. I personally expect these to become standard tools for profiling JVM workloads and diagnosing performance problems.
 
 FR works as a high-performance event recorder built into the JVM, lightweight enough to be left always-on (goal: no more than ~1% overhead). It's been bundled with OracleJDK since 2013 and was in development by JRockit for some time before that, so it is mature and reliable and has been battle-tested by several of Oracle's customers.
 
