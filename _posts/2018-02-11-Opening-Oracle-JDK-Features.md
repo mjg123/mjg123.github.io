@@ -58,7 +58,7 @@ Application Class Data Sharing is one of the most exciting items, for me. AppCDS
   - Israel's Knesset used to [decide the dates of DST at the last moment](http://self.gutenberg.org/articles/eng/Israel_Summer_Time). There was even a suggestion in 2010 to move to winter-time for a single day during DST (which didn't happen in the end). This kind of confusion actually led to Microsoft temporarily abandonning Israel Daylight Time for Windows and making everyone's Outlook an hour off. These days IDT dates are fixed, thankfully.
   - North Korea's timezone recently changed with [4 day's notice](https://en.wikipedia.org/wiki/Time_in_North_Korea#History).
 
-Oracle JDK customers have had a tool called [TZ Updater](http://www.oracle.com/technetwork/java/javase/tzupdater-readme-136440.html) to keep their installation up to date, which will be made available with OpenJDK (Dalibor: is there any public link which confirms this?)
+Oracle JDK customers have had a tool called [TZ Updater](http://www.oracle.com/technetwork/java/javase/tzupdater-readme-136440.html) to keep their installation up to date, which is part of the infrastructure which is planned to open source, along with other tools such as the Java Usage Logger.
 
 
 ### Font-rendering engine
@@ -81,7 +81,7 @@ FR is very flexible with rules and triggers about what to collect and when. For 
 
 In development it is permitted to use OracleJDK commercial features, so you can try out FR today. It's behind a couple of args: `-XX:+UnlockCommercialFeatures -XX:+FlightRecorder`. This [getting started guide](https://medium.com/@chrishantha/using-java-flight-recorder-2367c01deacf) is a little dated but helpful.
 
-Here is the JEP describing [Flight Recorder](http://openjdk.java.net/jeps/328), and the new OpenJDK project: [Mission Control](http://openjdk.java.net/projects/jmc/).
+Here is the JEP describing [Flight Recorder](http://openjdk.java.net/jeps/328) which will be included in JDK11, and the new OpenJDK project: [Mission Control](http://openjdk.java.net/projects/jmc/).
 
 Project lead [Marcus Hirt](https://twitter.com/hirt) spoke about them at JFokus a few years ago:
 
@@ -95,7 +95,16 @@ OpenJDK included a set of root Certificate Authority certificates for the first 
 
 I admit this won't change your life as a Java programmer, but I thought it was an interesting situation which has come about through quite normal circumstances.
 
-Tonga is a testing framework which is used by Oracle to run some tests of JDK functionality, both Oracle-proprietary and open. As is common in testing code, there is a dependency from the test code to the framework. However, Tonga contains some third-part code which Oracle can't release under an open-source license. So, in fact _Oracle maintains some closed tests of open functionality_. Of course this looks rather inefficient, and indeed Oracle engineers are rewriting these tests and contributing them to OpenJDK (TODO: Any evidence of this?!). The result should be more reliable code and less overhead for JVM engineers.
+Tonga is a testing framework which is used by Oracle to run some tests of JDK functionality, both Oracle-proprietary and open. As is common in testing code, there is a dependency from the test code to the framework. However, Tonga contains some third-part code which Oracle can't release under an open-source license. So, in fact _Oracle maintains some closed tests of open functionality_.
+
+Engineers have been porting and writing new tests in OpenJDK - here's a series of announcements which in total add up to 900,000 lines of test code being added to OpenJDK: 
+[1](https://twitter.com/OpenJDK/status/996000521319313409)
+[2](https://twitter.com/OpenJDK/status/996000159870914560)
+[3](https://twitter.com/OpenJDK/status/995999825781981184)
+[4](https://twitter.com/OpenJDK/status/995999644747489280)
+[5](https://twitter.com/OpenJDK/status/995999471753420800)
+[6](https://twitter.com/OpenJDK/status/995999267293712384)
+[7](https://twitter.com/OpenJDK/status/995999056399872000)
 
 ## Summary
 
