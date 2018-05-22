@@ -8,9 +8,9 @@ tags:
 - jvm
 ---
 
-At Java One in Oct 2017 Mark Cavage announced that [Oracle will be open-sourcing the proprietary features of the Oracle JDK](https://youtu.be/Tf5rlIS6tkg?t=567). This got a big round of applause at the time, and another when Mark Reinhold repeated that pledge in his [State of OpenJDK](https://fosdem.org/2018/schedule/event/state_openjdk/) talk at FOSDEM Feb 2018. Donald Smith, Sr Director of Product Management in the Java Platform Group writes ["our intent is that within a few releases there should be no technical differences between OpenJDK builds and Oracle JDK binaries"](https://blogs.oracle.com/java-platform-group/faster-and-easier-use-and-redistribution-of-java-se).
+At Java One in Oct 2017 Mark Cavage announced that [Oracle will be open-sourcing the proprietary features of the Oracle JDK](https://youtu.be/Tf5rlIS6tkg?t=567). This got a big round of applause at the time, and Mark Reinhold got another for repeating that pledge in his [State of OpenJDK](https://fosdem.org/2018/schedule/event/state_openjdk/) talk at FOSDEM Feb 2018. Donald Smith, Sr Director of Product Management in the Java Platform Group writes ["our intent is that within a few releases there should be no technical differences between OpenJDK builds and Oracle JDK binaries"](https://blogs.oracle.com/java-platform-group/faster-and-easier-use-and-redistribution-of-java-se).
 
-Some of you may be familiar with some of the features in question, but I think the vast majority of Java developers will not be. I got curious and decded to do some research. Remember that the new 6-monthly release cycle means that things are released when they are ready so there can be no commitments about which release a feature will be ready for, but of course everyone would like it to be done as soon as possible.
+Some of you may be familiar with some of the features in question, but I think the vast majority of Java developers will not be. I got curious and decded to do some research, and this post is a summary of major features being open-sourced.
 
 For clarity lets split up the JDK into 4 parts: **Java the Language**, the **Core Java Libraries**, **Tooling**, and **The JVM** itself.
 
@@ -18,7 +18,7 @@ For clarity lets split up the JDK into 4 parts: **Java the Language**, the **Cor
 Java is the same everywhere. There are no Oracle-only language features of Java.
 
 ### Core Java Libraries
-Core libraries like `java.util.Hashmap` and so on are exactly the same on Oracle and Open JDKs. There are some libraries distributed in the `com.oracle` package with Oracle JDK, but these will be either deprecated or moved to standalone libraries. I didn't find anything eye-catching for the average Java user amongst these.
+Core libraries like `java.util.Hashmap` and so on are exactly the same on Oracle and Open JDKs. There are some libraries distributed in the `com.oracle` package with Oracle JDK, but these will be either deprecated or moved to standalone libraries. I didn't find anything eye-catching for the average Java user amongst these, so we can consider the effect to be no change to the core libraries.
 
 ### Tooling
 JDK tooling includes tools like [`jlink`](https://mjg123.github.io/2017/11/07/Java-modules-and-jlink.html), as well as the tools needed to build and distribute the JDK itself.
@@ -27,16 +27,14 @@ The timezone updater has some interesting history, and Mission Control is well w
 
 
 ### The JVM
-This is where the majority of the OracleJDK-only features are. Oracle is open-sourcing a new GC, performance enhancements, monitoring tools and a host of other changes.
+This is where the majority of the OracleJDK-only features are. Oracle is open-sourcing a new GC, performance enhancements, tracing tools and a host of other changes.
 
 
 ## The features in detail
 
 So here is my roundup of interesting features.
 
-### Garbage Collection
-
-#### ZGC
+### ZGC
 
 [ZGC](https://wiki.openjdk.java.net/display/zgc/Main) is a new Garbage Collector designed to handle very large heap sizes (several terabytes) with predictable pause lengths (single-digit miliseconds). Also Z is intended to be a platform for future work on large-heap GCs.
 
@@ -50,20 +48,20 @@ ZGC early access builds are [now available](http://jdk.java.net/zgc/).
 
 Application Class Data Sharing is one of the most exciting items, for me. AppCDS can dramatically improve application startup and memory usage. I wrote about Application CDS before [here]({% post_url 2017-10-04-AppCDS-and-Clojure %}). It was contributed completely in Nov 2017 and was released in OpenJDK 10.
 
-### TZ updater
+### TZ updater, Usage Logger
 
-[Dealing with times and dates](http://infiniteundo.com/post/25326999628/falsehoods-programmers-believe-about-time) is a [constant source of confusion](https://stackoverflow.com/questions/6841333/why-is-subtracting-these-two-times-in-1927-giving-a-strange-result) for developers. Why can't [humans](https://www.timeanddate.com/worldclock/new-zealand/chatham-islands) (and [astronomical bodies](http://tycho.usno.navy.mil/leapsec.html)) just be consistent?! Until that happens we will have to deal with it, and one of the "fun" things about it is how political and social forces can change, and how quickly. Timezones and DST are changed with surprisingly little warning, so a runtime which provides date/time support can't possibly know in advance how to behave in all cases. A couple of fun examples:
+[Dealing with times and dates](http://infiniteundo.com/post/25326999628/falsehoods-programmers-believe-about-time) is a [constant source of confusion](https://stackoverflow.com/questions/6841333/why-is-subtracting-these-two-times-in-1927-giving-a-strange-result) for developers. Why can't [humans](https://www.timeanddate.com/worldclock/new-zealand/chatham-islands) (and [astronomical bodies](http://tycho.usno.navy.mil/leapsec.html)) just be consistent?! Timezones and DST dates are changed with surprisingly little warning, so a runtime which provides date/time support can't possibly know in advance how to behave in all cases. A couple of fun examples:
 
   - Australian 2000 Olympics and 2006 Commonwealth Games both moved DST clock-change dates by about a week to "avoid confusion", with [only a few months notice](https://scott.yang.id.au/2006/03/commonwealth-games-dst.html).
-  - Israel's Knesset used to [decide the dates of DST at the last moment](http://self.gutenberg.org/articles/eng/Israel_Summer_Time). There was even a suggestion in 2010 to move to winter-time for a single day during DST (which didn't happen in the end). This kind of confusion actually led to Microsoft temporarily abandonning Israel Daylight Time for Windows and making everyone's Outlook an hour off. These days IDT dates are fixed, thankfully.
+  - Israel's Knesset used to [decide the dates of DST at the last moment](http://self.gutenberg.org/articles/eng/Israel_Summer_Time). There was even a suggestion in 2010 to move to winter-time for a single day during DST (which didn't happen in the end). These days IDT dates are fixed, thankfully.
   - North Korea's timezone recently changed with [4 day's notice](https://en.wikipedia.org/wiki/Time_in_North_Korea#History).
 
-Oracle JDK customers have had a tool called [TZ Updater](http://www.oracle.com/technetwork/java/javase/tzupdater-readme-136440.html) to keep their installation up to date, which is part of the infrastructure which is planned to open source, along with other tools such as the Java Usage Logger.
+Oracle JDK customers have had a tool called [TZ Updater](http://www.oracle.com/technetwork/java/javase/tzupdater-readme-136440.html) to keep their installation up to date, which is part of the infrastructure which planned to be open-sourced, along with other tools such as the Java Usage Logger which allows companies to gather data on how the JVM is used.
 
 
 ### Font-rendering engine
 
-In order to quickly and accuratly render font glyphs, Oracle and Open JDKs both lean on services provided by the OS (eg [CoreText](https://developer.apple.com/documentation/coretext) on MacOS). Additionally OracleJDK bundles a version of the T2K rendering engine which is proprietary and was licensed by Sun. OpenJDK does not redistribute T2K and instead bundles [FreeType](https://www.freetype.org/). I found [some historical info](http://openjdk.java.net/projects/font-scaler/), and [here's where the code diverges](http://hg.openjdk.java.net/jdk10/hs/file/d85284ccd1bd/src/java.desktop/share/classes/sun/font/FontScaler.java#l99).
+In order to quickly and accuratly render font glyphs, Oracle and Open JDKs both lean on services provided by the OS (eg [CoreText](https://developer.apple.com/documentation/coretext) on MacOS). Additionally OracleJDK bundles a version of the T2K rendering engine which is proprietary. OpenJDK does not redistribute T2K and instead bundles [FreeType](https://www.freetype.org/). I found [some historical info](http://openjdk.java.net/projects/font-scaler/), and [here's where the code diverges](http://hg.openjdk.java.net/jdk10/hs/file/d85284ccd1bd/src/java.desktop/share/classes/sun/font/FontScaler.java#l99).
 
 Here's an image showing OracleJDK (top) vs OpenJDK (bottom) rendering some text:
 
@@ -73,7 +71,7 @@ There is no difference. In fact both JDKs use OS font services most of the time,
 
 ### Flight Recorder and JDK Mission Control
 
-Flight Recorder (FR) is a profiling tool. JDK Mission Control is for viewing the output of FR. I personally expect these to become standard tools for profiling JVM workloads and diagnosing performance problems.
+[Flight Recorder](https://docs.oracle.com/javacomponents/jmc-5-4/jfr-runtime-guide/about.htm#JFRUH170) (FR) is a profiling tool. [JDK Mission Control](http://www.oracle.com/technetwork/java/javaseproducts/mission-control/java-mission-control-1998576.html) is for viewing the output of FR. I personally expect these to become standard tools for profiling JVM workloads and diagnosing performance problems. NB there is some change to the name of these features, as proprietary features both had "Java" in the name.
 
 FR works as a high-performance event recorder built into the JVM, lightweight enough to be left always-on (goal: no more than ~1% overhead). It's been bundled with OracleJDK since 2013 and was in development by JRockit for some time before that, so it is mature and reliable and has been battle-tested by several of Oracle's customers.
 
@@ -93,8 +91,6 @@ OpenJDK included a set of root Certificate Authority certificates for the first 
 
 ### Tonga Tests
 
-I admit this won't change your life as a Java programmer, but I thought it was an interesting situation which has come about through quite normal circumstances.
-
 Tonga is a testing framework which is used by Oracle to run some tests of JDK functionality, both Oracle-proprietary and open. As is common in testing code, there is a dependency from the test code to the framework. However, Tonga contains some third-part code which Oracle can't release under an open-source license. So, in fact _Oracle maintains some closed tests of open functionality_.
 
 Engineers have been porting and writing new tests in OpenJDK - here's a series of announcements which in total add up to 900,000 lines of test code being added to OpenJDK: 
@@ -108,12 +104,13 @@ Engineers have been porting and writing new tests in OpenJDK - here's a series o
 
 ## Summary
 
-As I said at the start, I am personally delighted to see Oracle commit to contribute to even more OSS. And I think the JDK features I've written about here will be welcome addition, as well as it being good to remove confusion about what is the difference between Oracle and Open JDKs. There will still be an OracleJDK, for the purposes of offering commercial support, but it will be the exactly same functionally as OpenJDK.
+There will still be an OracleJDK (for the purposes of offering commercial support) but it will be functionally the same as OpenJDK.
 
-The other, even larger change to Java which was announced at the same time was the change to a 6-monthly release cycle. As features are not committed to a release until they are ready, they must be held in a branch which increases the testing burden on engineers and their testing infrastructure. So I think that stopping carrying proprietary extensions to OpenJDK will be helpful for the smoothness of the new release cycle too.
+I am personally delighted to see Oracle contribute even more open-source, and I hope you agree that the features I've described here are useful additions to OpenJDK. There are alse a couple of useful side-effects: firstly it removes confusion about the differences between OracleJDK and Open JDK is good, and secondly it reduces the burden on JDK developers who have to maintain feature branches. Because of the new six-monthly release cycle features cannot be committed early to a release - they must be held in a branch until ready - so having fewer combinations of things to test can only be beneficial to the agility of the JDK.
 
 Every JDK engineer I spoke to is proud of their work, and everyone is happy to be able to have it more widely used. I hope that the developers among you who use the JVM get a chance to try these new features as they arrive.
 
+
 ## Credits
 
-I would like to thank Mikael Vidstedt, Sharat Chander and most of all Dalibor Topic for helping me prepare this post. I am also extremely grateful to the numerous JDK engineers I have spoken to over the last few months.
+I would like to extend special thanks to [Dalibor Topic](https://twitter.com/robilad) for helping me prepare this post. I am also extremely grateful to the numerous JDK engineers and other members of the Java Platform Group who I have spoken to over the last few months.
