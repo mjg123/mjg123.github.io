@@ -10,7 +10,7 @@ tags:
 
 At Java One in Oct 2017 Mark Cavage announced that [Oracle will be open-sourcing the proprietary features of the Oracle JDK](https://youtu.be/Tf5rlIS6tkg?t=567). This got a big round of applause at the time, and Mark Reinhold got another for repeating that pledge in his [State of OpenJDK](https://fosdem.org/2018/schedule/event/state_openjdk/) talk at FOSDEM Feb 2018. Donald Smith, Sr Director of Product Management in the Java Platform Group writes ["our intent is that within a few releases there should be no technical differences between OpenJDK builds and Oracle JDK binaries"](https://blogs.oracle.com/java-platform-group/faster-and-easier-use-and-redistribution-of-java-se).
 
-Some of you may be familiar with some of the features in question, but I think the vast majority of Java developers are not. I got curious and decded to do some research, and this post is a summary of major features being open-sourced.
+Some of you may be familiar with some of the features in question, but I think the vast majority of Java developers are not. I got curious and decided to do some research, and this post is a summary of major features being open-sourced.
 
 For clarity we can split up the JDK into 4 parts: **Java the Language**, the **Core Java Libraries**, **Tooling**, and **The JVM** itself.
 
@@ -89,9 +89,9 @@ Project lead [Marcus Hirt](https://twitter.com/hirt) spoke about them at JFokus 
 
 OpenJDK included a set of root Certificate Authority certificates for the first time in the JDK10 release.  Prior to 10, OpenJDK did not contain any of these certs so it was impossible to establish trusted and secure relationships using (eg) HTTPS without finding and importing certificates yourself. This change is a great help to developers who wish to develop secure applications on OpenJDK, and is discussed in more depth on [this post by James Connors](https://blogs.oracle.com/jtc/openjdk-10-now-includes-root-ca-certificates).
 
-### Tonga Tests
+### JVM Tests
 
-Tonga is a testing framework which is used by Oracle to run some tests of JDK functionality, both Oracle-proprietary and open. As is common in testing code, there is a dependency from the test code to the framework. However, Tonga contains some code which Oracle can't release under an open-source license. So, in fact Oracle engineers have been maintaining some closed tests of open functionality. So, engineers have been porting and writing new tests in OpenJDK - here's a series of announcements which in total add up to 900,000 lines of test code being added to OpenJDK: 
+Tonga is a testing framework which is used by Oracle to run some tests of JDK functionality, both Oracle-proprietary and open. As is common in testing code, there is a dependency from the test code to the framework. However, Tonga contains some code which Oracle can't release under an open-source license. So, in fact Oracle engineers have been maintaining some closed tests of open functionality. Engineers have been porting and writing new tests in OpenJDK - here's a series of announcements which in total add up to 900,000 lines of test code being added to OpenJDK: 
 [1](https://twitter.com/OpenJDK/status/996000521319313409)
 [2](https://twitter.com/OpenJDK/status/996000159870914560)
 [3](https://twitter.com/OpenJDK/status/995999825781981184)
