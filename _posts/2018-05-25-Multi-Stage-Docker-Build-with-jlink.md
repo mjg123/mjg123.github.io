@@ -11,11 +11,11 @@ tags:
 - draft
 ---
 
-As I have [written about before](https://mjg123.github.io/tags/#fnproject), I work on [Fn Project](https://fnproject.io) - a serverless compute platform that uses container images to define functions. Unlike some other FaaS platforms, Fn is not prescriptive about supported runtimes - [anything that can run in a container can be a function](https://medium.com/oracledevs/containers-vs-functions-51c879216b97). This means our users can benefit by improving how they create images.
+As I have [written about before](https://mjg123.github.io/tags/#fnproject), I work on [Fn Project](https://fnproject.io) - a serverless compute platform that uses container images to define functions. Unlike some other FaaS platforms, Fn is not prescriptive about supported runtimes - [anything that can run in a container can be a function](https://medium.com/oracledevs/containers-vs-functions-51c879216b97). This means that Fn's users can benefit by improving how they create images.
 
 The best advice I can give across all platforms - no matter what kind of thing you are putting in the function - is to _make your container images as small as possible_.
 
-Small images help in lots of ways. The most obvious is that it takes time to move data over a network. It's easy to create images which are hundreds of megabytes in size, but 100mb takes a whole second to copy over an uncontended gigabit ethernet, and can easily take more. Large images can take longer to build. I have also ovbserved that larger images take longer to start up, which you _do not want_ in a serverless platform.
+Small images help in lots of ways. The most obvious is that it takes time to move data over a network. It's easy to create images which are hundreds of megabytes in size, but 100mb takes a whole second to copy over an uncontended gigabit ethernet, and can easily take more. Large images can take longer to build. I have also observed that larger images take longer to start up, which you _do not want_ in a serverless platform.
 
 This post will detail a couple of ways you can make smaller images for your Java applications. We'll start with a naive approach then make the image over 90% smaller using [jlink](https://docs.oracle.com/javase/9/tools/jlink.htm#JSWOR-GUID-CECAC52B-CFEE-46CB-8166-F17A8E9280E9), [Portola](https://wiki.openjdk.java.net/display/portola/Main) and ["multi-stage" Docker builds](https://docs.docker.com/develop/develop-images/multistage-build/).
 
@@ -23,7 +23,7 @@ This post will detail a couple of ways you can make smaller images for your Java
 
 A class:
 
-```
+```java
 public class HelloWorld {
   public static void main(String... args){
     System.out.println("Hello from a container!");
