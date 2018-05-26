@@ -151,7 +151,7 @@ The `RUN` directive uses `jlink` to create a small JDK containing only the `java
 FROM oraclelinux:7-slim
 ```
 
-It looks like we're starting again! It's a new stage. There's no need to use the same base image for each stage, but it's convenient for me here.
+It looks like we're starting again! It's a _new stage_. There's no need to use the same base image for each stage, but it's convenient for me to do so here.
 
 ```
 COPY --from=build /linked /opt/jdk/
@@ -167,7 +167,7 @@ CMD ["java", "-showversion", "HelloWorld"]
 
 As before we need to add the code we want to run, and set the `CMD`.
 
-Copying only what we need from one stage to the next is one way that we can use multi-stage builds to reduce image size. The other way I will reduce this image's size is by focussing on the base image we're using.
+Copying only what we need from one stage to the next is a great way to reduce image size. The other way I will use here to to reduce the size of the base image.
 
 ## Portola
 
@@ -175,7 +175,7 @@ As Java programmers we're used to relying on the JVM to abstract us away from th
 
 As we saw, the Oracle Linux 7-slim base image is over 100mb, but we can use [Alpine Linux](https://alpinelinux.org/) as our base image instead. Alpine is a really tiny Linux distribution (4.15mb!), but it's powerful enough to run a JVM.
 
-Because Alpine uses [musl-libc](https://www.musl-libc.org/) instead of glibc we can't use a regular JVM but in the JDK11 Early-Access builds there is a build for MUSL. This is a port of the JVM which runs on musl-bases Linuxes, the project which produces it is called [Project Portola](http://openjdk.java.net/projects/portola/).
+Because Alpine uses [musl-libc](https://www.musl-libc.org/) instead of glibc we can't use a regular JVM but in the JDK11 Early-Access builds there is a build for musl. The port of the JVM which runs on musl-based Linuxes is called [Project Portola](http://openjdk.java.net/projects/portola/).
 
 So, the multi-stage Dockerfile now looks like this:
 
@@ -207,12 +207,12 @@ So, the behaviour is exactly the same, but check this out:
 portola-jlink latest  3007ac31eedb  2 minutes ago   37.9MB
 ```
 
-This image is less than 38mb! More than 90% file size reduction since the beginning but the resulting behaviour is exactly the same. How wonderful!
+This image is less than 38mb! More than 90% file size reduction since the beginning but the resulting behaviour is exactly the same. How wonderful.
 
 
 ### A Quick Word About Portola
 
-Portola is a JDK11-EA build at the moment. The decision about whether to make it a supported build for 11 onwards is going to be made soon, and will be highly driven by the expected demand for it. So if you are interested in using it, please try it out and talk to us!
+Portola is a JDK11-EA build at the moment. The decision about whether to make it a supported build for 11 onwards is going to be made soon, and will be highly driven by the expected demand. So if you are interested in using it, please try it out and talk to us! Thanks.
 
 
 # Summary
