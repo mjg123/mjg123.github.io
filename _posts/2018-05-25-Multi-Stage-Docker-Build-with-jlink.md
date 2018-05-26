@@ -8,7 +8,6 @@ tags:
 - jlink
 - docker
 - fnproject
-- draft
 ---
 
 As I have [written about before](https://mjg123.github.io/tags/#fnproject), I work on [Fn Project](https://fnproject.io) - a serverless compute platform that uses container images to define functions. Unlike some other FaaS platforms, Fn is not prescriptive about supported runtimes - [anything that can run in a container can be a function](https://medium.com/oracledevs/containers-vs-functions-51c879216b97). This means that Fn's users can benefit by improving how they create images.
