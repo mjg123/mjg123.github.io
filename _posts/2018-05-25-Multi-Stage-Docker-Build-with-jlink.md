@@ -84,13 +84,11 @@ This image is 461mb! Nearly half a gigabyte! It's crazy. `oraclelinux:7-slim` is
 
 Many languages (including Java) need to be compiled before they can be run. Often the tools you need for compilation are not needed at runtime. For example you might need maven to build your project, but you don't need maven when you run it.
 
-Multi-stage Docker builds let you have many named stages, each of which can be used as a basis for later stages. Commonly you would have a _build_ stage with compiler and build tools in it, and a _run_ stage which only needs the files you want at runtime. For this example I'll use `jlink` in a _build_ stage to create a small JRE which I can copy into a _run_ stage.
+Multi-stage Docker builds let you have many named stages, each of which can be used as a basis for later stages. Commonly you would have a _build_ stage with compiler and build tools in it, and a _run_ stage which only needs the files you want at runtime. The final stage is the only one which becomes the image, so it won't contain contents of the previous stages unless you copy them explicitly.
 
-## jlink
+## jlink in a Build Stage
 
-The biggest target for reduction in our original image is the JDK, at 329mb.  Lets see how to reduce this with a multi-stage build.
-
-A multi-stage Dockerfile looks like multiple Dockerfiles in the same file, and you can copy a subset of file from one stage to another. The final stage is the only one which becomes the image, so it won't contain contents of the previous stages unless you copy them explicitly. This is our multi-stage build which uses `jlink` in the first stage:
+For this example I'll use `jlink` in a _build_ stage to create a small JRE which I can copy into a _run_ stage. This is our multi-stage build which uses `jlink` in the first stage:
 
 ```
 FROM oraclelinux:7-slim AS build
@@ -98,8 +96,8 @@ ADD openjdk-10_linux-x64_bin.tar.gz /opt/jdk
 ENV PATH=$PATH:/opt/jdk/jdk-10/bin
 RUN ["jlink", "--compress=2", \
      "--module-path", "/opt/jdk/jdk-11/jmods", \
-	 "--add-modules", "java.base", \
-	 "--output", "/linked"]
+     "--add-modules", "java.base", \
+     "--output", "/linked"]
 
 FROM oraclelinux:7-slim
 COPY --from=build /linked /opt/jdk/
