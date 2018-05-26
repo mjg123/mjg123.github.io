@@ -123,7 +123,7 @@ jlink   latest   7b17ae206906    About a minute ago   152MB
 
 152mb is already a significant improvement over the 461 we had before. We could stop here, having saved 2/3 of the size of the image. But we won't.
 
-### A Multi-Stage Dockerfile in Detail
+### A Multi-Stage Dockerfile: Line-by-Line
 
 ```
 FROM oraclelinux:7-slim AS build
