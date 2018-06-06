@@ -10,9 +10,11 @@ tags:
 
 # Young Matthew dreams of travel...
 
+As a kid I was always interested in travel. Some of my best early memories are of playing with other kids on campsites in France, having fun even though we couldn't speak each others' languages.
+
 ![Young Gilliard]({{ "assets/young_gilliard.jpg" | relative_url }})
 
-As a kid I was always interested in travel. Some of my best early memories are of playing with other kids on campsites in France, having fun even though we couldn't speak each others' languages. Despite getting my best grades in maths and sciences I studied languages so that I would be able to travel once I became grownup. I even started off at university on a joint-honours course of Engineering with French.
+Despite getting my best grades in maths and sciences I studied languages so that I would be able to travel once I became grownup. I even started off at university on a joint-honours course of Engineering with French.
 
 # ...grows up, the dream fades...
 
