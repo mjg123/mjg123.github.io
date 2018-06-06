@@ -11,7 +11,7 @@ tags:
 
 # Young Matthew dreams of travel...
 
-[pic of young me]
+![Young Gilliard]({{ "assets/young_gilliard.jpg" | relative_url }})
 
 Even from a young age I was always interested in travel. Some of my best early memories are of playing with other kids on a campsite in France, having fun even though we couldn't speak each others' language. Despite getting my best grades in maths and sciences I kept up studying languages so that I would one day be able to work abroad, and I even started off at university on a joint-honours course of Engineering with French.
 
@@ -27,7 +27,7 @@ Immediately I learned two big things:
   - Getting over my shyness and fear of public speaking was going to be mandatory
   - Being able to do something well does not naturally translate to being able to teach it well
 
-[Picture of inagakuen or of me with the class]
+![English Club]({{ "assets/english_club.jpg" | relative_url }})
 
 Soon, with my Cambridge English Teachers certificate in-hand, I arrived at Inagakuen Public High School in Saitama Japan for what turned out to be 3 of the best years. Much fun was had doing all kinds of things, but the most rewarding part was being able to help these kids get better at speaking English while improving my own skills as a teacher. They wanted to learn and to improve, and I wanted to create an environment where they could.
 
