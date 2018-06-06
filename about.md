@@ -8,7 +8,7 @@ permalink: /about/
 
 This is what I look like. I work for Oracle in Bristol (UK) on Open-Source, Java and Serverless/Cloud infrastructure. Opinions and comments are my own.
 
-I love speaking and teaching and am looking for opportunities to do more of it.  The speaker bio I usually use is:
+I love speaking and teaching and am looking for opportunities to do more of it. [Here's why]({% post_url 2018-06-06-Why-I-DevRel %}).  The speaker bio I usually use is:
 
 > Matthew is a (somewhat) functional programmer who enjoys all kinds of language nerdery as well.
 >
