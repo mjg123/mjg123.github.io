@@ -6,6 +6,7 @@ summary:
 tags:
 - personal
 - devrel
+- not-computers
 ---
 
 # Young Matthew dreams of travel...
@@ -32,7 +33,7 @@ Soon enough though, with my English Teacher certificate in-hand I arrived at [In
 
 ![English Club]({{ "assets/english_club.jpg" | relative_url }})
 
-After my JET contract had expired, I knew I would have to switch back to working in IT. We were married with a child, and English teaching in Japan - while fun - does not pay well enough to easily support a family of 3. I also missed the technical challenges of programming and was jealous of some of the cool stuff my friends were working on. This was [2009](https://www.networkworld.com/article/2271254/software/cloud-computing--hot-technology-for-2009.html) - there was a Cambrian explosion of cloud and internet services going on which I wanted to be part of.
+After my JET contract had expired, I knew I would have to switch back to working in IT. We were married with a child, and teaching English in Japan - while fun - does not pay well enough to easily support a family of 3. I also missed the technical challenges of programming and was jealous of some of the cool stuff my friends were working on. This was [2009](https://www.networkworld.com/article/2271254/software/cloud-computing--hot-technology-for-2009.html) - there was a Cambrian explosion of cloud and internet services going on which I wanted to be part of.
 
 # Back to software
 
@@ -46,6 +47,6 @@ So now I'm a kind of teacher again. Nowadays my subjects are Fn, Serverless and 
 
 Honestly, I don't think I would have been able to make the decision to do switch to DevRel without a couple of groups of people:
   - Firstly role-models - thanks to his amazing amazing book [Apprenticeship Patterns](https://www.goodreads.com/book/show/5608045-apprenticeship-patterns) I had met [Ade Oshineye](http://www.oshineye.com) a few years ago, which I believe was the first time I became aware of the possibility of a career as a developer advocate. I am a big fan of how [Trisha Gee](https://trishagee.github.io/) keeps consistently creating such useful stuff, and recently the influx of excellent [advocates at Azure](https://developer.microsoft.com/en-us/advocates/index.html) has been great source of inspiration too.
-  - Secondly, I want to credit the people who have supported and encouraged me at Oracle - [Martin](https://twitter.com/martinahogg), [Thom](https://twitter.com/thomleg) and [Chad](https://twitter.com/chadarimura). It is a great job: _challenging_, _fun_, _rewarding_, I get to travel a lot, and best of all it _helps other people_.
+  - Secondly, I want to credit the people who have supported and encouraged me at Oracle - [Martin](https://twitter.com/martinahogg), [Thom](https://twitter.com/thomleg) and [Chad](https://twitter.com/chadarimura). It is a great job: _challenging_, _fun_, _rewarding_, I get to travel a lot, and best of all it _helps other people get better at what they want to do_.
 
 So, that's why I work in Developer Relations. How about you?
