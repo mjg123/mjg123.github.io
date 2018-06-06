@@ -10,7 +10,7 @@ This is what I look like. I work for Oracle in Bristol (UK) on Open-Source, Java
 
 I love speaking and teaching and am looking for opportunities to do more of it. [Here's why]({% post_url 2018-06-06-Why-I-DevRel %}).  The speaker bio I usually use is:
 
-> Matthew is a (somewhat) functional programmer who enjoys all kinds of language nerdery as well.
+> Matthew is a (somewhat) functional programmer who enjoys all kinds of language nerdery.
 >
 > He currently works on open-source code at Oracle, helping to make Java in the cloud be as good as it can. If not there, you might find him at a local meetup, teaching kids to code, or away from computers hiking and running in Southwest England.
 > 
