@@ -6,7 +6,6 @@ summary:
 tags:
 - personal
 - devrel
-- draft
 ---
 
 # Young Matthew dreams of travel...
@@ -17,17 +16,17 @@ As a kid I was always interested in travel. Some of my best early memories are o
 
 # ...grows up, the dream fades...
 
-Eventually I graduated with a degree in mathematics, without French. I often dreamed of working abroad, but soon I got a job as a programmer in the UK. I learned that I actually enjoyed working with software and with software people, and what's more I seemed to have a knack for it. So I let my travelling dreams fade for a while as I absorbed what I could about the world of creating software for money.
+Eventually I graduated with a degree in mathematics, without French. I often dreamed of working abroad, but soon I got a job as a programmer in the UK. I learned that I actually enjoyed working with software and with software people, and what's more I seemed to have a knack for it. So I let my travelling dreams fade for a while and absorbed what I could about the world of creating software for money.
 
 # ...and comes back!
 
-Life took a turn when I met a Japanese woman who was working in the UK and we became good friends (spoiler: we've now been married over a decade). It was easy for her to persuade me to apply for the [JET programme](http://jetprogramme.org/en/), and work in a Japanese public school. There was some sadness - I'd been lucky to work with some great people in my career to date - I'd found some early agile devotees, TDD, XP, distributed apps - but this was too good a chance to pass up. So I quit my job and started studying the art of teaching English.
+Life took a turn when I met a Japanese woman who was working in the UK and we became good friends (spoiler: we've now been married over a decade). It was easy for her to persuade me to apply for the [JET programme](http://jetprogramme.org/en/) - I could work in a Japanese public school! There was some sadness when I passed the JET interviews - I'd been lucky to work with some great people in my career to date: I'd found some early agile devotees, TDD, XP, distributed apps - but this was too good a chance to pass up. So I quit my job and started studying the art of teaching English.
 
 Immediately I learned two big things:
   - Getting over my shyness and fear of public speaking was going to be *mandatory*
   - Being able to do something well *does not* naturally translate to being able to teach it well
 
-Soon enough, with my English Teacher certificate in-hand I arrived at [Inagakuen Public High School](http://jetprogramme.org/en/) in [Saitama](https://www.anime-planet.com/images/characters/saitama-48975.jpg) Japan for what turned out to be 3 of the best years. Much fun was had doing all kinds of things, but the most rewarding part was being able to help these kids get better at speaking English while improving my own skills as a teacher. They wanted to learn and to improve, and I wanted to create an environment where they could.
+Soon enough though, with my English Teacher certificate in-hand I arrived at [Inagakuen Public High School](http://jetprogramme.org/en/) in [Saitama](https://www.anime-planet.com/images/characters/saitama-48975.jpg) Japan for what turned out to be 3 of the best years. Much fun was had doing all kinds of things, but the most rewarding part was being able to help these kids get better at speaking English while improving my own skills as a teacher. They wanted to learn and to improve, and I wanted to create an environment where they could.
 
 ![English Club]({{ "assets/english_club.jpg" | relative_url }})
 
