@@ -46,6 +46,6 @@ So now I'm a kind of teacher again. Nowadays my subjects are Fn, Serverless and 
 
 Honestly, I don't think I would have been able to make the decision to do switch to DevRel without a couple of groups of people:
   - Firstly role-models - thanks to his amazing amazing book [Apprenticeship Patterns](https://www.goodreads.com/book/show/5608045-apprenticeship-patterns) I had met [Ade Oshineye](http://www.oshineye.com) a few years ago, which I believe was the first time I became aware of the possibility of a career as a developer advocate. I am a big fan of how [Trisha Gee](https://trishagee.github.io/) keeps consistently creating such useful stuff, and recently the influx of excellent [advocates at Azure](https://developer.microsoft.com/en-us/advocates/index.html) has been great source of inspiration too.
-  - Secondly, I want to credit the people who have supported and encouraged me at Oracle - [Martin](https://twitter.com/martinahogg), [Thom](https://twitter.com/thomleg) and [Chad](https://twitter.com/chadarimura). It is _challenging_, _fun_, _rewarding_, I get to travel a lot, and best of all it _helps other people_.
+  - Secondly, I want to credit the people who have supported and encouraged me at Oracle - [Martin](https://twitter.com/martinahogg), [Thom](https://twitter.com/thomleg) and [Chad](https://twitter.com/chadarimura). It is a great job: _challenging_, _fun_, _rewarding_, I get to travel a lot, and best of all it _helps other people_.
 
 So, that's why I work in Developer Relations. How about you?
