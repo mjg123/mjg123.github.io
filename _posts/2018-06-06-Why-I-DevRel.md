@@ -27,9 +27,9 @@ Immediately I learned two big things:
   - Getting over my shyness and fear of public speaking was going to be mandatory
   - Being able to do something well does not naturally translate to being able to teach it well
 
-![English Club]({{ "assets/english_club.jpg" | relative_url }})
+Soon, with my Cambridge English Teachesr certificate in-hand, I arrived at Inagakuen Public High School in Saitama Japan for what turned out to be 3 of the best years. Much fun was had doing all kinds of things, but the most rewarding part was being able to help these kids get better at speaking English while improving my own skills as a teacher. They wanted to learn and to improve, and I wanted to create an environment where they could.
 
-Soon, with my Cambridge English Teachers certificate in-hand, I arrived at Inagakuen Public High School in Saitama Japan for what turned out to be 3 of the best years. Much fun was had doing all kinds of things, but the most rewarding part was being able to help these kids get better at speaking English while improving my own skills as a teacher. They wanted to learn and to improve, and I wanted to create an environment where they could.
+![English Club]({{ "assets/english_club.jpg" | relative_url }})
 
 After my JET contract had expired, I knew I would have to switch back to working in IT. By this time we were married with a child and English teaching in Japan, while fun, is not a job that pays well enough to easily support a family of 3. I also missed the technical challenges of programming and was jealous of some of the cool stuff my friends were working on. This was 2009 - there was a Cambrian explosion of cloud and internet services going on which I wanted to be part of.
 
