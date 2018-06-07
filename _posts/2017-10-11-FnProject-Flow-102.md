@@ -9,6 +9,8 @@ tags:
 - fdk-java
 ---
 
+*Important note:* This blog was correct at the time of posting but Fn has changed since. An up-to-date version of this document is maintained at [https://github.com/fnproject/tutorials/tree/master/Flow102](https://github.com/fnproject/tutorials/tree/master/Flow102)
+
 If you haven't read [Flow 101](/2017/10/10/FnProject-Flow-101.html) yet, I encourage you to start there and get grounded in what Flow is, what it's for and how it works.
 
 In this post I'll go through how to build a more complex Flow with parallelism and asynchronous chaining. I'll assume you have set up the services as described in the Flow 101.

@@ -9,7 +9,7 @@ tags:
 - fdk-java
 ---
 
-NB: this post was updated 8/1/18 to account for: changed image names, "hot" invocation is now on by default.
+*Important note:* This blog was correct at the time of posting but Fn has changed since. An up-to-date version of this document is maintained at [https://github.com/fnproject/tutorials/tree/master/Flow101](https://github.com/fnproject/tutorials/tree/master/Flow101)
 
 [FnProject](http://fnproject.io) is out **now**. [Chad Arimura](https://twitter.com/chadarimura/) explained the motivation and structure of the project in a good amount of detail [in his recent post](https://twitter.com/chadarimura/status/917706536759234560), with one of the major components being **Fn Flow**. Flow allows developers to build high-level workflows of functions with some notable features:
 
