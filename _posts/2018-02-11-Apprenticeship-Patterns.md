@@ -6,6 +6,6 @@ summary:    Substrate VM
 tags:
 - draft
 - fnproject
-- jvm
+- java
 ---
 

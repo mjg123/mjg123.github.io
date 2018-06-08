@@ -4,9 +4,7 @@ title:      To Mock a Mockingbird
 date:       2017-12-24 10:00:00
 summary:    To Mock A Mockingbird
 tags:
-- maths
 - not-computers
-- book
 ---
 
 ![Smullyan]({{ "assets/smullyan2.jpg" | absolute_url }})

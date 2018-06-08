@@ -4,7 +4,7 @@ title:      Quicker Clojure startup with AppCDS and AOT
 date:       2017-10-04 21:55:19
 summary:    Application CDS for quick Clojure startup
 tags:
-- jvm
+- java
 - clojure
 ---
 

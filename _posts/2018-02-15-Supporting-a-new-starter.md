@@ -5,7 +5,7 @@ date:       2018-02-15 10:00:00
 summary:    How we look after people when they join us
 tags:
 - not-computers
-- people
+- devrel
 ---
 
 Recently the teams in my workplace have decided to hire several junior engineers. We have been able to get several excellent applicants through outreach to universities, internships, meetups and the hard work of our recruitment team. But this post isn't about that - it's about the _next_ problem: **how to support junior engineers when they start working with us?**

@@ -5,8 +5,7 @@ date:       2018-05-26 10:00:00
 summary:    Smaller images for faster startup!
 tags:
 - java
-- jlink
-- docker
+- containers
 - fnproject
 ---
 

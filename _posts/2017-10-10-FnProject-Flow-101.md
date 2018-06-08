@@ -5,7 +5,7 @@ date:       2017-10-10 09:00:00
 summary:    First intro to FnProject Flow
 tags:
 - fnproject
-- flow
+- fn-flow
 - fdk-java
 ---
 

@@ -4,7 +4,7 @@ title:      Inexact Method References
 date:       2017-10-23 12:31:19
 summary:    TIL that method references have complicated rules
 tags:
-- java-TIL
+- java
 ---
 
 TIL that method references have complicated rules.

@@ -5,7 +5,6 @@ date:       2018-05-25 10:00:00
 summary:    Roundup of Oracle JDK features being added to OpenJDK
 tags:
 - java
-- jvm
 ---
 
 At Java One in Oct 2017 Mark Cavage announced that [Oracle will be open-sourcing the proprietary features of the Oracle JDK](https://youtu.be/Tf5rlIS6tkg?t=567). This got a big round of applause at the time, and Mark Reinhold got another for repeating that pledge in his [State of OpenJDK](https://fosdem.org/2018/schedule/event/state_openjdk/) talk at FOSDEM Feb 2018. Donald Smith, Sr Director of Product Management in the Java Platform Group writes ["our intent is that within a few releases there should be no technical differences between OpenJDK builds and Oracle JDK binaries"](https://blogs.oracle.com/java-platform-group/faster-and-easier-use-and-redistribution-of-java-se).

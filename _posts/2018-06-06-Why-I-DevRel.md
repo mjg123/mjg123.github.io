@@ -4,7 +4,6 @@ title:      Why I Work in DevRel
 date:       2018-06-06 12:11:05
 summary:    
 tags:
-- personal
 - devrel
 - not-computers
 ---

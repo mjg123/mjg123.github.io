@@ -4,9 +4,7 @@ title:      Introduction to jlink
 date:       2017-11-07 12:31:19
 summary:    /me dips toe into jlink
 tags:
-- java-TIL
-- jlink
-- jvm
+- java
 ---
 
 Naturally, Question 1 is: What is `jlink`?

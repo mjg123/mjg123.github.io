@@ -4,7 +4,7 @@ title:      Fast JVM startup with JDK 9
 date:       2017-10-02 12:31:19
 summary:    Tuning for short-lived JVM processes
 tags:
-- jvm
+- java
 ---
 
 Recently I've been working on a project where the execution time of short-lived JVM workloads is a critical factor in overall system performance. This isn't a particularly common type of workload for the JVM, which is usually long-lived apps that allow HotSpot profiling and optimising to do a really amazing job of speeding your code up.
