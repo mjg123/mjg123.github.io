@@ -1,6 +1,5 @@
 ---
 layout: page
-title: bcnUnconf
 permalink: /bcnUnconf/
 ---
 
