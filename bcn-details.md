@@ -4,7 +4,6 @@ title:
 permalink: /bcnUnconf/
 ---
 
-# Bristol Cloud Native Unconference
 
 ## Bristol Cloud Native Unconference
 
