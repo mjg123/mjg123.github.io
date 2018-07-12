@@ -4,8 +4,18 @@ title: .
 permalink: /bcnUnconf/
 ---
 
+NB: This is a draft of the website - I would expect each top-level section here to be a separate page. We would have:
 
-## Bristol Cloud Native Unconference
+  - Welcome
+  - What is an Unconference?
+  - The Event
+  - Charities
+  - Code of Conduct
+  - Contact
+  - Sponsors
+
+
+## Welcome to Bristol Cloud Native Unconference
 
 We are delighted to be hosting the first Bristol Cloud Native Unconference on *November 23rd 2018*.
 
@@ -29,7 +39,7 @@ If you want to talk chaos monkeys in the Wildlife Photographer of the Year exhib
 
 The conference is _free_ to attend. We ask that if you are able to you donate an amount to a tech-related charity of your choice as part of your registration. We have some suggestions on our [charities page](TODO:link). We also ask you to register [here](TODO:link), and if you change your mind then please remember to unregister. Once you have registered we encourage you to start talking to other attendees on our [unconference slack](TODO).
 
-## The Unconference
+## What is an Unconference
 
 Unconferences are derived from the [Open Space format](http://openspaceworld.org/wp2/explore/open-space-elevator-speeches/), and we follow their principles:
 
