@@ -1,11 +1,10 @@
 ---
 layout:     post
-title:      Experimental Support for SVM
+title:      Apprenticeship Patterns
 date:       2018-02-11 10:00:00
-summary:    Substrate VM
+summary:    Book review
 tags:
 - draft
-- fnproject
-- java
+- not-computers
 ---
 
