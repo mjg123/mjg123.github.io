@@ -2,7 +2,7 @@
 layout:     post
 title:      The new Java HTTP client and the CompletionStage API
 date:       2018-09-25 10:00:00
-summary:    Java 11
+summary:    Happy New-Java Day!
 tags:
 - java
 ---
