@@ -64,7 +64,7 @@ However, my favourite feature is how asynchronous calls are implemented using `C
 
 ## The CompletionStage API and CompletableFutures
 
-When Java 8 was released there were a lot of attention-grabbing features such as lambdas and the streams API, so the CompletionStage API is often overlooked. In my experience very few Java developers know about it, and even fewer use it, but it's an incredibly powerful framework for building asynchronous workflows.
+When Java 8 was released there were a lot of attention-grabbing features such as lambdas and the streams API, so the CompletionStage API is often overlooked. In my experience very few Java developers know about it, and even fewer use it, but it's an very powerful framework for building asynchronous workflows.
 
 The basics: [`CompletionStage`](https://download.java.net/java/early_access/jdk11/docs/api/java.base/java/util/concurrent/CompletionStage.html) is an interface. The only implementation is [`CompletableFuture`](https://download.java.net/java/early_access/jdk11/docs/api/java.base/java/util/concurrent/CompletionStage.html). A `CompletableFuture` also implements [`java.util.concurrent.Future`](https://download.java.net/java/early_access/jdk11/docs/api/java.base/java/util/concurrent/Future.html), as added in Java 5.
 
