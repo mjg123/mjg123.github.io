@@ -105,7 +105,7 @@ var image = resp
 
 Hopefully it's easy to see how [`thenApply`](https://download.java.net/java/early_access/jdk11/docs/api/java.base/java/util/concurrent/CompletionStage.html#thenApply(java.util.function.Function)) can make chaining methods together simple. The CompletableFuture implementation takes care of applying each stage once the previous one has finished, so this whole flow is asynchronous and we still need to call `.get()` if we want to block on the resulting `BufferedImage`.
 
-Instead of just getting the BufferedImage, lets use an (imaginary) API to detect moods from images of faces. We have 3 different algorithms in our (imaginary) API, which can all be run concurrently:
+However, instead of just getting the BufferedImage, lets use an (imaginary) API to detect moods from images of faces. We have 3 different algorithms in our (imaginary) API, which can all be run concurrently:
 
 ```java
 var mood1 = image.thenApply( moodDetectionSimple );
