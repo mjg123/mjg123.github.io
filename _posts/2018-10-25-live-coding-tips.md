@@ -1,0 +1,50 @@
+---
+layout:     post
+title:      Live coding presentation tips
+date:       2018-10-25 22:00:00
+summary:    or how I learned to stop worrying and love the terminal
+tags:
+- conference
+- devrel
+---
+
+Today was a first for me.  I have been to many conferences in my career but today was the first time that _every single talk_ included a live-coded demo.  I mean the speaker jumped out of their slide deck, opened a terminal window and started typing commands. One brave soul only had 3 slides:  *Hello*, *Live Demo*, *Thanks for listening*.
+
+I have to say that I absolutely love this style of presenting. Firstly seeing someone actually do _the thing_ is 100x more meaningful to me than describing _the thing_.  Then there's a touch of authenticity that I'm listening to someone who really understands the technical side of what they're talking about. And we shouldn't forget the exciting risk that it might all go horribly wrong and be entertaining for all the wrong reasons.
+
+Personally I try to keep some live demos and/or code in each of my talks. Frankly they take a lot of time to devise, set up and practise - when a simple show-slide-and-talk-about-it would be much quicker.  And I often worry that I'm not doing it well/making some mistakes/being stupid, so after seeing so much live-coding in talks today I [asked for advice](https://twitter.com/MaximumGilliard/status/1055427965947928576) about doing it and am distilling my thoughts and those from the people kind enough to reply into a list of...
+
+## Tips for live coding during a presentation
+
+### Preparing the Scene
+
+  - Know what is and isn't relevant to your talk. Time is of the essence in a talk, you have a lot to say after all, so make sure to keep the irrelevant bits as quick as possible.
+  - If you are working on a VM, have it up beforehand. Unless you talk is about booting VMs that 45s it takes to boot up is _just_ long enough for the audience to lose focus on what you're doing.  I'm looking at you, Minikube.
+  - Install the tools you need beforehand. People don't want to watch you run `apt install tree` or whatever it is.  If you're demoing on a fresh VM (which I like to do) then script the setup of the VM somehow, as you'll likely be doing it several times.
+  - The scripting should include resetting all the files you need. Usually there's a config file that you've edited or some output logs which need tidying up. Just write a `prepare-for-demo.sh` or use `git reset && git clean` and be done with it.
+  - If you need several similar files (for example, several evolutions of the same config file), create them all in advance and give them discriptive names. Don't be building them up and editing them during the talk - your time is better spent talking about your topic. If your topic is 'editing text files' then disregard this advice.
+
+### Terminal Trouble
+
+  - Colour scheme:  I find white-on-black easier to read on cheap/weak projectors. If you get a chance to try it our beforehand then do so.  Colourised terminals are wonderful to use up close but be aware that other people may perceive colours differently to you.  In any case make sure there is good contrast between the text and the background.
+  - Font size:  Bigger is better, up to a point. In the 5 minutes before you start you can open a terminal and make it the right size. I enjoy running to the back of the room to check it myself as it gives me a chance to chat to people as they are arriving (and gives me some way to use up my nervous energy). Resizing the font on the fly is OK but it's annoying if that also resizes the terminal window and you lose time dealing with that. Learn your keyboard shortcuts, and ask people at the back for a thumbs-up.
+  - Font size II:  If the text is so large that lines wrap and it all becomes messy then you have a problem. What is the longest line in your demo? How does it look? Maybe you have to break it into multiple lines with backslashes. Learn what `ctrl-x-e` does in your shell.
+  - Prompt: I have spent more hours than I care to admit making a beautiful and info-dense CLI prompt. But in a live demo the calculations for the value of screen real estate are different. Something like `export PS1=$'conf-name:topic\n> '` has worked well for me in the past - people don't usually care about the name of your cwd. If you have several demos, consider different prompts so that people can tell easily that you're using a different terminal
+  - Commands: Use `alias` judiciously. We all make a lot of typos, especially under pressure. `alias k=kubectl` goes a long way to fixing that (as well as saving time, and actually being a useful tip for your audience too).
+  - Commands II, long commands: Typing is slower than talking, and _a lot_ slower than thinking. `ctrl-r` is your friend. I like to hashtag/comment my commands like: `export JAVA_HOME=/home/mjg/tools/jdk/jdk-11 #jdk11` then `ctrl-r #jdk11` will find it easily. You can concentrate on explaining the important bits of the command without worrying about fat fingers. Try to not include unnecessary options and flags.
+  - Showing file contents: If you need to show what's in a config file, or some source code, `cat` doesn't cut it. I prefer something with syntax highlighting, like maybe vim or my new favourite: [bat](https://github.com/sharkdp/bat).
+
+### Switching between code and slides
+
+  - I have yet to find a nicer way to do this than having the slides and terminal(s) on separate workspaces in i3wm. If you are using an inferior window manager (ie _any other_ window manager) then you may be stuck with un-fullscreening the slides (which shows the ugly slide editing interface), alt-tabbing to the terminal and carrying on. Mac OS is especially awful at this.
+  - Once nice trick I have seen is to have a mostly-blank slide with a diagram in the corner and using a transparent background terminal on top of it, to show text and diagram at once. YMMV but it worked nicely when I saw it.
+
+### Dealing with multiple monitors
+  - A lot of times there will be people who can't see the whole screen. The bottom of the screen is especially likely to be hidden behind the head of the tall person in front, so try to keep the action in the top half if you can. `ctrl-l` is helpful here.
+  - Speaker notes, terminals and mirroring:  I face this problem often - I have some slides with speaker notes, so I need to use a dual-monitor setup for that part of my talk, but then during the coding part I _need_ to see the terminal so I want the screens to be mirrored. This is tricky. The best AV setups will have a small front-of-house monitor showing you what's on the big screen behind you, but smaller venues won't have this and it's very awkward to type onto a terminal behind you.  If you're on Linux then a couple of scripts with `xrandr` might do the job but it's still fiddly. One interesting solution I saw was to use tmux with two terminal clients attached, one on the laptop screen and one on the big screen.
+
+
+### When it goes wrong
+  - It inevitably will go wrong. No matter how careful you are it's easy to forget something, or do things in the wrong order.  Have a sense of humour and be prepared to explain what _should_ have happened. Don't get carried away trying to debug it - often someone in the audience will have spotted your mistake so if the thing is critical then you can just ask. My worst experience of this was typo-ing a command which left a root-owned file in the cwd then docker refused to build images. I was at the point of blowing off the whole demo (which would have made for a crappy talk TBH) when some kind sould in the 3rd row schooled me on what I'd done.
+  - Do you depend on internet connectivity during your talk?  Do you need to?  I watched Kelsey Hightower deal with a dropped wifi connection during his DevNexus _keynote_ by calmly tethering to his phone and making a joke about his data plan. Are you as smooth as Kelsey? Is there _any way at all_ to do your demo without relying on internet connectivity? At least do all the big downloads in advance.
+  - A hugely helpful thing to have in your back pocket, in case of total failure, is a video of you sucessfully doing _the thing_.  Todo: recommended tools for creating them.
