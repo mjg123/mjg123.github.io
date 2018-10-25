@@ -22,9 +22,9 @@ Personally I try to keep some live demos and/or code in each of my talks, and fr
 ### Preparing the Scene
 
   - *Know what is and isn't relevant to your talk:* Time is of the essence (you have a lot to say after all) so make sure to keep the irrelevant bits as quick as possible, or better yet avoid them. Some sleight-of-hand is OK here.
-  - *Preparation I:* If you are working on a VM, have it booted beforehand. Unless you talk is actually about booting VMs, those 45s are _just_ long enough for the audience to lose focus on what you're doing.  I'm looking at you, Minikube.
-  - *Preparation II:* Install the tools you need beforehand. People don't want to watch you run `apt install tree` or whatever it is.  If you're demoing on a fresh VM (which I like to do) then script the setup of the VM somehow, as you'll likely be doing it several times.
-  - *Resetting the environment:* The scripting should include resetting all the files you need. Usually there's a config file that you've edited or some output logs which need tidying up. Just write a `prepare-for-demo.sh` or use `git reset && git clean` and be done with it.
+  - *Preparation I:* If you are working on a VM, have it booted beforehand. Unless your talk is actually about booting VMs, those 45s are _just_ long enough for the audience to lose focus on what you're doing.  I'm looking at you, Minikube.
+  - *Preparation II:* Install the tools you need beforehand. People don't want to watch you run `apt install tree` or whatever it is.  If you're demoing on a fresh VM (which I like to do) then script the setup of the VM somehow, as you'll likely be doing it several times. Your audience's time is a coin to be spent wisely.
+  - *Resetting the environment:* You should also automate resetting all the files you need back to the state you want at the start of your talk. Usually there's a config file that you've edited or some output logs which need tidying up. Just write a `prepare-for-demo.sh` or use `git reset && git clean` and be done with it.
   - *Preparing text files:* If you need several similar files (for example, several evolutions of the same config file), create them all in advance and give them discriptive names. Don't be building them up by editing during the talk - your time is better spent talking about your topic. Jokes about how you find vi hard to use are not as evergreen as you might think. If your topic is 'editing text files' then disregard this advice.
 
 ### Terminal Trouble
