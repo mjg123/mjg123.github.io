@@ -15,7 +15,7 @@ _[@mirocupak](https://twitter.com/mirocupak/) showing how it's done_
 
 I have to say that I absolutely love this style of presenting. Firstly seeing someone actually do _the thing_ is 100x more meaningful to me than describing _the thing_.  Then there's a touch of authenticity that I'm listening to someone who really understands the technical side of what they're talking about. And we shouldn't forget the exciting risk that it might all go horribly wrong and be entertaining for all the wrong reasons.
 
-Personally I try to keep some live demos and/or code in each of my talks, and frankly they take a lot of time to devise, set up and practise. A simple show-slide-and-talk-about-it would often be much quicker.  And I often worry that I'm not doing it well/making some mistakes/being stupid, so after seeing so much live-coding in talks today I [asked for advice](https://twitter.com/MaximumGilliard/status/1055427965947928576) about doing it and am distilling my thoughts and those from the people kind enough to reply into a list of...
+Personally I try to keep some live demos and/or code in each of my talks, and frankly they take a lot of time to devise, set up and practise. A simple slideshow-and-talk would often be much quicker.  And I often worry that I'm not doing it well/making some mistakes/being stupid, so after seeing so much live-coding in talks today I [asked for advice](https://twitter.com/MaximumGilliard/status/1055427965947928576) about doing it and am distilling my thoughts and those from the people kind enough to reply into a list of...
 
 ## Tips for live coding during a presentation
 
