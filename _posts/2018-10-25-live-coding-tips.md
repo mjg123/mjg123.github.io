@@ -59,6 +59,6 @@ then `ctrl-r #jdk11` will find it easily. You can concentrate on explaining the 
 
 ## Summarizing
 
-OK this post has turned out to be wayyyy longer than I expected, but I hope it's helpful. Thanks to all who contributed on Twitter and elsewhere. If you have more comments or suggestions please share!
+OK this post has turned out to be wayyyy longer than I expected, but I hope it's helpful. Thanks to all who contributed on Twitter and elsewhere. If you have more comments or suggestions please share, and Rock On with Live Coding in your talks!
 
 Big thanks to [@NikhilNanivade](https://twitter.com/NikhilNanivade) [@thomasj](https://twitter.com/thomasj) [@reclaro](https://twitter.com/reclaro) [@mirocupak](https://twitter.com/mirocupak) [@KateStanley91](https://twitter.com/KateStanley91) and [@Spektor03](https://twitter.com/Spektor03) for help & inspiration.
