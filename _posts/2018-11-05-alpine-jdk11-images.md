@@ -55,7 +55,7 @@ FROM alpine:latest as build
 ADD https://download.java.net/java/early_access/alpine/18/binaries/openjdk-12-ea+18_linux-x64-musl_bin.tar.gz /opt/jdk
 
 RUN ["/opt/jdk/jdk-12/jlink", "--compress=2", \
-     "--module-path", "/opt/jdk/jdk-11/jmods", \
+     "--module-path", "/opt/jdk/jdk-12/jmods", \
      "--add-modules", "java.base", \
      "--output", "/jlinked"]
 
