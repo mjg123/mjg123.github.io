@@ -17,7 +17,7 @@ If you are a conscientious image-builder, you will have heard many times the adv
   - they are faster to start, 
   - by removing unneeded things you are reducing the damage that a security exploit could do.
   
-This post talks through some of the options and pitfalls in building small container images based on Alpine Linux.
+This post talks through some of the options and pitfalls in building small JVM container images based on Alpine Linux.
 
 ## Alpine, Musl and the JVM
 
