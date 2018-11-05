@@ -29,7 +29,7 @@ Why am I telling you, dear Java programmer, about C and C++ Kernel APIs?  Well, 
 
 ## Project Portola
 
-So, we know there are some code changes needed to allow the JVM to run on musl-based systems - lucky for us then, that such changes _do exist_ in the repository of [Project Portola](https://openjdk.java.net/projects/portola/). Oracle is publishing Early-Access builds of the Portola code base for the in-development JDK version (currently [JDK 12](https://jdk.java.net/12)) and is gauging the interest in the port to decide how to move forward with it. Given the experimental status of the port there are not yet any GA versions of it. In fact I have not found any builds of OpenJDK 11 for Alpine publicly available from any vendor.
+So, we know there are some code changes needed to allow the JVM to run on musl-based systems - lucky for us then, that such changes _do exist_ in the repository of [Project Portola](https://openjdk.java.net/projects/portola/). Oracle is publishing Early-Access builds of the Portola code base for the in-development JDK version (currently [JDK 12](https://jdk.java.net/12)) and is gauging the interest in the port to decide how to move forward with it. Given the experimental status of the port there are not yet any GA versions of it. In fact I have not found any publicly available builds of OpenJDK 11 (or earlier) for musl from any vendor.
 
 But, don't worry, there is a way forward.
 
