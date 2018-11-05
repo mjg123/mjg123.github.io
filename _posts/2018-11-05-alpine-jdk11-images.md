@@ -9,32 +9,47 @@ tags:
 - draft
 ---
 
-If you are a conscientious container-image-builder, you will have heard many times the advice to keep images small. From Google (link), from me (link), from Red Hat or from someone else.  The reasons are numerous: small images are faster to copy around, faster to start, and by removing unneeded things you are reducing the damage that a security exploit could do. If you feel you need debugging tools in your container, you should be using sidecars (ie, container images containing debug tools that can be attached to running containers). Everything in your container images should earn its space.
+If you are a conscientious image-builder, you will have heard many times the advice to keep images small. From [Google](https://cloud.google.com/blog/products/gcp/7-best-practices-for-building-containers), from [me](https://vimeo.com/289497209), from [Red Hat](https://developers.redhat.com/blog/2016/03/09/more-about-docker-images-size/) or from someone else.  The reasons are numerous: 
+
+  - small images are faster to copy around, 
+  - they are faster to start, 
+  - by removing unneeded things you are reducing the damage that a security exploit could do.
+  
+  If you feel you need debugging tools in your container, you should be using sidecars (ie, containers containing debug tools that can be attached to other running containers). Everything in your container images should earn its space.
 
 ## Alpine, Musl and the JVM
 
-For many use-cases, Alpine Linux (link) is the ideal base image to use. First of all it's very small - 4.2mb (todo: check), which is about 3% of a typical "slim" version of a regular Linux distro. However, there is something you have to know about Alpine: it does not use GLibC (todo: check capitalization), instead they use Musl (link). What are glibc and musl? They are programming APIs which provide user code with access to Linux Kernel functionality, such as opening files or network connections. Although they are abstractions over the same underlying thing (the Linux Kernel binary interface), they expose slightly different APIs to a programmer. So C or C++ code which is compiled against glibc will not run on a musl system, and vice-versa. In fact, the code will need to be (slightly) different depending on which you are targetting.
+For many use-cases, [Alpine Linux](https://alpinelinux.org/) is the ideal base image to use. First of all it's very small - 4.4mb, which is only a couple of percent of the size of a typical "slim" Linux image.
 
-Why am I telling you, dear Java programmer, about C and C++ Kernel APIs?  Well, because you use an application written in C++ to do a lot of your work: The JVM!  And how the JVM interacts with the Linux kernel is critical to how it can be used in containers.  If you want to put your Java or Clojure or Kotlin or Scala application in an Alpine Linux container, you need to be able to run your JVM on musl!
+However, there is something you have to know about Alpine: it does not use **[glibc](https://www.gnu.org/software/libc/)**, instead it uses **[musl](https://www.musl-libc.org/)**. What are glibc and musl? They are programming APIs for the Linux Kernel, doing such things as opening files or network connections. Although they are abstractions over the same underlying thing (the Linux Kernel binary interface), they expose slightly different APIs. So C or C++ code which is compiled against glibc _will not run_ on a musl system, and vice-versa.
+
+Why am I telling you, dear Java programmer, about C and C++ Kernel APIs?  Well, because you use an application written in C++ to do a lot of your work: The JVM!  And how the JVM interacts with the Linux kernel is critical to how it can be used in containers.  If you want to put your Java or Clojure or Kotlin or Scala application in a container, and benefit from Alpine's small size, you need some way to run your JVM on musl!
 
 ## Project Portola
 
-As mentioned above, there are some code changes needed in the JVM to run on musl-based systems - and such changes do exist in the repository of [Project Portola](https://openjdk.java.net/projects/portola/).  Before JDK 11 was released it was possible to get early-access builds of the Portola codebase, but it did not graduate to a "General Availability" release, and now you cannot download Portola builds of JDK 11. There are early-access builds of JDK 12 for Alpine, based on Portola, at the [JDK12-ea downloads page](http://jdk.java.net/12/).  I have not found any builds of OpenJDK 11 for Alpine publicly available from any vendor.
+So, we know there are some code changes needed to allow the JVM to run on musl-based systems - lucky for us then, that such changes _do exist_ in the repository of [Project Portola](https://openjdk.java.net/projects/portola/).  Before JDK 11 was released it was possible to get early-access builds of the Portola codebase for 11, but it did not graduate to a "General Availability" release, and now you cannot download Portola builds of JDK 11. There are early-access builds of JDK 12 for Alpine, based on Portola, at the [JDK12-ea downloads page](http://jdk.java.net/12/). Oracle is still gauging support and testing/hardening it before Portola is ready for GA. In fact I have not found any builds of OpenJDK 11 for Alpine publicly available from any vendor.
 
-But, don't worry, there is a workaround.
+But, don't worry, there is a way forward.
 
 ## Glibc Compatibility for JVM on Alpine
 
-[Sasha Gerrand](https://github.com/sgerrand) maintains a glibc package for Alpine Linux. If you add this package to an Alpine system, you will be able to run Glibc-based applications on Alpine.  This is how the [AdoptOpenJDK Alpine images](https://github.com/AdoptOpenJDK/openjdk-docker#supported-builds-and-build-types) are produced - they do not use a musl port of the JVM.  For the most part you can just take one of the AdoptOpenJDK images and run your application as usual, enjoying the 100+ megabyte image size reduction.  In fact the JVM requires a few more packages to be added to a base Alpine image. The total size of Alpine plus all the required libs, plus the glibc-compatibility layer is 52mb. This is a lot bigger than the base Alpine image, but still a lot smaller than ubuntu-slim, for example.
+[Sasha Gerrand](https://github.com/sgerrand) maintains a [glibc package for Alpine Linux](https://github.com/sgerrand/alpine-pkg-glibc). If you add this package to an Alpine system, you will be able to run glibc-based applications - WOW!
+
+This is how the [Alpine images](https://github.com/AdoptOpenJDK/openjdk-docker#supported-builds-and-build-types) are produced by [AdoptOpenJDK](https://adoptopenjdk.net/) - they _do not use_ a musl port of the JVM.  For the most part you can just take one of the AdoptOpenJDK images and run your application as usual, enjoying the 100+ megabyte image size reduction.  In fact the JVM requires a few more packages to be added to a base Alpine image. The total size of Alpine plus all the required libs, plus the glibc-compatibility layer is 52mb. This is a lot bigger than the base Alpine image, but still a lot smaller than ubuntu-slim, for example. On top of that you need to add your code, and the JDK itself. The largest component of this is likely to be the JDK.  You can stop here, but if you want even smaller images, read on...
 
 ## Using jlink to shrink the JDK
 
-If you use the AdoptOpenJDK Alpine images to deploy your JVM-based applications then the largest component in the images is likely to be the JDK itself. And you are _highly unlikely_ to be using all of the features that the JDK provides.  I've written about using `jlink` to shrink JDK distributions [before](todo:link) - but the TL;DR is that `jlink` can provide a JDK distribution which contains _only_ the Java modules you need. If you are using Portola-based JDKs then the smaller JDK which `jlink` creates will be fine to run on Alpine as-is, and you can have a Dockerfile like this:
+You are _highly unlikely_ to be using all of the features that the JDK provides.  I've written about using `jlink` to shrink JDK distributions [before](https://mjg123.github.io/2017/11/07/Java-modules-and-jlink.html), [twice](https://mjg123.github.io/2018/05/26/Multi-Stage-Docker-Build-with-jlink.html) - the TL;DR is that `jlink` can provide a JDK distribution which contains _only_ the Java modules you need. This can save hundreds of megabytes.
+
+If you are using Portola-based JDKs then the smaller JDK which `jlink` creates will be fine to run on Alpine as-is, and you can have a Dockerfile like this:
 
 ```
 FROM alpine:latest as build
-ADD openjdk-11+28_linux-x64-musl_bin.tar.gz /opt/jdk  # This is the Portola JDK distribution
-RUN ["/opt/jdk/jdk-11/jlink", "--compress=2", \
+
+# This is the latest Portola JDK distribution at the time of writing
+ADD https://download.java.net/java/early_access/alpine/18/binaries/openjdk-12-ea+18_linux-x64-musl_bin.tar.gz /opt/jdk
+
+RUN ["/opt/jdk/jdk-12/jlink", "--compress=2", \
      "--module-path", "/opt/jdk/jdk-11/jmods", \
      "--add-modules", "java.base", \
      "--output", "/jlinked"]
@@ -46,9 +61,14 @@ ADD HelloWorld.class /
 CMD ["/opt/jdk/java", "HelloWorld"]
 ```
 
-However, if you try using `adoptopenjdk/openjdk-11:alpine-slim` as your base image for the first stage, you won't need to use the `ADD` line - but the resulting image _won't work_.  It will fail with a rather confusing `not found` error. The error is because the `alipine-slim` JDK builds use the regular glibc-based JVMs so copying them into a plain `alpine:latest` image won't work.  You need to _manually_ install the glibc-compatibility package in your final image, as well as the extra libs that the JVM needs (libssl, zlib and a few others).
+However, if you try using `adoptopenjdk/openjdk-11:alpine-slim` as your base image for the first stage then you will notice two things:
 
-The easiest way to do that right now is to copy how AdoptOpenJDK have done it, which you can find in this rather beefy `RUN` command in their [Alpine Dockerfiles](https://github.com/AdoptOpenJDK/openjdk-docker/blob/2baf4481c1a3a70f47a8aae074ec9a4027945638/11/jdk/alpine/Dockerfile.hotspot.releases.slim#L24-L46).  A Dockerfile which you can build from is as follows:
+  - you won't need to use the `ADD` line - the JDK's already there
+  - the resulting image _won't work_
+  
+It will fail with a rather confusing `not found` error. The error is because the `alipine-slim` JDK builds use the regular glibc-based JVMs, and `jlink` from those will produce another glibc-based JVM. So copying that into a plain `alpine:latest` image won't work.  You need to _manually_ install the glibc-compatibility package in your final image, as well as the extra libs that the JVM needs (libssl, zlib and a few others), just as was done in the base image from AdoptOpenJDK.
+
+The easiest way to do that right now is to copy exactly how AdoptOpenJDK have done it, which you can find in a rather beefy `RUN` command in their [Alpine Dockerfiles](https://github.com/AdoptOpenJDK/openjdk-docker/blob/2baf4481c1a3a70f47a8aae074ec9a4027945638/11/jdk/alpine/Dockerfile.hotspot.releases.slim#L24-L46).  A Dockerfile which you can build from is as follows:
 
 ```Dockerfile
 FROM adoptopenjdk/openjdk11:alpine-slim AS jlink
