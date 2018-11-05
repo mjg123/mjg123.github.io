@@ -116,3 +116,5 @@ COPY --from=jlink /jlinked /opt/jdk/
 
 CMD ["/opt/jdk/bin/java", "-version"]
 ```
+
+Personally, I rather hope that Portola can graduate to GA, as we'll have an easier way to create images, not to mention 48mb less in them. If you are interested, please [download it](https://jdk.java.net/12) and try it out - report any bugs you find, and if you don't find any then Yay! Tell your friends!
