@@ -29,13 +29,13 @@ Why am I telling you, dear Java programmer, about C and C++ Kernel APIs?  Well, 
 
 ## Project Portola
 
-So, we know there are some code changes needed to allow the JVM to run on musl-based systems - lucky for us then, that such changes _do exist_ in the repository of [Project Portola](https://openjdk.java.net/projects/portola/).  Before JDK 11 was released it was possible to get early-access builds of the Portola codebase for 11, but it did not graduate to a "General Availability" release, and now you cannot download Portola builds of JDK 11. There are early-access builds of JDK 12 for Alpine, based on Portola, at the [JDK12-ea downloads page](http://jdk.java.net/12/). Oracle is still gauging support and testing/hardening it before Portola is ready for GA. In fact I have not found any builds of OpenJDK 11 for Alpine publicly available from any vendor.
+So, we know there are some code changes needed to allow the JVM to run on musl-based systems - lucky for us then, that such changes _do exist_ in the repository of [Project Portola](https://openjdk.java.net/projects/portola/). Oracle is publishing Early-Access builds of the Portola code base for the in-development JDK version (currently [JDK 12](https://jdk.java.net/12)) and is gauging the interest in the port to decide how to move forward with it. Given the experimental status of the port there are not yet any GA versions of it. In fact I have not found any builds of OpenJDK 11 for Alpine publicly available from any vendor.
 
 But, don't worry, there is a way forward.
 
 ## Glibc Compatibility for JVM on Alpine
 
-[Sasha Gerrand](https://github.com/sgerrand) maintains a [glibc package for Alpine Linux](https://github.com/sgerrand/alpine-pkg-glibc). If you add this package to an Alpine system, you will be able to run glibc-based applications - WOW!
+[Sasha Gerrand](https://github.com/sgerrand) maintains a [glibc package for Alpine Linux](https://github.com/sgerrand/alpine-pkg-glibc). If you add this package to an Alpine system, you will be able to run glibc-based applications - including any glibc JDK or JRE - WOW!
 
 This is how the [Alpine images](https://github.com/AdoptOpenJDK/openjdk-docker#supported-builds-and-build-types) are produced by [AdoptOpenJDK](https://adoptopenjdk.net/) - they _do not use_ a musl port of the JVM. In fact the JVM requires a few more packages to be added to a base Alpine image, so the total size of Alpine plus all the required libs, plus the glibc-compatibility layer is 52mb. This is a lot bigger than the base Alpine image, but still a lot smaller than ubuntu, for example.
 
@@ -71,7 +71,7 @@ However, if you try using `adoptopenjdk/openjdk-11:alpine-slim` as your base ima
   - you won't need to use the `ADD` line - the JDK's already there
   - the resulting image _won't work_
   
-It will fail with a rather confusing `not found` error. The error is because the `alipine-slim` JDK builds use the regular glibc-based JVMs, and `jlink` from those will produce another glibc-based JVM. So copying that into a plain `alpine:latest` image won't work.  You need to _manually_ install the glibc-compatibility package in your final image, as well as the extra libs that the JVM needs (libssl, zlib and a few others), just as was done in the base image from AdoptOpenJDK.
+It will fail with a rather confusing `not found` error. The error is because the `alipine-slim` JDK builds use the regular glibc-based JVMs, and `jlink` from those will produce another glibc-based JVM. So copying that into a plain `alpine:latest` image won't work.  You need to _manually_ install the glibc-compatibility package in your final image, as well as the tools than Alpine needs to be able to install it (curl, libssl and a few others), just as was done in the base image from AdoptOpenJDK.
 
 The easiest way to do that right now is to copy exactly how AdoptOpenJDK have done it, which you can find in a rather beefy `RUN` command in their [Alpine Dockerfiles](https://github.com/AdoptOpenJDK/openjdk-docker/blob/2baf4481c1a3a70f47a8aae074ec9a4027945638/11/jdk/alpine/Dockerfile.hotspot.releases.slim#L24-L46).  A Dockerfile which you can build from is as follows:
 
