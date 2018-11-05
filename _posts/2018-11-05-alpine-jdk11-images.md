@@ -63,7 +63,7 @@ RUN ["/opt/jdk/jdk-12/jlink", "--compress=2", \
 FROM alpine:latest
 COPY --from=build /jlinked /opt/jdk/
 ADD HelloWorld.class /
-CMD ["/opt/jdk/java", "HelloWorld"]
+CMD ["/opt/jdk/bin/java", "HelloWorld"]
 ```
 
 However, if you try using `adoptopenjdk/openjdk-11:alpine-slim` as your base image for the first stage then you will notice two things:
