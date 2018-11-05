@@ -44,7 +44,7 @@ For the most part you can just take one of the AdoptOpenJDK images and run your 
 
 ## Using jlink to shrink the JDK
 
-You are _highly unlikely_ to be using all of the features that the JDK provides.  I've written about using `jlink` to shrink JDK distributions [before](https://mjg123.github.io/2017/11/07/Java-modules-and-jlink.html), [twice](https://mjg123.github.io/2018/05/26/Multi-Stage-Docker-Build-with-jlink.html) - the TL;DR is that `jlink` can provide a JDK distribution which contains _only_ the Java modules you need. This can save hundreds of megabytes.
+You are _highly unlikely_ to be using all of the features that the JDK provides.  I've written about using `jlink` to shrink JDK distributions [before](https://mjg123.github.io/2017/11/07/Java-modules-and-jlink.html), [twice](https://mjg123.github.io/2018/05/26/Multi-Stage-Docker-Build-with-jlink.html) - the TL;DR is that `jlink` can provide a JDK distribution which contains _only_ the Java modules you need. This can save a lot of space.
 
 If you are using Portola-based JDKs then the smaller JDK which `jlink` creates will be fine to run on Alpine as-is, and you can have a Dockerfile like this:
 
