@@ -37,7 +37,10 @@ But, don't worry, there is a way forward.
 
 [Sasha Gerrand](https://github.com/sgerrand) maintains a [glibc package for Alpine Linux](https://github.com/sgerrand/alpine-pkg-glibc). If you add this package to an Alpine system, you will be able to run glibc-based applications - WOW!
 
-This is how the [Alpine images](https://github.com/AdoptOpenJDK/openjdk-docker#supported-builds-and-build-types) are produced by [AdoptOpenJDK](https://adoptopenjdk.net/) - they _do not use_ a musl port of the JVM.  For the most part you can just take one of the AdoptOpenJDK images and run your application as usual, enjoying the 100+ megabyte image size reduction.  In fact the JVM requires a few more packages to be added to a base Alpine image. The total size of Alpine plus all the required libs, plus the glibc-compatibility layer is 52mb. This is a lot bigger than the base Alpine image, but still a lot smaller than ubuntu-slim, for example. On top of that you need to add your code, and the JDK itself. The largest component of this is likely to be the JDK.  You can stop here, but if you want even smaller images, read on...
+This is how the [Alpine images](https://github.com/AdoptOpenJDK/openjdk-docker#supported-builds-and-build-types) are produced by [AdoptOpenJDK](https://adoptopenjdk.net/) - they _do not use_ a musl port of the JVM. In fact the JVM requires a few more packages to be added to a base Alpine image, so the total size of Alpine plus all the required libs, plus the glibc-compatibility layer is 52mb. This is a lot bigger than the base Alpine image, but still a lot smaller than ubuntu, for example.
+
+For the most part you can just take one of the AdoptOpenJDK images and run your application as usual, enjoying the 100+ megabyte image size reduction. The largest component of your image is now likely to be the JDK.  You _could_ stop here, but if you want even smaller images, read on...
+
 
 ## Using jlink to shrink the JDK
 
