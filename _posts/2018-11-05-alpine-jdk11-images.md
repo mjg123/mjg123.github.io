@@ -69,11 +69,11 @@ CMD ["/opt/jdk/java", "HelloWorld"]
 However, if you try using `adoptopenjdk/openjdk-11:alpine-slim` as your base image for the first stage then you will notice two things:
 
   - you won't need to use the `ADD` line - the JDK's already there
-  - the resulting image _won't work_
+  - rather importantly, you will also find that the resulting image _does't work_
   
-It will fail with a rather confusing `not found` error. The error is because the `alipine-slim` JDK builds use the regular glibc-based JVMs, and `jlink` from those will produce another glibc-based JVM. So copying that into a plain `alpine:latest` image won't work.  You need to _manually_ install the glibc-compatibility package in your final image, as well as the tools than Alpine needs to be able to install it (curl, libssl and a few others), just as was done in the base image from AdoptOpenJDK.
+It will fail with a rather confusing `not found` error. The error is because the `alipine-slim` JDK builds use the regular glibc-based JVMs, and `jlink` from those will produce another glibc-based JVM. So copying that into a plain `alpine:latest` image won't work.  You need to _manually_ install the glibc-compatibility package in your final image, just as was done in the base image from AdoptOpenJDK.
 
-The easiest way to do that right now is to copy exactly how AdoptOpenJDK have done it, which you can find in a rather beefy `RUN` command in their [Alpine Dockerfiles](https://github.com/AdoptOpenJDK/openjdk-docker/blob/2baf4481c1a3a70f47a8aae074ec9a4027945638/11/jdk/alpine/Dockerfile.hotspot.releases.slim#L24-L46).  A Dockerfile which you can build from is as follows:
+The easiest way to do that right now is to copy exactly how AdoptOpenJDK have done it, which you can find in a rather beefy `RUN` command in their [Alpine Dockerfiles](https://github.com/AdoptOpenJDK/openjdk-docker/blob/2baf4481c1a3a70f47a8aae074ec9a4027945638/11/jdk/alpine/Dockerfile.hotspot.releases.slim#L24-L46).  A Dockerfile which you can use as a basis for your own builds from is as follows:
 
 ```Dockerfile
 FROM adoptopenjdk/openjdk11:alpine-slim AS jlink
@@ -85,7 +85,7 @@ RUN ["jlink", "--compress=2", \
 
 FROM alpine
 
-# This is the line that AdoptOpenJDK use:
+# This is the line from AdoptOpenJDK:
 RUN apk --update add --no-cache ca-certificates curl openssl binutils xz \
     && GLIBC_VER="2.28-r0" \
     && ALPINE_GLIBC_REPO="https://github.com/sgerrand/alpine-pkg-glibc/releases/download" \
@@ -118,3 +118,5 @@ CMD ["/opt/jdk/bin/java", "-version"]
 ```
 
 Personally, I rather hope that Portola can graduate to GA, as we'll have an easier way to create images, not to mention 48mb less in them. If you are interested, please [download it](https://jdk.java.net/12) and try it out - report any bugs you find, and if you don't find any then Yay! Tell your friends!
+
+\[Thank you to Portola Project Lead, [Mikael Vidstedt](https://twitter.com/mikaelvidstedt) for proof-reading this post\]
