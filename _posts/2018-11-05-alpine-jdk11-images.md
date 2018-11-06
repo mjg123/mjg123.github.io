@@ -70,7 +70,7 @@ However, if you try using `adoptopenjdk/openjdk-11:alpine-slim` as your base ima
   - you won't need to use the `ADD` line - the JDK's already there
   - rather importantly, you will also find that the resulting image _does't work_
   
-It will fail with a rather confusing `not found` error. The error is because the `adoptopenjdk/openjdk-11:alpine-slim` JDK builds use the regular glibc-based JVMs, and `jlink` from those will produce another glibc-based JVM. So those JVMs in a plain `alpine:latest` image are gonna fail to start.  You need to _manually_ install the glibc-compatibility package in your final image, just as was done in the base image from AdoptOpenJDK.
+It will fail with a rather confusing `not found` error. The error is because the `adoptopenjdk/openjdk-11:alpine-slim` JDK builds use the regular glibc-based JVMs, and `jlink` from those will produce another glibc-based JVM. So those JVMs in a plain `alpine:latest` image ain't gonna run.  You need to _manually_ install the glibc-compatibility package in your final image, just as was done in the base image from AdoptOpenJDK.
 
 The easiest way to do that right now is to copy exactly how AdoptOpenJDK have done it, which you can find in a rather beefy `RUN` command in their [Alpine Dockerfiles](https://github.com/AdoptOpenJDK/openjdk-docker/blob/2baf4481c1a3a70f47a8aae074ec9a4027945638/11/jdk/alpine/Dockerfile.hotspot.releases.slim#L24-L46).  A Dockerfile which you can use as a basis for your own builds from is as follows:
 
