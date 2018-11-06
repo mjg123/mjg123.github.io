@@ -1,8 +1,8 @@
---
+---
 layout:     post
 title:      Java 11 in Alpine Linux containers
 date:       2018-11-05 18:00:00
-summary:    how to build small container images at home
+summary:    How to build small container images at home
 tags:
 - java
 - containers
