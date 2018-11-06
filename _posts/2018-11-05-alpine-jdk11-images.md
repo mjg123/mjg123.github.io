@@ -8,7 +8,7 @@ tags:
 - containers
 ---
 
-Now that JDK 11 is fully released with [a raft of excellent new features](https://openjdk.java.net/projects/jdk/11/), many developers are looking to use it in containerized environments. This is an excellent time to do so, with [many new container-friendly features](https://docs.google.com/presentation/d/11VjOwW8MjDqXX9uRx0BEGYrIQtGGcXJJWMxS2q-02nA/edit#slide=id.g3c0528a66b_1_162) being added in each release since JDK 8.
+Now that JDK 11 is fully released with [a raft of excellent new features](https://openjdk.java.net/projects/jdk/11/), many developers are looking to use it in containerized environments. This is an excellent time to do so, with [many new container-friendly features](https://docs.google.com/presentation/d/11VjOwW8MjDqXX9uRx0BEGYrIQtGGcXJJWMxS2q-02nA/edit#slide=id.g3c0528a66b_1_162) being added in each release starting with JDK 8.
 
 If you are a conscientious image-builder, you will have heard many times the advice to keep 'em small. From [Google](https://cloud.google.com/blog/products/gcp/7-best-practices-for-building-containers), from [me](https://vimeo.com/289497209), from [Red Hat](https://developers.redhat.com/blog/2016/03/09/more-about-docker-images-size/) or from someone else.  The reasons are numerous: 
 
@@ -20,9 +20,9 @@ This post talks through some of the options and pitfalls in building small JVM c
 
 ## Alpine, Musl and the JVM
 
-For many use-cases, [Alpine Linux](https://alpinelinux.org/) is the ideal base image to use. First of all it's very small - 4.4mb, which is only a couple of percent of the size of a typical "slim" Linux image.
+For many use-cases, [Alpine Linux](https://alpinelinux.org/) is the ideal base image to use. First of all it's very small - 4.4mb, while a typical Linux "slim" image might be over 100.
 
-However, there is something you have to know about Alpine: it does not use **[glibc](https://www.gnu.org/software/libc/)**, instead it uses **[musl](https://www.musl-libc.org/)**. What are glibc and musl? They are programming APIs for the Linux Kernel, doing such things as opening files or network connections. Although they are abstractions over the same underlying thing (the Linux Kernel binary interface), they expose slightly different APIs. So C or C++ code which is compiled against glibc _will not run_ on a musl system, and vice-versa.
+However, there is an important difference between Alpine and other common Linux distros: it does not use **[glibc](https://www.gnu.org/software/libc/)**, instead it uses **[musl](https://www.musl-libc.org/)**. What are glibc and musl? They are programming APIs for the Linux Kernel, doing such things as opening files or network connections. Although they are abstractions over the same underlying thing (the Linux Kernel binary interface), they expose slightly different APIs. So C or C++ code which is compiled against glibc _will not run_ on a musl system, and vice-versa.
 
 Why am I telling you, dear Java programmer, about C and C++ Kernel APIs?  Well, because you use an application written in C++ to do a lot of your work: The JVM!  And how the JVM interacts with the Linux kernel is critical to how it can be used in containers.  If you want to put your Java or Clojure or Kotlin or Scala application in a container, and benefit from Alpine's small size, you need some way to run your JVM on musl!
 
@@ -116,6 +116,6 @@ COPY --from=jlink /jlinked /opt/jdk/
 CMD ["/opt/jdk/bin/java", "-version"]
 ```
 
-Personally, I rather hope that Portola can graduate to GA, as we'll have an easier way to create images, not to mention a few tens of mb less in them. If you are interested, please [download it](https://jdk.java.net/12) and try it out - report any bugs you find, and if you don't find any then Yay! Tell your friends!
+Personally, I rather hope that Portola can graduate to GA, as we'll have an easier way to create images, not to mention a few tens of mb less in them. If you are interested, please [download it](https://jdk.java.net/12) and try it out. In order to move Alpine to "supported" and have GA releases of Portola Oracle is looking for people to be actively interested: contribute to the extent of your abilities - code and tests are welcome but so is being active and public about your support - say if you find any issues, and say too if everythign worked fine. If containers are critical to your company, saying that you would be interested in a Java SE Subscription if Alpine were supported would go a long way, too.
 
-\[Thank you to Portola Project Lead, [Mikael Vidstedt](https://twitter.com/mikaelvidstedt) for proof-reading this post\]
+\[Thank you to Portola Project Lead, [Mikael Vidstedt](https://twitter.com/mikaelvidstedt), and [Aurelio Garcia-Ribeyro](https://twitter.com/aureliog) for proof-reading this post and helpful improvements\]
