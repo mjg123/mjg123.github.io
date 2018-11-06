@@ -5,7 +5,6 @@ date:       2018-11-06 00:00:00
 summary:    One Accept, One Reject
 tags:
 - conference
-- draft
 ---
 
 This year I have submitted proposals to many conferences. My accept rate is around two-thirds, so I am quite used to having talks rejected. I have never received any feedback about rejections - and I don't think I can expect to, as conference organisers have enough work to do without spending the time to provide that kind of in-depth feedback. I am always deeply grateful for ever getting a chance to speak and cannot bear any ill-will to a conference for rejecting me.
