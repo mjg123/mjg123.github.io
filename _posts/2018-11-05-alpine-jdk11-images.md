@@ -1,4 +1,4 @@
----
+--
 layout:     post
 title:      Java 11 in Alpine Linux containers
 date:       2018-11-05 18:00:00
@@ -6,7 +6,6 @@ summary:    how to build small container images at home
 tags:
 - java
 - containers
-- draft
 ---
 
 Now that JDK 11 is fully released with [a raft of excellent new features](https://openjdk.java.net/projects/jdk/11/), many developers are looking to use it in containerized environments. This is an excellent time to do so, with [many new container-friendly features](https://docs.google.com/presentation/d/11VjOwW8MjDqXX9uRx0BEGYrIQtGGcXJJWMxS2q-02nA/edit#slide=id.g3c0528a66b_1_162) being added in each release since JDK 8.
@@ -37,7 +36,7 @@ But, don't worry, there is a way forward.
 
 [Sasha Gerrand](https://github.com/sgerrand) maintains a [glibc package for Alpine Linux](https://github.com/sgerrand/alpine-pkg-glibc). If you add this package to an Alpine system, you will be able to run glibc-based applications - including any glibc-based JDK or JRE - WOW!
 
-This is how the [Alpine images](https://github.com/AdoptOpenJDK/openjdk-docker#supported-builds-and-build-types) are produced by [AdoptOpenJDK](https://adoptopenjdk.net/) - they _do not use_ a musl port of the JVM. The total size of Alpine plus the glibc-compatibility layer (and all the tools needed to install it) is 52mb. This is a lot bigger than the base Alpine image, but still a lot smaller than ubuntu, for example.
+This is how the [Alpine images](https://github.com/AdoptOpenJDK/openjdk-docker#supported-builds-and-build-types) are produced by [AdoptOpenJDK](https://adoptopenjdk.net/) - they _do not use_ Portola, or any musl port of the JVM. The total size of Alpine plus the glibc-compatibility layer (and all the tools needed to install it) is 52mb. This is a lot bigger than the base Alpine image, but still a lot smaller than ubuntu, for example.
 
 For the most part you can just take one of the AdoptOpenJDK images and run your application as usual, enjoying the 100+ megabyte image size reduction. The largest component of your image is now likely to be the JDK.  You _could_ stop here, but if you want even smaller images, read on...
 
@@ -51,7 +50,7 @@ If you are using Portola-based JDKs then the smaller JDK which `jlink` creates w
 ```
 FROM alpine:latest as build
 
-# This is the latest Portola JDK distribution at the time of writing
+# This is the latest Portola distribution at the time of writing
 ADD https://download.java.net/java/early_access/alpine/18/binaries/openjdk-12-ea+18_linux-x64-musl_bin.tar.gz /opt/jdk
 
 RUN ["/opt/jdk/jdk-12/jlink", "--compress=2", \
