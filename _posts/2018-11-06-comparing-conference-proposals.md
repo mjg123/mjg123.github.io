@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      Comparing Conference Proposals
-date:       2018-11-06 11:00:00
+date:       2018-11-06 00:00:00
 summary:    One Accept, One Reject
 tags:
 - conference
