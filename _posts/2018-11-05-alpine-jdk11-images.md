@@ -8,7 +8,7 @@ tags:
 - containers
 ---
 
-Now that JDK 11 is fully released with [a raft of excellent new features](https://openjdk.java.net/projects/jdk/11/), many developers are looking to use it in containerized environments. This is an excellent time to do so, with [many new container-friendly features](https://docs.google.com/presentation/d/11VjOwW8MjDqXX9uRx0BEGYrIQtGGcXJJWMxS2q-02nA/edit#slide=id.g3c0528a66b_1_162) being added in each release starting with JDK 8.
+Now that JDK 11 is fully released with [a raft of excellent new features](https://openjdk.java.net/projects/jdk/11/), many developers are looking to use it in containerized environments. This is a great time to do so, with [many new container-friendly features](https://docs.google.com/presentation/d/11VjOwW8MjDqXX9uRx0BEGYrIQtGGcXJJWMxS2q-02nA/edit#slide=id.g3c0528a66b_1_162) being added in each release starting with JDK 8.
 
 If you are a conscientious image-builder, you will have heard many times the advice to keep 'em small. From [Google](https://cloud.google.com/blog/products/gcp/7-best-practices-for-building-containers), from [me](https://vimeo.com/289497209), from [Red Hat](https://developers.redhat.com/blog/2016/03/09/more-about-docker-images-size/) or from someone else.  The reasons are numerous: 
 
