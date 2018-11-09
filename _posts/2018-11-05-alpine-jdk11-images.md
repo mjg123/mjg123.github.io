@@ -36,7 +36,7 @@ But, don't worry, there is a way forward.
 
 [Sasha Gerrand](https://github.com/sgerrand) maintains a [glibc package for Alpine Linux](https://github.com/sgerrand/alpine-pkg-glibc). If you add this package to an Alpine system, you will be able to run glibc-based applications - including any glibc-based JDK or JRE - WOW!
 
-This is how the [Alpine images](https://github.com/AdoptOpenJDK/openjdk-docker#supported-builds-and-build-types) are produced by [AdoptOpenJDK](https://adoptopenjdk.net/) - they _do not use_ Portola, or any musl port of the JVM. The total size of Alpine plus the glibc-compatibility layer (and all the tools needed to install it) is 52mb. This is a lot bigger than the base Alpine image, but still a lot smaller than ubuntu, for example.
+This is how the [Alpine images](https://github.com/AdoptOpenJDK/openjdk-docker#supported-builds-and-build-types) are produced by [AdoptOpenJDK](https://adoptopenjdk.net/) - they _do not use_ Portola, or any musl port of the JVM. The total size of Alpine plus the glibc-compatibility layer (and all the tools needed to install it) is 16mb. This is a lot bigger than the base Alpine image, but still a lot smaller than ubuntu, for example.
 
 For the most part you can just take one of the AdoptOpenJDK images and run your application as usual, enjoying the 100+ megabyte image size reduction. The largest component of your image is now likely to be the JDK.  You _could_ stop here, but if you want even smaller images, read on...
 
@@ -118,4 +118,4 @@ CMD ["/opt/jdk/bin/java", "-version"]
 
 Personally, I rather hope that Portola can graduate to GA, as we'll have an easier way to create images, not to mention a few tens of mb less in them. If you are interested, please [download it](https://jdk.java.net/12) and try it out. In order to move Alpine to "supported" and have GA releases of Portola Oracle is looking for people to be actively interested: contribute to the extent of your abilities - code and tests are welcome but so is being active and public about your support - say if you find any issues, and say too if everything worked fine. If containers are critical to your company, saying that you would be interested in a Java SE Subscription if Alpine were supported would go a long way, too.
 
-\[Thank you to Portola Project Lead, [Mikael Vidstedt](https://twitter.com/mikaelvidstedt), and [Aurelio Garcia-Ribeyro](https://twitter.com/aureliog) for proof-reading this post and helpful improvements\]
+\[Thank you to Portola Project Lead, [Mikael Vidstedt](https://twitter.com/mikaelvidstedt), [Aurelio Garcia-Ribeyro](https://twitter.com/aureliog) and [Dinakar Guniguntala](https://github.com/dinogun) for proof-reading this post and helpful improvements\]
