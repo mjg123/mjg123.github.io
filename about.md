@@ -6,15 +6,15 @@ permalink: /about/
 
 ![My Face]({{ "assets/gilliard.jpg" | absolute_url }})
 
-This is what I look like. I work for Oracle in Bristol (UK) on Open-Source, Java and Serverless/Cloud infrastructure. Opinions and comments are my own.
+This is what I look like. I work as a Developer Evangelist for [Twilio](https://twilio.com) in the UK, inspiring and equipping developers to fuel the future of communications.  My particular focus is on JVM-language communities - Java, Clojure, Scala, Kotlin and all the others.
 
 I love speaking and teaching and am looking for opportunities to do more of it. [Here's why]({% post_url 2018-06-06-Why-I-DevRel %}).  The speaker bio I usually use is:
 
-> Matthew is a (somewhat) functional programmer who enjoys all kinds of language nerdery.
+> Matthew is a Developer Evangelist for Twilio, a company that is helping developers to fuel the future of communications with APIs. He loves spending time with members of the Java community at conferences, meetups and hackathons, helping developers to unlock their communication superpowers.
 >
-> He currently works on open-source code at Oracle, helping to make Java in the cloud be as good as it can. If not there, you might find him at a local meetup, teaching kids to code, or away from computers hiking and running in Southwest England.
+> When not at work, you might find him at a local meetup, teaching kids to code, or away from computers hiking and running in Southwest England.
 > 
-> Past lives include OpenStacking, teaching English to highschoolers and a whole lot of Clojure and Java.
+> Past lives include hacking on public cloud infrastructure, teaching English to highschoolers and a whole lot of Clojure and Java.
 
 If that isn't suitable then I'm sure we can come to an agreement about some other words. Here are a few of my talks:
 
