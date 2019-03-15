@@ -6,7 +6,7 @@ permalink: /about/
 
 ![My Face]({{ "assets/gilliard.jpg" | absolute_url }})
 
-This is what I look like. I work as a Developer Evangelist for [Twilio](https://twilio.com) in the UK, inspiring and equipping developers to fuel the future of communications.  My particular focus is on JVM-language communities - Java, Clojure, Scala, Kotlin and all the others.
+This is what I look like. I work as a [Developer Evangelist](https://www.twilio.com/blog/introducing-developer-evangelist-matthew-gilliard) for [Twilio](https://twilio.com) in the UK, inspiring and equipping developers to fuel the future of communications.  My particular focus is on JVM-language communities - Java, Clojure, Scala, Kotlin and all the others.
 
 I love speaking and teaching and am looking for opportunities to do more of it. [Here's why]({% post_url 2018-06-06-Why-I-DevRel %}).  The speaker bio I usually use is:
 
