@@ -10,7 +10,7 @@ This is what I look like. I work as a [Developer Evangelist](https://www.twilio.
 
 I love speaking and teaching and am looking for opportunities to do more of it. [Here's why]({% post_url 2018-06-06-Why-I-DevRel %}).  The speaker bio I usually use is:
 
-> Matthew is a Developer Evangelist for Twilio, a company that is helping developers to fuel the future of communications with APIs. He loves spending time with members of the Java community at conferences, meetups and hackathons, helping developers to unlock their communication superpowers.
+> Matthew is a Developer Evangelist for Twilio, a company that is helping developers to fuel the future of communication with APIs. He loves spending time with members of the Java community at conferences, meetups and hackathons, helping developers to unlock their communication superpowers.
 >
 > When not at work, you might find him at a local meetup, teaching kids to code, or away from computers hiking and running in Southwest England.
 > 
