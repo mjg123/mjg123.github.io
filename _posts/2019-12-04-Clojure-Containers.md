@@ -12,7 +12,7 @@ tags:
 
 This is a write-up of the ideas and techniques I showed at [re:Clojure 2019](https://reclojure.org) in London. I talked about how the JVM interacts with Docker and demoed a few ideas for Fast JVM Startup, Efficient Images, and Respecting the Container Environment.
 
-[Slides Link](https://docs.google.com/presentation/d/1QmaE3cpO26BAhayxQdqwZJDEGlaoSNfqCUYnih9wiRI/edit?usp=sharing) - Video Link: It's coming!
+[Slides Link](https://docs.google.com/presentation/d/1QmaE3cpO26BAhayxQdqwZJDEGlaoSNfqCUYnih9wiRI/edit?usp=sharing) - Video Link: [It's coming!](https://yt.vu/+reclojure)
 
 TL;DR, I recommend:
 
