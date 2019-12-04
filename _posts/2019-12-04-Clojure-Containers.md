@@ -34,7 +34,7 @@ There are two related JVM features:
   - Class Data Sharing - caching of classes distributed with the JDK (ie core Java classes)
   - Application Class Data Sharing - caching of application classes (ie your app and its dependencies)
   
-### CDS
+### Class Data Sharing
 
 Since Java 5 CDS has been available in OpenJDK. You can generate the archive file by running:
 
