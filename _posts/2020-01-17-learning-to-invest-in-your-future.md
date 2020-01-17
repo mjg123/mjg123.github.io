@@ -12,7 +12,7 @@ tags:
 
 Here is a list of the things I referenced in my talk "Learning to invest in your future" at [YouGotThis 2020](https://2020.yougotthis.io/). After the conference I will write a full post on it.
 
-## Apollo 11 missions:
+## Apollo 11 missions
   - [13 Minutes to the Moon](https://www.bbc.co.uk/programmes/w13xttx2). Especially Episode 2 "Kids in Control"
 
 ## SpaceX learning from failure
