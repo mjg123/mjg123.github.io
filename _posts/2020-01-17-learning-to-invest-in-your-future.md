@@ -55,7 +55,7 @@ The examples I used were:
   - [Avoiding burnout as an ambitious developer](https://stackoverflow.blog/2020/01/13/avoiding-burnout-as-an-ambitious-developer/)
   
 ## Not included
-A few things which I wanted to include but could not fit into the time :(:
+A few things which I wanted to include but could not fit into the time :(
  - [The Puzzle of Motivation](https://www.ted.com/talks/dan_pink_the_puzzle_of_motivation), Daniel Pink
  - "Everything changes and nothing stands still", [Heraclitus](https://en.wikiquote.org/wiki/Heraclitus),
  - Larry Wall's [Three Virtues of Great Programmers](http://threevirtues.com/)
