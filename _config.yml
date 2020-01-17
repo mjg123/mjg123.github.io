@@ -18,7 +18,7 @@ title: Matthew Gilliard's blog
 email: matthew.gilliard@gmail.com
 description: >- #
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://mjg123.github.io"
+url: https://blog.gilliard.lol
 twitter_username: MaximumGilliard
 github_username:  mjg123
 google_analytics: UA-107370844-1
