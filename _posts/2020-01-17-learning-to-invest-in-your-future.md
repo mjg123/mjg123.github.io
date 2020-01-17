@@ -21,6 +21,7 @@ Here is a list of the things I referenced in my talk "Learning to invest in your
 ## Deliberate Practise
   - [Anders Ericsson](https://en.wikipedia.org/wiki/K._Anders_Ericsson)
   - [Peak](https://en.wikipedia.org/wiki/Peak:_Secrets_from_the_New_Science_of_Expertise)
+  - [Diffuse vs Focussed thinking](https://fs.blog/2019/10/focused-diffuse-thinking/)
 
 ## Models of Skills Acquisition
   - [Bloom's Taxonomy](https://www.teachthought.com/learning/what-is-blooms-taxonomy-a-definition-for-teachers/)
