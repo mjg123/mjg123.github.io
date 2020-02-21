@@ -2,15 +2,15 @@
 layout:     post
 title:      Learning to invest in your future
 date:       2020-01-17 12:31:19
-summary:    Notes from my talk at YouGotThis 2020
+summary:    Notes from my talk about learning
 redirect_from:
-- /ygt2020
+- /learning
 tags:
 - learning
 - not-computers
 ---
 
-Here is a list of the things I referenced in my talk "Learning to invest in your future" at [YouGotThis 2020](https://2020.yougotthis.io/). After the conference I will write a full post on it.
+Here is a list of the things I referenced in my talk "Learning to invest in your future" .
 
 ## Apollo 11 missions
   - [13 Minutes to the Moon](https://www.bbc.co.uk/programmes/w13xttx2). Especially Episode 2 "Kids in Control"
